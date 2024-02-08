@@ -1,12 +1,12 @@
 const Course = require('../models/Course');
 const {mutipleMongooseToObject} = require('../../util/mongoose');
 
-class SiteController {
+class AdminController {
     //[GET] /news
     index(req,res,next){
         Course.find({})
             .then(courses => {
-                res.render('home', {
+                res.render('admin', {
                     courses: mutipleMongooseToObject(courses)
                 });
             })
@@ -14,13 +14,10 @@ class SiteController {
     }
 
     //[GET] /news/:slug
-    search(req,res){
-        res.render('search');
-    }
     adminManager(req,res){
-        res.render('admin/mainAdmin');
+        res.render('mainAdmin');
     }
+    
 }
 
-module.exports = new SiteController;
-
+module.exports = new AdminController;
