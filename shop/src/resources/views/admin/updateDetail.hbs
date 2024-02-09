@@ -3,13 +3,13 @@
         <div class="col-lg-3 ">
             <!-- Button đã được nhấn -->
             <!--<button type="button" class="btn btn-primary active shadow p-3 mb-4" style="margin-top: 16px;">Đã được nhấn</button></br> -->
-            <div class="row">
+            <div class="row ">
                 <div class="col-lg-4">
                     <h2 class="custom-title"><a href="/admin" style="text-decoration: none; color: white;">Chức năng</a></h2>
                 </div>
                 <div class="col-lg-8 custom-container">
                     <!-- Nút Thêm dữ liệu -->
-                    <a href="#" class="btn btn-primary custom-btn pressed-btn"> 
+                    <a href="/admin/create" class="btn btn-primary custom-btn unpressed-btn"> 
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16" style="margin-right: 5px;">
                             <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
                         </svg> 
@@ -18,7 +18,7 @@
                     <!-- Nút Xóa dữ liệu -->
                     <a href="#" class="btn btn-primary custom-btn unpressed-btn">Xóa dữ liệu</a>
                     <!-- Nút Sửa dữ liệu -->
-                    <a href="/admin/update" class="btn btn-primary custom-btn unpressed-btn">
+                    <a href="#" class="btn btn-primary custom-btn pressed-btn">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tools" viewBox="0 0 16 16" style="margin-right: 5px;">
                             <path d="M1 0 0 1l2.2 3.081a1 1 0 0 0 .815.419h.07a1 1 0 0 1 .708.293l2.675 2.675-2.617 2.654A3.003 3.003 0 0 0 0 13a3 3 0 1 0 5.878-.851l2.654-2.617.968.968-.305.914a1 1 0 0 0 .242 1.023l3.27 3.27a.997.997 0 0 0 1.414 0l1.586-1.586a.997.997 0 0 0 0-1.414l-3.27-3.27a1 1 0 0 0-1.023-.242L10.5 9.5l-.96-.96 2.68-2.643A3.005 3.005 0 0 0 16 3q0-.405-.102-.777l-2.14 2.141L12 4l-.364-1.757L13.777.102a3 3 0 0 0-3.675 3.68L7.462 6.46 4.793 3.793a1 1 0 0 1-.293-.707v-.071a1 1 0 0 0-.419-.814zm9.646 10.646a.5.5 0 0 1 .708 0l2.914 2.915a.5.5 0 0 1-.707.707l-2.915-2.914a.5.5 0 0 1 0-.708M3 11l.471.242.529.026.287.445.445.287.026.529L5 13l-.242.471-.026.529-.445.287-.287.445-.529.026L3 15l-.471-.242L2 14.732l-.287-.445L1.268 14l-.026-.529L1 13l.242-.471.026-.529.445-.287.287-.445.529-.026z"/>
                         </svg> 
@@ -37,14 +37,6 @@
                         Thùng rác ({{deletedCount}})
                     </a>
 
-                    <a href="#" class="btn btn-primary custom-btn unpressed-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-nut" viewBox="0 0 16 16" style="margin-right: 5px;">
-                            <path d="m11.42 2 3.428 6-3.428 6H4.58L1.152 8 4.58 2zM4.58 1a1 1 0 0 0-.868.504l-3.428 6a1 1 0 0 0 0 .992l3.428 6A1 1 0 0 0 4.58 15h6.84a1 1 0 0 0 .868-.504l3.429-6a1 1 0 0 0 0-.992l-3.429-6A1 1 0 0 0 11.42 1z"/>
-                            <path d="M6.848 5.933a2.5 2.5 0 1 0 2.5 4.33 2.5 2.5 0 0 0-2.5-4.33m-1.78 3.915a3.5 3.5 0 1 1 6.061-3.5 3.5 3.5 0 0 1-6.062 3.5z"/>
-                        </svg> 
-                        Chức năng mới
-                    </a>
-            
                     <a href="#" class="btn btn-primary custom-btn unpressed-btn">Chức năng mới</a>
 
                     <a href="#" class="btn btn-primary custom-btn unpressed-btn">Chức năng mới</a>
@@ -67,28 +59,31 @@
             <div class="vertical-line"></div>
         </div>
         <div class="col-lg-8 ">
-            <h3>
-                Đăng video
+            <h3 >
+                <a href="/admin/update" class="arrow-button">
+                    <span class="arrow-text"> Trở về</span>
+                </a>
+                Cập nhật video
             </h3>
-            <form method="POST" action="/admin/store">
+            <form method="POST" action="/admin/update/{{adminUpdateDetail._id}}?_method=PUT">
                 <div class="form-group">
-                    <label for="name" class="form-label">Tên</label>
-                    <input type="text" class="form-control" id="name" name="name">
+                    <label for="name" class="form-label" >Tên</label>
+                    <input type="text" class="form-control" value="{{adminUpdateDetail.name}}" id="name" name="name">
                 </div>
                 <div class="form-group">
                     <label for="description" class="form-label">Mô tả</label>
-                    <input type="text" class="form-control" id="description" name="description">
+                    <textarea class="form-control" id="description" name="description">{{adminUpdateDetail.description}}</textarea>
                 </div>
                 <div class="form-group">
-                    <label for="videoId" class="form-label">video id</label>
-                    <input type="text" class="form-control" id="videoId" name="videoId">
+                    <label for="videoId" class="form-label">video ID</label>
+                    <input type="text" class="form-control" value="{{adminUpdateDetail.videoId}}" id="videoId" name="videoId">
                 </div>
                 <div class="form-group">
                     <label for="level" class="form-label">cấp độ</label>
-                    <input type="text" class="form-control" id="level" name="level">
+                    <input type="text" class="form-control" value="{{adminUpdateDetail.level}}" id="level" name="level">
                 </div>
                 
-                <button type="submit" class="btn btn-primary" style="margin-top: 16px;">Thêm video</button>
+                <button type="submit" class="btn btn-primary" style="margin-top: 16px;">Sửa</button>
             </form>
         </div>
     </div>

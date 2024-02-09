@@ -17,9 +17,7 @@ class SiteController {
     search(req,res){
         res.render('search');
     }
-    adminManager(req,res){
-        res.render('admin/mainAdmin');
-    }
+    
 }
 
 module.exports = new SiteController;

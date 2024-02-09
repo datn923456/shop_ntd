@@ -4,3 +4,185 @@
     margin-top: 16px;
 }
 
+.custom-btn {
+    box-shadow: 0 0.8rem 1.6rem rgba(0, 0, 0, 0.5); /* Hiệu ứng bóng cho các nút */
+    display: inline-block; /* Hiển thị trên cùng một dòng */
+    min-width: 200px; /* Điều chỉnh kích thước để các nút có chiều dài bằng nhau */
+    margin-bottom: 16px; /* Cách nhau 16px */
+  }
+
+  /* Định dạng cho nút đã được nhấn */
+  .pressed-btn {
+    color: #fff; /* Màu chữ trắng */
+    background-color: #006400; /* Màu nền xanh lá đen tối */
+    border-color: #006400; /* Màu viền xanh lá đen tối */
+    outline: none; /* Loại bỏ hiệu ứng nhấp nháy */
+    pointer-events: none; /* Khóa nút */
+  }
+
+  /* Loại bỏ hiệu ứng hover cho nút đã được nhấn */
+  .pressed-btn:hover {
+    color: #fff; /* Màu chữ trắng */
+    background-color: #006400; /* Màu nền xanh lá đen tối */
+    border-color: #006400; /* Màu viền xanh lá đen tối */
+  }
+
+  .custom-title {
+    color: #fff; /* Màu chữ trắng */
+    background-color: #ff0000; /* Màu nền đen */
+    padding: 5px 10px; /* Khoảng cách giữa văn bản và biên ngoài */
+    border: 2px solid #000; /* Khung viền đen */
+    border-radius: 5px; /* Độ cong của các góc */
+    box-shadow: 0 0.3rem 0.6rem rgba(0, 0, 0, 0.5); /* Hiệu ứng bóng đen */
+    display: inline-block; /* Hiển thị trên cùng một dòng */
+  }
+  .first-row {
+    border: 2px solid #1800f4; /* Kẻ viền đen */
+    padding: 10px; /* Khoảng cách nội dung và viền */
+    margin-bottom: 20px; /* Khoảng cách giữa các hàng */
+    border-radius: 5px;
+    box-shadow: 0 0.3rem 0.6rem rgba(0, 0, 0, 0.5);
+  }
+
+  .vertical-line {
+    background-color: #1800f4; /* Màu nền của đường kẻ */
+    height: 100%; /* Chiều cao bằng 100% */
+    margin: auto; /* Căn giữa theo chiều dọc */
+    width: 6px; /* Độ dày của đường kẻ */
+    border-radius: 3px; /* Bo tròn cả hai đầu của đường kẻ */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Thêm bóng đậm */
+}
+//dòng của tìm kiếm chung
+@media (min-width: 576px) {
+    .expanded-search-input {
+        width: 350px; /* Set width to 350px for devices wider than 576px */
+    }
+}
+//avatar
+.user-avatar{
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    margin-right: 4px;
+}
+// .button {
+//     display: inline-block;
+//     background-color: #4CAF50; /* Màu nền */
+//     color: white; /* Màu chữ */
+//     padding: 10px 20px; /* Kích thước nút */
+//     text-align: center; /* Canh giữa nội dung nút */
+//     text-decoration: none; /* Loại bỏ gạch chân */
+//     border-radius: 4px; /* Bo tròn viền */
+//     transition: background-color 0.3s; /* Hiệu ứng khi di chuột qua */
+//   }
+  
+//   /* CSS để thay đổi màu nền khi di chuột qua */
+//   .button:hover {
+//     background-color: #45a049; /* Màu nền khi di chuột qua */
+//   }
+
+//nút quay về mũi tên
+  .arrow-button {
+    display: inline-block;
+    background-color: #007bff; /* Màu nền */
+    color: white; /* Màu chữ */
+    padding: 3px 14px; /* Kích thước nút */
+    text-align: center; /* Canh giữa nội dung nút */
+    text-decoration: none; /* Loại bỏ gạch chân */
+    border: none; /* Loại bỏ viền */
+    border-radius: 5px; /* Bo tròn viền */
+    cursor: pointer; /* Hình dạng con trỏ khi di chuột */
+    position: relative; /* Vị trí tương đối để chèn mũi tên */
+    transition: background-color 0.3s; /* Hiệu ứng hover */
+  }
+  
+  /* CSS để tạo mũi tên */
+  .arrow-button::before {
+    content: '';
+    position: absolute;
+    left: 10%;
+    top: 50%;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 10px 12px 10px 0;
+    border-color: transparent #ffffff transparent transparent;
+    transform: translate(0, -50%);
+  }
+  
+  /* CSS để canh lề chữ "Trở về" */
+  .arrow-text {
+    position: relative;
+    top: -2px;
+    margin-left: 10px;
+  }
+
+//nút xóa  
+  .delete-button {
+    display: inline-block;
+    background-color: #dc3545; /* Màu nền */
+    color: white; /* Màu chữ */
+    padding: 10px 20px; /* Kích thước nút */
+    text-align: center; /* Canh giữa nội dung nút */
+    text-decoration: none; /* Loại bỏ gạch chân */
+    border: none; /* Loại bỏ viền */
+    border-radius: 5px; /* Bo tròn viền */
+    transition: background-color 0.3s; /* Hiệu ứng hover */
+    cursor: pointer; /* Hình dạng con trỏ khi di chuột */
+  }
+  
+  /* CSS cho hover */
+  .delete-button:hover {
+    background-color: #c82333; /* Màu nền khi hover */
+  }
+  
+  /* CSS cho hover chữ "Xóa" */
+  .delete-button:hover span {
+    transform: translateY(-3px); /* Di chuyển chữ lên trên khi hover */
+  }
+  
+  /* CSS cho chữ "Xóa" */
+  .delete-button span {
+    transition: transform 0.3s; /* Hiệu ứng chuyển động */
+    display: inline-block;
+  }
+
+//nút Sửa
+.edit-button {
+    display: inline-block;
+    background-color: #4caf50; /* Màu nền xanh lá */
+    color: #fff; /* Màu chữ trắng */
+    padding: 10px 20px; /* Kích thước nút */
+    text-align: center; /* Canh giữa nội dung nút */
+    text-decoration: none; /* Loại bỏ gạch chân */
+    border: none; /* Loại bỏ viền */
+    border-radius: 5px; /* Bo tròn viền */
+    transition: background-color 0.3s, color 0.3s; /* Hiệu ứng hover */
+    cursor: pointer; /* Hình dạng con trỏ khi di chuột */
+  }
+  
+  /* CSS cho hover */
+  .edit-button:hover {
+    background-color: #2e7d32; /* Màu nền xanh lá sáng hơn khi hover */
+  }
+  
+  /* CSS cho hover chữ "Sửa" */
+  .edit-button:hover span {
+    transform: translateY(-3px); /* Di chuyển chữ lên trên khi hover */
+  }
+  
+  /* CSS cho chữ "Sửa" */
+  .edit-button span {
+    transition: transform 0.3s; /* Hiệu ứng chuyển động */
+    display: inline-block;
+  }
+  .custom-container {
+    height: 550px; /* Chiều cao cố định của container */
+    overflow-y: auto; /* Hiển thị thanh cuộn dọc khi nội dung vượt quá kích thước */
+  }
+  
+  /* CSS cho các nút */
+  .custom-btn {
+    display: block;
+    margin-bottom: 10px;
+  }
