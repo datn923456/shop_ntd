@@ -7,6 +7,8 @@ const adminManagerController = require('../app/controllers/AdminManagerControlle
 router.get('/create', adminManagerController.showAdminCreate);
 router.post('/store', adminManagerController.store);
 router.get('/update', adminManagerController.showAdminUpdate);
+router.post('/update/form-actions',adminManagerController.showAdminUpdateFormAction);
+router.post('/trashcan/form-actions',adminManagerController.showAdminTrashCanFormAction);
 router.get('/update/:id/edit', adminManagerController.showDetailUpdate);
 router.put('/update/:id', adminManagerController.showDetailUpdateEdited);
 router.delete('/update/:id', adminManagerController.showUpdateDeleted);

@@ -58,24 +58,46 @@
         <div class="col-lg-1 d-flex align-items-center">
             <div class="vertical-line"></div>
         </div>
-        <div class="col-lg-8 ">
+        <form name="container-form" class="col-lg-8 " method="POST" action="/admin/update/form-actions">
             <h3>
                 Khóa học của tôi
             </h3>
+            <div class="mt-4 d-flex align-items-center">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="checkbox-all">
+                    <label class="form-check-label" for="checkbox-all">
+                        Chọn tất cả
+                    </label>
+                </div>
+
+                <select class="form-control form-control-sm checkbox-select-all-options" name="action" required>
+                    <option value="">Lựa chọn phương thức</option>
+                    <option value="delete">Xóa tất cả đã chọn</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+                <button class="btn btn-primary btn-sm btn-checkall-submit disabled">Thực hiện</button>
+            </div>
             <table class="table mt-4">
                 <thead>
-                    <tr style="text-align: center;">
-                        <th scope="col">STT</th>
-                        <th scope="col">Tên khóa học</th>
-                        <th scope="col">Level</th>
-                        <th scope="col">Thời gian tạo</th>
-                        <th scope="col" >Sửa</th>
-                        <th scope="col" >Xóa</th>
+                    <tr >
+                        <th scope="col"> #</th>
+                        <th scope="col" style="text-align: center;">STT</th>
+                        <th scope="col" style="text-align: center;">Tên khóa học</th>
+                        <th scope="col" style="text-align: center;">Level</th>
+                        <th scope="col" style="text-align: center;">Thời gian tạo</th>
+                        <th scope="col" style="text-align: center;">Sửa</th>
+                        <th scope="col" style="text-align: center;">Xóa</th>
                     </tr>
                 </thead>
                 <tbody>
                     {{#each adminUpdate}}
                     <tr>
+                        <td >
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="courseIDS[]" value="{{this._id}}" >
+                            </div>
+                        </td>
                         <th scope="row" style="text-align: center;">{{sum @index 1}}</th>
                         <td>{{this.name}}</td>
                         <td style="text-align: center;">{{this.level}}</td>
@@ -98,7 +120,7 @@
                     {{/each}}
                 </tbody>
                 </table>
-        </div>
+        </form>
     </div>
 </div>
 
@@ -128,6 +150,10 @@
         var courseID;
         var deleteForm = document.forms['delete-course-form'];
         var btnDeleteCourse = document.getElementById('btn-delete');
+        var containerForm = document.forms['container-form'];
+        var checkboxAll = $('#checkbox-all');
+        var courseItemCheckbox = $('input[name="courseIDS[]"]');
+        var checkAllSubmitBtn = $('.btn-checkall-submit');
 
         $('#delete-course-modal').on('show.bs.modal', function(event){
             var button = $(event.relatedTarget);
@@ -135,9 +161,61 @@
             
         })
 
+        //when delete course btn clicked 
         btnDeleteCourse.onclick = function() {
             deleteForm.action = '/admin/update/' + courseID + '?_method=DELETE';
             deleteForm.submit();
         }
-    })
+        
+        //checkbox all clicked
+        checkboxAll.change(function(){
+            //boolen trả về true or false
+            //console.log($(this).prop('checked'));
+
+            //bản chất isCheckboxAll trả về true false rồi nên thế vô luôn
+            var isCheckboxAll = $(this).prop('checked');
+            courseItemCheckbox.prop('checked', isCheckboxAll);
+            renderCheckAllSubmitBtn();
+        });
+
+
+        //Course item checkbox changed
+        courseItemCheckbox.change(function(){
+            var isCheckboxAll = courseItemCheckbox.length === $('input[name="courseIDS[]"]:checked').length;
+            checkboxAll.prop('checked', isCheckboxAll);
+            renderCheckAllSubmitBtn();
+        })
+
+        //check all submit button clicked
+        //checkAllSubmitBtn.click(function(e ){
+        //    e.preventDefault();
+        //    //check coi có disable hay không
+        //    var isSubmitable = !$(this).hasClass('disabled');
+        //    if(isSubmitable){
+        //        containerForm.submit();
+        //    }
+        //})
+
+        checkAllSubmitBtn.on('submit', function(e ){
+            //check coi có disable hay không
+            var isSubmitable = !$(this).hasClass('disabled');
+            if(isSubmitable){
+                e.preventDefault();
+            }
+        })
+
+
+        //re-render check all submit button
+        function renderCheckAllSubmitBtn(){
+            var checkedCount = $('input[name="courseIDS[]"]:checked').length;
+            if(checkedCount > 0){
+                console.log()
+                checkAllSubmitBtn.removeClass('disabled');
+            }else{
+                checkAllSubmitBtn.addClass('disabled');
+            }
+        }
+
+        //console.log(containerForm);
+    });
 </script>

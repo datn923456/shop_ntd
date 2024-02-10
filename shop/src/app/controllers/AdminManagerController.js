@@ -23,21 +23,21 @@ class AdminManagerController {
     //         .catch(next);
     // }
 
-    //[POST] /admin/store đã lưu dữ liệu mới
-    store(req, res, next) {
-        const formData = req.body;
-        formData.image = `https://i.ytimg.com/vi/${req.body.videoId}/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA8larDycSRqXaRytdeQKkFYM0ALA`;
-        const create = new Course(formData);
+    // //[POST] /admin/store đã lưu dữ liệu mới
+    // store(req, res, next) {
+    //     const formData = req.body;
+    //     formData.image = `https://i.ytimg.com/vi/${req.body.videoId}/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA8larDycSRqXaRytdeQKkFYM0ALA`;
+    //     const create = new Course(formData);
         
-        create.save()
-            .then(() => {
-                // Thêm thông báo cảnh báo vào đây
-                res.redirect('/admin/create');
-            })
-            .catch(error => {
+    //     create.save()
+    //         .then(() => {
+    //             // Thêm thông báo cảnh báo vào đây
+    //             res.redirect('/admin/create');
+    //         })
+    //         .catch(error => {
                 
-            });
-    }
+    //         });
+    // }
 
     //[GET] /admin/update
     // showAdminUpdate(req,res,next){
@@ -132,6 +132,41 @@ class AdminManagerController {
             .catch(next);
     }
 
+    //[POST] /admin/store đã lưu dữ liệu mới
+    store(req, res, next) {
+        //console.log(req.params.createAt);
+        const formData = req.body;
+        formData.image = `https://i.ytimg.com/vi/${req.body.videoId}/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA8larDycSRqXaRytdeQKkFYM0ALA`;
+        const create = new Course(formData);
+        
+        create.save()
+            .then(() => {
+                // Thêm thông báo cảnh báo vào đây
+                res.redirect('/admin/create');
+            })
+            .catch(error => {
+                req.session.error = "Lỗi: Không thể lưu dữ liệu. Vui lòng thử lại sau.";
+                res.redirect('back'); // Redirect lại trang hoặc back sau khi lưu thông báo lỗi vào session
+            });
+    }
+    // 
+    // store(req, res, next) {
+    //     const formData = req.body;
+    //     formData.image = `https://i.ytimg.com/vi/${req.body.videoId}/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA8larDycSRqXaRytdeQKkFYM0ALA`;
+    //     const create = new Course(formData);
+        
+    //     create.save()
+    //         .then(() => {
+    //             // Thêm thông báo cảnh báo vào đây nếu cần
+                
+    //             res.redirect('/admin/create');
+    //         })
+    //         .catch(error => {
+    //             // Xử lý lỗi ở đây nếu cần
+    //             next(error);
+    //         });
+    // }
+
     //[GET] /admin
     adminManager(req,res,next){
         Course.countDocumentsWithDeleted({ deleted: true })
@@ -157,6 +192,37 @@ class AdminManagerController {
                 .catch(next);
             })
             .catch(next);
+    }
+
+    //[POST] /admin/update/form-action
+    showAdminUpdateFormAction(req, res, next) {
+        switch(req.body.action){
+            case 'delete':
+                Course.delete({_id: {$in: req.body.courseIDS}})
+                    .then(() => res.redirect('back'))
+                    .catch(next);
+                break;
+            default:
+                res.json({message: 'Action is invalid!'});
+        }
+    }
+
+    //[POST] /admin/trashcan/form-action
+    showAdminTrashCanFormAction(req, res, next){
+        switch(req.body.action){
+            case 'restore':
+                Course.restore({_id: {$in: req.body.courseDeleteIDS}})     
+                    .then(() => res.redirect('back'))
+                    .catch(next);
+                break;
+            case 'deleteVV':
+                Course.deleteMany({_id: {$in: req.body.courseDeleteIDS}})
+                    .then(() => res.redirect('back'))
+                    .catch(next);
+                break;
+            default:
+                res.json({message: 'Action is invalid!'});
+        }
     }
 }
 

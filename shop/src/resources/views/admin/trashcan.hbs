@@ -60,28 +60,51 @@
         <div class="col-lg-1 d-flex align-items-center">
             <div class="vertical-line"></div>
         </div>
-        <div class="col-lg-8 ">
+        <form name="container-form" class="col-lg-8 " method="POST" action="/admin/trashcan/form-actions">
             <h3>
                 Khóa học của tôi
             </h3>
+            <div class="mt-4 d-flex align-items-center">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="checkbox-all">
+                    <label class="form-check-label" for="checkbox-all">
+                        Chọn tất cả
+                    </label>
+                </div>
+
+                <select class="form-control form-control-sm checkbox-select-all-options" name="action" required>
+                    <option value="">Lựa chọn phương thức</option>
+                    <option value="restore">Khôi phục</option>
+                    <option value="deleteVV">Xóa vĩnh viễn</option>
+                </select>
+                <button class="btn btn-primary btn-sm btn-checkall-submit disabled">Thực hiện</button>
+            </div>
             <table class="table mt-4">
                 <thead>
-                    <tr style="text-align: center;">
-                        <th scope="col">STT</th>
-                        <th scope="col">Tên khóa học</th>
-                        <th scope="col">Level</th>
-                        <th scope="col">Thời gian tạo</th>
-                        <th scope="col" >Sửa</th>
-                        <th scope="col" >Xóa</th>
+                    <tr >
+                        <th scope="col">#</th>
+                        <th scope="col" style="text-align: center;">STT</th>
+                        <th scope="col" style="text-align: center;">Tên khóa học</th>
+                        <th scope="col" style="text-align: center;">Level</th>
+                        <th scope="col" style="text-align: center;">Thời gian tạo</th>
+                        <th scope="col" style="text-align: center;">Thời gian xóa</th>
+                        <th scope="col" style="text-align: center;">Sửa</th>
+                        <th scope="col" style="text-align: center;">Xóa</th>
                     </tr>
                 </thead>
                 <tbody>
                     {{#each adminFindDeleted}}
                     <tr>
-                        <th scope="row" style="text-align: center;">{{sum @index 1}}</th>
+                        <td >
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="courseDeleteIDS[]" value="{{this._id}}" >
+                            </div>
+                        </td>
+                        <td scope="row" style="text-align: center;">{{sum @index 1}}</td>
                         <td>{{this.name}}</td>
                         <td style="text-align: center;">{{this.level}}</td>
                         <td>{{this.createdAt}}</td>
+                        <td>{{this.deletedAt}}</td>
                         <td style="text-align: center;">
                             <!--data-id là chỗ để lấy id-->
                             <a href="#" class="edit-button btn-restore" data-id="{{this._id}}"><span>Khôi phục</span></a>
@@ -102,7 +125,7 @@
                     {{/each}}
                 </tbody>
                 </table>
-        </div>
+        </form>
     </div>
 </div>
 
@@ -132,7 +155,13 @@
     document.addEventListener('DOMContentLoaded', function(){
         //$(this).data('id');var courseID;
         //lấy nút form bằng name
-        var deleteForm = document.forms['delete-course-form'];
+         var courseID;
+         var deleteForm = document.forms['delete-course-form'];
+        var containerForm = document.forms['container-form'];
+        var checkboxAll = $('#checkbox-all');
+        var courseItemCheckbox = $('input[name="courseDeleteIDS[]"]');
+        var checkAllSubmitBtn = $('.btn-checkall-submit');
+        
 
         var restoreForm = document.forms['restore-course-form'];
 
@@ -158,5 +187,53 @@
             restoreForm.action = '/admin/trashcan/' + courseID + '/restore?_method=PATCH';
             restoreForm.submit();
         })
+
+        checkboxAll.change(function(){
+            //boolen trả về true or false
+            //console.log($(this).prop('checked'));
+
+            //bản chất isCheckboxAll trả về true false rồi nên thế vô luôn
+            var isCheckboxAll = $(this).prop('checked');
+            courseItemCheckbox.prop('checked', isCheckboxAll);
+            renderCheckAllSubmitBtn();
+        });
+
+
+        //Course item checkbox changed
+        courseItemCheckbox.change(function(){
+            var isCheckboxAll = courseItemCheckbox.length === $('input[name="courseDeleteIDS[]"]:checked').length;
+            checkboxAll.prop('checked', isCheckboxAll);
+            renderCheckAllSubmitBtn();
+        })
+
+        //check all submit button clicked
+        //checkAllSubmitBtn.click(function(e ){
+        //    e.preventDefault();
+        //    //check coi có disable hay không
+        //    var isSubmitable = !$(this).hasClass('disabled');
+        //    if(isSubmitable){
+        //        containerForm.submit();
+        //    }
+        //})
+
+        checkAllSubmitBtn.on('submit', function(e ){
+            //check coi có disable hay không
+            var isSubmitable = !$(this).hasClass('disabled');
+            if(isSubmitable){
+                e.preventDefault();
+            }
+        })
+
+
+        //re-render check all submit button
+        function renderCheckAllSubmitBtn(){
+            var checkedCount = $('input[name="courseDeleteIDS[]"]:checked').length;
+            if(checkedCount > 0){
+                console.log()
+                checkAllSubmitBtn.removeClass('disabled');
+            }else{
+                checkAllSubmitBtn.addClass('disabled');
+            }
+        }
     })
 </script>
