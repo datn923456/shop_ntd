@@ -1,0 +1,150 @@
+
+<div class="col-md-12" style="margin-top: 50px;">
+    <h4 style="text-align: center;color: #19b1ff;">Đăng ký tài khoản</h4>
+        <div style="width: 100px; height: 1px; margin: 20px auto; border-bottom: 4px solid #19b1ff;"></div>
+    <div class="container">
+    <div class="row ">
+        <form id="frmregister" > 
+            <section id="dv" class="countdown groomsmen-bridesmaids">
+                <div class="col-md-6 col-md-offset-2 mx-auto" style="padding-bottom: 45px;">
+                    <div class="col-md-12 has-textbox">
+                        <div class="form-group row">
+                            <spam class="col-md-4 control-label bb ar" style="font-weight: bold;">Tài khoản: </spam>
+                                <div class="col-md-8">
+                                <input type="text" id="username" name="username" class="form-control t14" placeholder="" value="">
+                            </div>
+                        </div>
+                    </div>
+                  <div class="col-md-12 has-textbox" style="margin-top: 20px;">
+                    <div class="form-group row">
+                        <spam class="col-md-4 control-label bb ar" style="font-weight: bold;">Mật khẩu: </spam>
+                            <div class="col-md-8">
+                                <input type="password" id="password" name="password" class="form-control t14" placeholder="" value="">
+                            </div>
+                        </div>
+                    </div>  
+                
+                <div class="col-md-12 has-textbox" style="margin-top: 20px;">
+                    <div class="form-group row">
+                        <spam class="col-md-4 control-label bb ar" style="font-weight: bold;">Nhập lại mật khẩu mới: </spam>
+                            <div class="col-md-8">
+                                <input type="password" name="confirmpassword" class="form-control t14" placeholder="" value="">
+                            </div>
+                    </div>
+                </div>
+                <div class="col-md-12 has-textbox" style="margin-top: 20px;">
+                    <div class="form-group row">
+                        <spam class="col-md-4 control-label bb ar" style="font-weight: bold;">Email: </spam>
+                            <div class="col-md-8">
+                                <input type="email" id="email" name="email" class="form-control t14" placeholder="" value="">
+                            </div>
+                        </div>
+                    </div>
+                <div class="col-md-12 has-textbox" style="margin-top: 20px;">
+                    <div class="form-group row">
+                        <spam class="col-md-4 control-label bb ar"></spam>
+                            <div class="col-md-8">
+                                <label class="form-check-label" for="form2Example3">
+                      Nếu đã có tài khoản bấm <a style="text-decoration: none; font-weight: bold;" href="/login">Đăng nhập</a> ngay
+                    </label>
+                            </div>
+                    </div>
+                </div>
+                <div class="col-md-12 has-textbox" style="margin-top: 20px;">
+                    <div class="form-group row">
+                        <spam class="col-md-4 control-label bb ar"></spam>
+                            <div class="col-md-8">
+                                <button type="button" id="btnRegister" class="btn btn-info col-xs-12" style="font-weight: bold; color: white;">Đăng ký</button>
+                            </div>
+                    </div>
+                </div>
+
+                </div>
+            </section>
+        </form>
+    </div>
+</div>
+</div>
+
+<script>
+    $('#btnRegister').on('click', function() {
+    // Lấy giá trị từ các trường input
+    var username = $('#username').val();
+    var password = $('#password').val();
+    var confirmPassword = $('[name="confirmpassword"]').val();
+    var email = $('#email').val();
+
+    // Kiểm tra nếu có trường nào bỏ trống
+    if (!username || !password || !confirmPassword || !email) {
+        Swal.fire({
+            title: "Vui lòng nhập đủ thông tin.",
+            //text: response.message,
+            icon: "error"
+        });
+        //alert('Vui lòng nhập đủ thông tin.');
+        return;
+    }
+
+    // Kiểm tra mật khẩu nhập lại có khớp không
+    if (password !== confirmPassword) {
+        Swal.fire({
+            title: "Mật khẩu nhập lại không khớp.",
+            //text: response.message,
+            icon: "error"
+        });
+        //alert('Mật khẩu nhập lại không khớp.');
+        return;
+    }
+
+    // Kiểm tra định dạng email sử dụng một biểu thức chính quy đơn giản
+    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        Swal.fire({
+            title: "Định dạng email không hợp lệ.",
+            //text: response.message,
+            icon: "error"
+        });
+        //alert('Định dạng email không hợp lệ.');
+        return;
+    }
+
+    // Nếu tất cả kiểm tra đều qua, gửi dữ liệu đến server bằng AJAX
+    $.ajax({
+        type: 'POST',
+        url: '/register',
+        data: {
+            username: username,
+            password: password,
+            email: email
+        },
+        success: function(response) {
+            if(response.message == "Đăng ký thành công"){
+                Swal.fire({
+                    title: response.message,
+                    text: "Bấm để chuyển sang trang login",
+                    icon: "success",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = "/login";
+                    }
+                });
+                //alert(response.message);
+                //return window.location.href = "/login";
+            }else{
+                console.log('Dữ liệu đã được gửi thành công');
+                console.log('Server response:', response);
+                // Xử lý kết quả từ server
+                Swal.fire({
+                title: response.message,
+                //text: response.message,
+                icon: "error"
+                });
+                //alert();
+            }
+        },
+        error: function(error) {
+            console.error('Lỗi khi gửi dữ liệu: ', error);
+        }
+    });
+});
+</script>

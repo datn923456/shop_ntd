@@ -1,0 +1,38 @@
+<nav id="myNavbar">
+    <span id="menu-icon">&#9776;</span>
+    <ul>
+        <li><img src="https://scontent.fsgn5-14.fna.fbcdn.net/v/t39.30808-6/243982552_282193343596263_6043245316263749024_n.png?stp=dst-webp_e15_q70_s3120x1645_tt1_u&efg=eyJ1cmxnZW4iOiJ1cmxnZW5fZnJvbV91cmwifQ&_nc_cid=0&_nc_ad=z-m&_nc_rml=0&_nc_ht=scontent.fsgn5-14.fna&_nc_cat=101&_nc_ohc=t3i148aHmZQAX_eZXs5&ccb=1-7&_nc_sid=efb6e6&oh=00_AfAaH_GUfySbMGwc2d3EuES3ucVW8CUUBa_vKPuwfdvoqg&oe=65E6F1F3" class="logo-shop"></li>
+        <li style="margin-left: 400px;"><a href="/home">TRANG CHỦ</a></li>
+        <li style="margin-left: 100px;"><a href="/user/addfunds">NẠP TIỀN</a></li>
+        <li style="margin-left: 100px;"><a href="#">DỊCH VỤ GAME</a></li>
+        <li style="margin-left: 100px;"><a href="#">NICK GAME</a></li>
+        <li style="margin-left: 100px;"><a href="#">KHÁC</a></li>
+        <li class="user-section" style="margin-left: auto;">
+        <a class="nav-link wallet" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-weight:bold;color: white; background-color: #ed145b; border: 7px solid #ed145b;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-wallet2" viewBox="0 0 16 16" style="margin-right: 5px;">
+                        <path d="M12.136.326A1.5 1.5 0 0 1 14 1.78V3h.5A1.5 1.5 0 0 1 16 4.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 13.5v-9a1.5 1.5 0 0 1 1.432-1.499zM5.562 3H13V1.78a.5.5 0 0 0-.621-.484zM1.5 4a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5z"/>
+                    </svg>
+                {{userInfo.coin}} VNĐ
+                </a>
+            <a class="nav-link dropdown-toggle user" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="{{userInfo.image}}" class="user-avatar">
+                {{userInfo.username}}
+            </a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/infouser">Thông tin tài khoản</a></li>
+                <li><a class="dropdown-item" href="/me/stored/courses">Khóa học của tôi</a></li>
+                <li><a class="dropdown-item" href="/me/stored/news">Bài viết của tôi</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="/logout" >Đăng xuất</a></li>
+            </ul>
+            
+                
+            
+        </li>
+        
+    </ul>
+</nav>
+<div class="mt-4 container text-center">
+    <h1>Không đủ tiền, bấm nút nạp ngay</h1>
+    <a href="/user/addfunds" class="edit-button"><span>nạp ngay</span></a>
+</div>

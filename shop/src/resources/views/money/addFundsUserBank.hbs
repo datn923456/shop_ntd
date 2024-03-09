@@ -1,0 +1,121 @@
+<nav id="myNavbar">
+    <span id="menu-icon">&#9776;</span>
+    <ul>
+        <li><img src="https://scontent.fsgn5-14.fna.fbcdn.net/v/t39.30808-6/243982552_282193343596263_6043245316263749024_n.png?stp=dst-webp_e15_q70_s3120x1645_tt1_u&efg=eyJ1cmxnZW4iOiJ1cmxnZW5fZnJvbV91cmwifQ&_nc_cid=0&_nc_ad=z-m&_nc_rml=0&_nc_ht=scontent.fsgn5-14.fna&_nc_cat=101&_nc_ohc=t3i148aHmZQAX_eZXs5&ccb=1-7&_nc_sid=efb6e6&oh=00_AfAaH_GUfySbMGwc2d3EuES3ucVW8CUUBa_vKPuwfdvoqg&oe=65E6F1F3" class="logo-shop"></li>
+        <li style="margin-left: 400px;"><a href="/home">TRANG CHỦ</a></li>
+        <li style="margin-left: 100px;"><a href="/user/addfunds">NẠP TIỀN</a></li>
+        <li style="margin-left: 100px;"><a href="#">DỊCH VỤ GAME</a></li>
+        <li style="margin-left: 100px;"><a href="#">NICK GAME</a></li>
+        <li style="margin-left: 100px;"><a href="#">KHÁC</a></li>
+        <li class="user-section" style="margin-left: auto;">
+        <a class="nav-link wallet" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-weight:bold;color: white; background-color: #ed145b; border: 7px solid #ed145b;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-wallet2" viewBox="0 0 16 16" style="margin-right: 5px;">
+                        <path d="M12.136.326A1.5 1.5 0 0 1 14 1.78V3h.5A1.5 1.5 0 0 1 16 4.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 13.5v-9a1.5 1.5 0 0 1 1.432-1.499zM5.562 3H13V1.78a.5.5 0 0 0-.621-.484zM1.5 4a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5z"/>
+                    </svg>
+                {{userInfo.coin}} VNĐ
+                </a>
+            <a class="nav-link dropdown-toggle user" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="{{userInfo.image}}" class="user-avatar">
+                {{userInfo.username}}
+            </a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/infouser">Thông tin tài khoản</a></li>
+                <li><a class="dropdown-item" href="/me/stored/courses">Khóa học của tôi</a></li>
+                <li><a class="dropdown-item" href="/me/stored/news">Bài viết của tôi</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="/logout" >Đăng xuất</a></li>
+            </ul>
+            
+                
+            
+        </li>
+        
+    </ul>
+</nav>
+<div class="row" style="margin-top: 20px;">
+    <div class="col-lg-3">
+        <div class="row">
+            <div class="col-lg-3">
+
+            </div>
+            <div class="col-lg-6">
+                <a href="/user/addfunds" class="btn btn-primary custom-btn unpressed-btn">Nạp bằng thẻ cào</a>
+                <a href="/user/addfunds/bank" class="btn btn-primary custom-btn pressed-btn">Nạp bằng ngân hàng</a>
+            </div>
+            <div class="col-lg-3">
+
+            </div>
+        </div>
+    </div>
+<div class="col-lg-6">
+    <h1 style="text-align: center;">NẠP QUA NGÂN HÀNG</h1>
+    <form method="POST" action="/logined" onsubmit="/login(event)" style="background-color: #d2dc86; border-radius: 2%;">
+                {{!-- <label for="username" class="form-label" style="margin-left: 5px;">Loại thẻ</label>
+                <select name="card" id="card" style="margin-top: 10px;margin-left: 5px;">
+                    <option value="viettel">viettel</option>
+                    <option value="mobiphone">mobiphone</option>
+                    <option value="vina">vina</option>
+                    <option value="vietnammobi">vietnammobi</option>
+                </select> --}}
+                <div class="form-group">
+                    <label for="username" class="form-label" style="margin-left: 5px;">Nhập username:</label>
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Username">
+                </div>
+                <div class="form-group">
+                    <label for="money" class="form-label" style="margin-left: 5px;">Số tiền nạp:</label>
+                    <input type="text" class="form-control" id="money" name="money" placeholder="Số tiền nạp">
+                </div>
+                <label for="username" class="form-label" style="margin-left: 5px;">Ngân hàng</label>
+                <select name="bank" id="bank" style="margin-top: 10px;margin-left: 5px;">
+                    <option value="10k">10.000đ</option>
+                    <option value="20k">20.000đ</option>
+                    <option value="50k">50.000đ</option>
+                    <option value="100k">100.000đ</option>
+                    <option value="200k">200.000đ</option>
+                    <option value="500k">500.000đ</option>
+                </select>
+                <button type="submit" class="btn btn-primary d-block mx-auto" style="margin-top: 16px;" >Nạp thẻ</button>
+            </form>
+</div>
+<div class="col-lg-3">
+
+</div>
+</div>
+{{!-- <div class="row">
+    <div class="col-lg-3">
+
+    </div>
+<div class="col-lg-6">
+    <h1 style="text-align: center;">NẠP QUA NGÂN HÀNG</h1>
+    <form method="POST" action="/logined" onsubmit="/login(event)" style="background-color: #d2dc86; border-radius: 2%;">
+                <label for="username" class="form-label" style="margin-left: 5px;">Loại thẻ</label>
+                <select name="card" id="card" style="margin-top: 10px;margin-left: 5px;">
+                    <option value="viettel">viettel</option>
+                    <option value="mobiphone">mobiphone</option>
+                    <option value="vina">vina</option>
+                    <option value="vietnammobi">vietnammobi</option>
+                </select>
+                <div class="form-group">
+                    <label for="mathe" class="form-label" style="margin-left: 5px;">Mã thẻ:</label>
+                    <input type="text" class="form-control" id="mathe" name="mathe" placeholder="Mã">
+                </div>
+                <div class="form-group">
+                    <label for="seri" class="form-label" style="margin-left: 5px;">Seri:</label>
+                    <input type="text" class="form-control" id="seri" name="seri" placeholder="Seri">
+                </div>
+                <label for="username" class="form-label" style="margin-left: 5px;">Mệnh giá</label>
+                <select name="gia" id="gia" style="margin-top: 10px;margin-left: 5px;">
+                    <option value="10k">10.000đ</option>
+                    <option value="20k">20.000đ</option>
+                    <option value="50k">50.000đ</option>
+                    <option value="100k">100.000đ</option>
+                    <option value="200k">200.000đ</option>
+                    <option value="500k">500.000đ</option>
+                </select>
+                <button type="submit" class="btn btn-primary d-block mx-auto" style="margin-top: 16px;" >Nạp thẻ</button>
+            </form>
+</div>
+<div class="col-lg-3">
+
+</div>
+</div> --}}

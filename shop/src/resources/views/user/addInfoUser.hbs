@@ -1,0 +1,355 @@
+<nav id="myNavbar">
+    <span id="menu-icon">&#9776;</span>
+    <ul>
+        <li><img src="https://scontent.fsgn5-14.fna.fbcdn.net/v/t39.30808-6/243982552_282193343596263_6043245316263749024_n.png?stp=dst-webp_e15_q70_s3120x1645_tt1_u&efg=eyJ1cmxnZW4iOiJ1cmxnZW5fZnJvbV91cmwifQ&_nc_cid=0&_nc_ad=z-m&_nc_rml=0&_nc_ht=scontent.fsgn5-14.fna&_nc_cat=101&_nc_ohc=t3i148aHmZQAX_eZXs5&ccb=1-7&_nc_sid=efb6e6&oh=00_AfAaH_GUfySbMGwc2d3EuES3ucVW8CUUBa_vKPuwfdvoqg&oe=65E6F1F3" class="logo-shop"></li>
+        <li style="margin-left: 400px;"><a href="/home">TRANG CHỦ</a></li>
+        <li style="margin-left: 100px;"><a href="/user/addfunds">NẠP TIỀN</a></li>
+        <li style="margin-left: 100px;"><a href="#">DỊCH VỤ GAME</a></li>
+        <li style="margin-left: 100px;"><a href="#">NICK GAME</a></li>
+        <li style="margin-left: 100px;"><a href="#">KHÁC</a></li>
+        <li class="user-section" style="margin-left: auto;">
+        <a class="nav-link wallet" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-weight:bold;color: white; background-color: #ed145b; border: 7px solid #ed145b;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-wallet2" viewBox="0 0 16 16" style="margin-right: 5px;">
+                        <path d="M12.136.326A1.5 1.5 0 0 1 14 1.78V3h.5A1.5 1.5 0 0 1 16 4.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 13.5v-9a1.5 1.5 0 0 1 1.432-1.499zM5.562 3H13V1.78a.5.5 0 0 0-.621-.484zM1.5 4a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5z"/>
+                    </svg>
+                {{formatCurrency userInfo.coin}} VNĐ
+                </a>
+            <a class="nav-link dropdown-toggle user" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="{{userInfo.image}}" class="user-avatar">
+                {{userInfo.username}}
+            </a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/infouser">Thông tin tài khoản</a></li>
+                <li><a class="dropdown-item" href="/me/stored/courses">Khóa học của tôi</a></li>
+                <li><a class="dropdown-item" href="/me/stored/news">Bài viết của tôi</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="/logout" >Đăng xuất</a></li>
+            </ul>
+            
+                
+            
+        </li>
+        
+    </ul>
+</nav>
+<div class="container">
+    <div class="row" style="margin-top: 20px;">
+    <div class="col-lg-4">
+        <div class="row">     
+            <div class="col-lg-10">
+                <div style="width: 4px; height: 20px; border-right: 4px solid #19b1ff; display: inline-block;margin-top: 70px;"></div>
+                <h4 style="color: #3f444a; display: inline-block; vertical-align: middle; margin-left: 10px;">MENU TÀI KHOẢN</h4>
+                <ul style="list-style: none; padding: 0;">
+                    <div style="width: 4px; height: 5px; border-right: 4px solid #19b1ff; display: inline-block;margin-top: 30px;"></div>
+                    <li style="margin-bottom: 4px;display: inline-block; vertical-align: middle;margin-top: 1px;">
+                        <a href="/thong-tin-tai-khoan" style="text-decoration: none; color:#19b1ff;font-size: 16px; font-weight: bold;" >Thông tin tài khoản</a>
+                    </li>
+                    <hr>
+                    <div style="width: 4px; height: 5px; border-right: 4px solid #19b1ff; display: inline-block;"></div>
+                    <li style="margin-bottom: 5px; display: inline-block; vertical-align: middle;">
+                        <a href="/nap-the" style="text-decoration: none; color:#3f444a;font-size: 16px;">Nạp tiền thẻ cào</a>
+                    </li>
+                    <hr>
+                    <div style="width: 4px; height: 5px; border-right: 4px solid #19b1ff; display: inline-block;"></div>
+                    <li style="margin-bottom: 5px;display: inline-block; vertical-align: middle;">
+                        <a href="#" id="naptienatmvi" onclick="changeColor()" style="text-decoration: none; color:#3f444a;font-size: 16px;" data-toggle="modal" data-target="#myModal">Nạp tiền ATM - Ví điện tử</a>
+                    </li>
+                    <hr>
+                    <div style="width: 4px; height: 5px; border-right: 4px solid #19b1ff; display: inline-block; "></div>
+                    <li style="margin-left: 15px;display: inline-block; vertical-align: middle;">
+                        <a href="/Lichsugiaodich" style="text-decoration: none; color:#3f444a;font-size: 16px;">Lịch sử giao dịch</a>
+                    </li>
+                    <hr>
+                </ul>
+                <div style="width: 4px; height: 20px; border-right: 4px solid #19b1ff; display: inline-block;margin-top: 80px;"></div>
+                <h4 style="color: #3f444a; display: inline-block; vertical-align: middle; margin-left: 10px;">MENU GIAO DỊCH</h4>
+                <ul style="list-style: none; padding: 0;">
+                    <div style="width: 4px; height: 5px; border-right: 4px solid #19b1ff; display: inline-block;"></div>
+                    <li style="margin-bottom: 4px;display: inline-block; vertical-align: middle;">
+                        <a href="#" style="text-decoration: none; color:#3f444a;font-size: 16px;">Lịch sử vận may</a>
+                    </li>
+                    <hr>
+                    <div style="width: 4px; height: 5px; border-right: 4px solid #19b1ff; display: inline-block;"></div>
+                    <li style="margin-bottom: 5px; display: inline-block; vertical-align: middle;">
+                        <a href="#" style="text-decoration: none; color:#3f444a;font-size: 16px;">Tài khoản đã mua</a>
+                    </li>
+                    <hr>
+                    <div style="width: 4px; height: 5px; border-right: 4px solid #19b1ff; display: inline-block;"></div>
+                    <li style="margin-bottom: 5px;display: inline-block; vertical-align: middle;">
+                        <a href="/code-order" style="text-decoration: none; color:#3f444a;font-size: 16px;">Code đã mua</a>
+                    </li>
+                    <hr>
+                    <div style="width: 4px; height: 5px; border-right: 4px solid #19b1ff; display: inline-block; "></div>
+                    <li style="margin-left: 15px;display: inline-block; vertical-align: middle;">
+                        <a href="#" style="text-decoration: none; color:#3f444a;font-size: 16px;">Dịch vụ đã thuê</a>
+                    </li>
+                    <hr>
+                </ul>
+                {{!-- <a href="/user/addfunds" class="btn btn-primary custom-btn pressed-btn">Nạp bằng thẻ cào</a> --}}
+                {{!-- <a href="/user/addfunds/bank" class="btn btn-primary custom-btn unpressed-btn">Nạp bằng ngân hàng</a> --}}
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-7" style="margin-top: 70px;">
+        <h4 style="text-align: center;color: #19b1ff;">THÔNG TIN TÀI KHOẢN</h4>
+        <div style="width: 200px; height: 1px; margin: 20px auto; border-bottom: 4px solid #19b1ff;"></div>
+        
+            <div class="row">
+                <table >
+                    <thead>
+                    <tr>
+                        <th style="width: 50%;"><h5 style="text-align: right; font-weight: bold;color: #3f444a;">Tên tài khoản:</h5></th>
+                        <th style="width: 50%;"><h5 style="font-weight: bold;color: #3f444a;"><a>{{userInfo.username}}</a></h5></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td style="width: 50%;"><h5 style="text-align: right;font-weight: bold;color: #3f444a;">Email:</h5></td>
+                        <td style="width: 50%;"><h5 style="font-weight: bold;color: #3f444a;"><a>{{userInfo.email}}</a></h5></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 50%;"><h5 style="text-align: right;font-weight: bold;color: #3f444a;">Mật khẩu:</h5></td>
+                        <td style="width: 50%;"><h5 style="font-weight: bold; color: #3f444a;"><a href="/home/{{userInfo._id}}/changepassword" style="text-decoration: none;color: #19b1ff;">Nhấn đổi mật khẩu</a></h5></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 50%;"><h5 style="text-align: right;font-weight: bold;color: #3f444a;">Số dư:</h5></td>
+                        <td style="width: 50%;"><h5 style="font-weight: bold; color: red;"><a>{{formatCurrency userInfo.coin}} VNĐ</a></h5></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 50%;"><h5 style="text-align: right;font-weight: bold;color: #3f444a;">Ngày tham gia:</h5></td>
+                        <td style="width: 50%;"><h5 style="color: #3f444a;">{{moment userInfo.createdAt format="DD/MM/YYYY HH:mm"}}</h5></td>
+                    </tr>
+                    
+                    <!-- Thêm các dòng khác nếu cần -->
+                    </tbody>
+                </table>
+            </div>
+        
+    </div>
+
+</div>
+</div>
+<style>
+    .table-container {
+      display: flex;
+      justify-content: space-between; /* Cả hai bên cố định và căn giữa */
+      width: 80%;
+      overflow: hidden; /* Ngăn chặn nội dung tràn ra ngoài */
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      border: none;
+      padding: 8px;
+      text-align: left;
+    }
+
+    
+  </style>
+  <div class="container">
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog modal-dialog-centered">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" style="color: #19b1ff;font-weight: 500px;font-size: 18px;">Nạp tiền từ ATM hoặc Ví điện tử</h4>
+        <button type="button" class="close" data-dismiss="modal" style="color: #19b1ff;border: none;">×</button>
+      </div>
+      <div class="modal-body">
+        <a href="#" style="text-decoration: none;">
+          <h4 class="text-center" style="color: #ff1919; font-weight: bold;font-size: 16px;">NẠP TIỀN TỪ ATM - VÍ</h4>
+        </a>
+        <div class="row">
+          <h5>Chọn 1 trong 2 phương thức chuyển dưới đây</h5>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <!-- Thêm data-toggle và data-target để xác định nội dung của tab -->
+            <a data-toggle="tab" href="#ATM" class="btn btn-lg col-xs-6 btn-outline-dark atm rounded-0"  onclick="showTab('ATM')">ATM</a>
+            <a data-toggle="tab" href="#VDT" class="btn btn-lg col-xs-6 btn-outline-dark atm rounded-0" onclick="showTab('VDT')">Ví điện tử</a>
+
+            <div class="tab-content" style="padding-top: 20px;">
+              <div id="ATM" class="tab-pane fade">
+                <!-- Nội dung của tab ATM -->
+                <div class="col-md-12" style="text-align: left;">
+                  <span style="font-weight: bold;color: #3f444a;">Thông tin tài khoản ngân hàng</span>
+                </div>
+                <hr>
+                <div class="col-md-12">
+                  <div class="col-md-1">
+                      <span></span>
+                    </div>
+                  <div class="col-md-7" style="text-align: left;">
+                    <span style="font-weight: bold;color: #3f444a;">Tên tài khoản: MAI VĂN HÀ</span>
+                  </div>
+                  <div class="col-md-4">
+                    <span></span>
+                  </div>
+                  <div class="col-md-1">
+                      <span></span>
+                    </div>
+                </div>
+                <hr>
+                <div class="col-md-12" style="width: 100%;">
+                  <div class="row">
+                    <div class="col-md-1">
+                      <span></span>
+                    </div>
+                    <div class="col-md-10">
+                      <img width="100%" height="100%" src="https://img.vietqr.io/image/VCB-1042950060-print.png?addInfo={{userInfo.username}}&accountName=MAI%20VAN%20HA">
+                    </div>
+                    <div class="col-md-1">
+                      <span></span>
+                    </div>
+                  </div>
+                  
+                </div>
+                <hr>
+                <!-- Thêm các khối thông tin tài khoản ngân hàng -->
+              </div>
+
+              <div id="VDT" class="tab-pane fade">
+                <!-- Nội dung của tab Ví điện tử -->
+                <div class="col-md-12" style="text-align: left;">
+                  <span style="font-weight: bold;color: #3f444a;">Thông tin tài khoản ví điện tử</span>
+                </div>
+                <hr>
+                <div class="col-md-12" style="width: 100%;">
+                  <div class="row">
+                    <div class="col-md-1">
+                      <span></span>
+                    </div>
+                    <div class="col-md-5" style="text-align: left; width: 40%;">
+                      <span style="color: #3f444a;">TSR (Thesieure.com):</span>
+                    </div>
+                    <div class="col-md-5" style="text-align: right;width: 40%">
+                      <span style="font-weight: bold;color: #3f444a;">0382998964</span>
+                    </div>
+                    <div class="col-md-1">
+                      <span></span>
+                    </div>
+                  </div>
+                  
+                </div>
+                <hr>
+                <div class="col-md-12" style="width: 100%;">
+                  <div class="row">
+                    <div class="col-md-1">
+                      <span></span>
+                    </div>
+                    <div class="col-md-5" style="text-align: left; width: 40%;">
+                      <span style="color: #3f444a;">Momo (ví Momo):</span>
+                    </div>
+                    <div class="col-md-5" style="text-align: right;width: 40%">
+                      <span style="font-weight: bold;color: #3f444a;">0382998964</span>
+                    </div>
+                    <div class="col-md-1">
+                      <span></span>
+                    </div>
+                  </div>
+                  
+                </div>
+                <hr>
+                <!-- Thêm các khối thông tin ví điện tử -->
+              </div>
+            </div>
+
+            <p style="color: #19b1ff;font-size: 15px;">
+              Nội dung thanh toán: <strong>Nap Tien www.acc957.com</strong> {tên tài khoản hoặc số điện thoại}
+              Chuyển xong liên hệ fanpage : <a style="text-decoration: none;" href="https://www.facebook.com/ytboctiiu957"><strong style="color: #ff0000;">Chăm sóc khách hàng - www.acc957.com</strong></a> hoặc
+              Hotline <strong style="color: #ff0000;">0396498015</strong> để được xử lý.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-warning" data-dismiss="modal" style="font-weight: bold; color: white;min-width:118px;">Đóng</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<script>
+  function showTab(tabId) {
+    // Xóa lớp active cho tất cả các nút
+    $('.btn.atm').removeClass('active');
+
+    // Thêm lớp active cho nút được chọn
+    $('a[data-target="#' + tabId + '"]').addClass('active');
+  }
+
+  function changeColor() {
+    var link = document.getElementById("naptienatmvi");
+    link.style.color = "red";
+  }
+</script>
+<style>
+  .modal-dialog.modal-dialog-centered {
+  display: flex;
+  align-items: center;
+  min-height: calc(100% - (0.5rem * 2));
+}
+
+.modal-content {
+  text-align: center;
+}
+.btn.atm.active,
+.btn.atm:focus,
+.btn.atm:active,
+.btn.atm:hover {
+  background-color: #5bc0de; /* Màu của nút ATM khi active */
+  color: #fff; /* Màu chữ của nút ATM khi active */
+}
+
+.btn.vdt.active,
+.btn.vdt:focus,
+.btn.vdt:active,
+.btn.vdt:hover {
+  background-color: #5bc0de; /* Màu của nút Ví điện tử khi active */
+  color: #fff; /* Màu chữ của nút Ví điện tử khi active */
+}
+</style>
+{{!-- <div class="row">
+    <div class="col-lg-3">
+
+    </div>
+<div class="col-lg-6">
+    <h1 style="text-align: center;">NẠP QUA NGÂN HÀNG</h1>
+    <form method="POST" action="/logined" onsubmit="/login(event)" style="background-color: #d2dc86; border-radius: 2%;">
+                <label for="username" class="form-label" style="margin-left: 5px;">Loại thẻ</label>
+                <select name="card" id="card" style="margin-top: 10px;margin-left: 5px;">
+                    <option value="viettel">viettel</option>
+                    <option value="mobiphone">mobiphone</option>
+                    <option value="vina">vina</option>
+                    <option value="vietnammobi">vietnammobi</option>
+                </select>
+                <div class="form-group">
+                    <label for="mathe" class="form-label" style="margin-left: 5px;">Mã thẻ:</label>
+                    <input type="text" class="form-control" id="mathe" name="mathe" placeholder="Mã">
+                </div>
+                <div class="form-group">
+                    <label for="seri" class="form-label" style="margin-left: 5px;">Seri:</label>
+                    <input type="text" class="form-control" id="seri" name="seri" placeholder="Seri">
+                </div>
+                <label for="username" class="form-label" style="margin-left: 5px;">Mệnh giá</label>
+                <select name="gia" id="gia" style="margin-top: 10px;margin-left: 5px;">
+                    <option value="10k">10.000đ</option>
+                    <option value="20k">20.000đ</option>
+                    <option value="50k">50.000đ</option>
+                    <option value="100k">100.000đ</option>
+                    <option value="200k">200.000đ</option>
+                    <option value="500k">500.000đ</option>
+                </select>
+                <button type="submit" class="btn btn-primary d-block mx-auto" style="margin-top: 16px;" >Nạp thẻ</button>
+            </form>
+</div>
+<div class="col-lg-3">
+
+</div>
+</div> --}}

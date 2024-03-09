@@ -1,0 +1,203 @@
+<div class="container">    
+    <nav class="navbar navbar-expand-lg bg-body-tertiary thanh-menu">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <form class="d-flex" role="search" style="margin-right: 10px;">
+                    <input class="form-control me-2 expanded-search-input" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <a class="navbar-brand" href="/home" >HOME</a>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                {{!-- <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/register">Sign up</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/login">Sign in</a>
+                </li> --}}
+                <li class="nav-item">
+                <a class="nav-link" href="/user/addfunds">Nạp tiền</a>
+                </li>
+                <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Game
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="/home/game">Lô tô</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                </li>
+                </ul>
+            <ul class="navbar-nav ml-auto ms-auto"> <!-- Thêm class ms-auto -->
+            <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-wallet2" viewBox="0 0 16 16" style="margin-right: 5px;">
+                            <path d="M12.136.326A1.5 1.5 0 0 1 14 1.78V3h.5A1.5 1.5 0 0 1 16 4.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 13.5v-9a1.5 1.5 0 0 1 1.432-1.499zM5.562 3H13V1.78a.5.5 0 0 0-.621-.484zM1.5 4a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5z"/>
+                        </svg>
+                        {{users.coin}} VNĐ
+                    </a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="{{users.image}}" class="user-avatar">
+                        {{users.username}}
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/infouser">Thông tin tài khoản</a></li>
+                        <li><a class="dropdown-item" href="/me/stored/courses">Khóa học của tôi</a></li>
+                        <li><a class="dropdown-item" href="/me/stored/news">Bài viết của tôi</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="/logout" >Đăng xuất</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<div class="row mt-4" id="taoRoom">
+    <div class="row">
+        <h1 style="text-align: center; color: red;">GAME ĐOÁN CHỮ</h1>
+    </div>
+    <div class="row">
+        <div class="col-lg-4">
+
+        </div>
+        <div class="col-lg-8" style="background-color: palevioletred; border-radius: 10%;width: 600px;height: 300px;">
+            <div class="row" style="height: 150px;width: 100%;margin-left: 3px; margin-top: 30px;">
+                <h2>Room:</h2>
+                <input type="text" id="input1" >
+            </div>
+            <div class="row" style="display: flex;justify-content: center;height: 100vh;">
+                <input type="button" value="VÀO" id="vao" style="height: 50px; width: 100px;margin-top: 10px;">
+            </div>
+            
+        </div>
+    </div>
+    
+</div>
+
+<div class="row mt-4" id="voGame">
+        <marquee ><h3 id="noidung">{{token3}}</h3></marquee>
+        
+    <div class="col-lg-4">
+        <div class="row" style="height: 600px; background-color: #a4ecc2;">
+            <div class="row" style="width: 100%; height: 50px;">
+                <div class="col-lg-12" id="roomHienTai">
+                    
+                </div>
+            </div>
+            <div class="row" style="width: 100%; height: 50px;" >
+                <div class="col-lg-8" style="margin-left: 15px;">
+                    <h2 >Tên người chơi</h2>
+                </div>
+                <div class="col-lg-3">
+                    <h2 >Tiền</h2>
+                </div>
+            </div>
+            <div class="row" style="width: 100%; height: 100%;text-align:center">
+                <div class="row" >
+                    <div class="col-lg-12" id="userPlay">
+                        
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="row" style="height: 250px; background-color: #aabfee;">
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-12" id="txtMessage" style="height: 200px; width: 100%; background-color: aliceblue;overflow: auto;border: 1px solid #ccc;">
+                        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-9">
+                        <input type="text" id="txtInput" style="width: 100%;">
+                    </div>
+                    <div class="col-lg-3">
+                        <input type="button" id="btnChat" style="width: 100%;" name="send" value="send">
+                        {{!-- <button id="mrA">Click here</button> --}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-8" >
+        <div class="row" style="height: 600px; background-color: #aabfee;">
+
+        </div>
+        <div class="row" style="height: 250px; background-color: #a4ecc2;">
+
+        </div>
+    </div>
+</div>
+
+<script>
+        const socket = io("http://localhost:3000");
+
+        const token = '{{token3}}';
+
+        
+
+        // Lắng nghe sự kiện "Server-send-data" từ server
+        socket.on("Server-send-data", (data) => {
+            console.log("Server sent data:", data);
+        });
+
+        socket.on("Send-user-vao-room", function(data){
+            $("#roomHienTai").append(`<h2 style="text-align: center;color:red;">Room: ` + data +`</h2>`)
+            //$(document).ready(function(){
+            //    $("#taoRoom").hide(500);
+            //    $("#voGame").show(500);
+            //})
+        })
+
+        $(document).ready(function(){
+            $("#vao").click(function(){
+                socket.emit("Send-user-tao-room", $("#input1").val(),
+                );
+            })
+        })
+
+        $(document).ready(function(){
+            $("#vao").click(function(){
+                socket.emit('authenticate', token);
+            })
+        })
+
+        socket.on("server-that-bai", function(){
+            alert("Có người tạo phòng này rồi");
+        })
+
+        $(document).ready(function(){
+            $("#btnChat").click(function(){
+                socket.emit("Send-user-chat", $("#txtInput").val());
+            })
+        })
+        socket.on("dsUser", function(data){
+            $("#userPlay").html("");
+            data.map(function(userPlay){
+                $("#userPlay").append(`<span style="margin-right: 300px; font-size: 30px;">`+userPlay.username+`</span>
+                        <span>`+userPlay.coin+`</span><br>`)
+            })
+        })
+
+        socket.on("da-co-user",function(){
+            alert("ok")
+        })
+
+        socket.on("chat", function(data){
+            $("#txtMessage").append(`<div>`+ data +`</div>`)
+            //$(document).ready(function(){
+            //    $("#taoRoom").hide(500);
+            //    $("#voGame").show(500);
+            //})
+        })
+</script>

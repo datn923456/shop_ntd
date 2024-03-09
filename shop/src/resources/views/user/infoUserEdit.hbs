@@ -1,0 +1,138 @@
+<nav id="myNavbar">
+    <span id="menu-icon">&#9776;</span>
+    <ul>
+        <li><img src="https://scontent.fsgn5-14.fna.fbcdn.net/v/t39.30808-6/243982552_282193343596263_6043245316263749024_n.png?stp=dst-webp_e15_q70_s3120x1645_tt1_u&efg=eyJ1cmxnZW4iOiJ1cmxnZW5fZnJvbV91cmwifQ&_nc_cid=0&_nc_ad=z-m&_nc_rml=0&_nc_ht=scontent.fsgn5-14.fna&_nc_cat=101&_nc_ohc=t3i148aHmZQAX_eZXs5&ccb=1-7&_nc_sid=efb6e6&oh=00_AfAaH_GUfySbMGwc2d3EuES3ucVW8CUUBa_vKPuwfdvoqg&oe=65E6F1F3" class="logo-shop"></li>
+        <li style="margin-left: 400px;"><a href="/home">TRANG CHỦ</a></li>
+        <li style="margin-left: 100px;"><a href="/user/addfunds">NẠP TIỀN</a></li>
+        <li style="margin-left: 100px;"><a href="#">DỊCH VỤ GAME</a></li>
+        <li style="margin-left: 100px;"><a href="#">NICK GAME</a></li>
+        <li style="margin-left: 100px;"><a href="#">KHÁC</a></li>
+        <li class="user-section" style="margin-left: auto;">
+        <a class="nav-link wallet" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-weight:bold;color: white; background-color: #ed145b; border: 7px solid #ed145b;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-wallet2" viewBox="0 0 16 16" style="margin-right: 5px;">
+                        <path d="M12.136.326A1.5 1.5 0 0 1 14 1.78V3h.5A1.5 1.5 0 0 1 16 4.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 13.5v-9a1.5 1.5 0 0 1 1.432-1.499zM5.562 3H13V1.78a.5.5 0 0 0-.621-.484zM1.5 4a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5z"/>
+                    </svg>
+                {{userInfo.coin}} VNĐ
+                </a>
+            <a class="nav-link dropdown-toggle user" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="{{userInfo.image}}" class="user-avatar">
+                {{userInfo.username}}
+            </a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/infouser">Thông tin tài khoản</a></li>
+                <li><a class="dropdown-item" href="/me/stored/courses">Khóa học của tôi</a></li>
+                <li><a class="dropdown-item" href="/me/stored/news">Bài viết của tôi</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="/logout" >Đăng xuất</a></li>
+            </ul>
+            
+                
+            
+        </li>
+        
+    </ul>
+</nav>
+<div class="mt-4" style="background-color: white;">
+    <div class="row first-row w-200">
+        <div class="col-lg-3 ">
+            <!-- Button đã được nhấn -->
+            <!--<button type="button" class="btn btn-primary active shadow p-3 mb-4" style="margin-top: 16px;">Đã được nhấn</button></br> -->
+            <div class="row ">
+                <div class="col-lg-4">
+                    <h2 class="custom-title-user"><a href="/admin" style="text-decoration: none; color: white;">Chức năng USER</a></h2>
+                </div>
+                <div class="col-lg-8 custom-container">
+                    <!-- Nút thông tin người dùng -->
+                    <a href="/user/info" class="btn btn-primary custom-btn pressed-btn"> 
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle-fill" viewBox="0 0 16 16" style="margin-right: 5px;">
+                            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"/>
+                        </svg> 
+                        Thông tin người dùng
+                    </a>
+
+                    <!-- Nút Thêm dữ liệu -->
+                    <a href="/user/info" class="btn btn-primary custom-btn unpressed-btn"> 
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16" style="margin-right: 5px;">
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
+                        </svg> 
+                        Thêm dữ liệu
+                    </a>
+
+                    <!-- Nút Sửa dữ liệu -->
+                    <a href="/admin/update" class="btn btn-primary custom-btn unpressed-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tools" viewBox="0 0 16 16" style="margin-right: 5px;">
+                            <path d="M1 0 0 1l2.2 3.081a1 1 0 0 0 .815.419h.07a1 1 0 0 1 .708.293l2.675 2.675-2.617 2.654A3.003 3.003 0 0 0 0 13a3 3 0 1 0 5.878-.851l2.654-2.617.968.968-.305.914a1 1 0 0 0 .242 1.023l3.27 3.27a.997.997 0 0 0 1.414 0l1.586-1.586a.997.997 0 0 0 0-1.414l-3.27-3.27a1 1 0 0 0-1.023-.242L10.5 9.5l-.96-.96 2.68-2.643A3.005 3.005 0 0 0 16 3q0-.405-.102-.777l-2.14 2.141L12 4l-.364-1.757L13.777.102a3 3 0 0 0-3.675 3.68L7.462 6.46 4.793 3.793a1 1 0 0 1-.293-.707v-.071a1 1 0 0 0-.419-.814zm9.646 10.646a.5.5 0 0 1 .708 0l2.914 2.915a.5.5 0 0 1-.707.707l-2.915-2.914a.5.5 0 0 1 0-.708M3 11l.471.242.529.026.287.445.445.287.026.529L5 13l-.242.471-.026.529-.445.287-.287.445-.529.026L3 15l-.471-.242L2 14.732l-.287-.445L1.268 14l-.026-.529L1 13l.242-.471.026-.529.445-.287.287-.445.529-.026z"/>
+                        </svg> 
+                        Sửa dữ liệu
+                    </a>
+                    <!-- Nút Tìm kiếm dữ liệu -->
+                    <a href="#" class="btn btn-primary custom-btn unpressed-btn">Tìm kiếm dữ liệu</a>
+
+                    <a href="#" class="btn btn-primary custom-btn unpressed-btn">Biểu đồ</a>
+
+                    <a href="/admin/trashcan" class="btn btn-primary custom-btn unpressed-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16" style="margin-right: 5px;">
+                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                            <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                        </svg> 
+                        Thùng rác ({{deletedCount}})
+                    </a>
+
+                    <a href="#" class="btn btn-primary custom-btn unpressed-btn">Chức năng mới</a>
+
+                    <a href="#" class="btn btn-primary custom-btn unpressed-btn">Chức năng mới</a>
+
+                    <a href="#" class="btn btn-primary custom-btn unpressed-btn">Chức năng mới</a>
+
+                    <a href="#" class="btn btn-primary custom-btn unpressed-btn">Chức năng mới</a>
+
+                    <a href="#" class="btn btn-primary custom-btn unpressed-btn">Chức năng mới</a>
+
+                    <a href="#" class="btn btn-primary custom-btn unpressed-btn">Chức năng mới</a>
+
+                    <a href="#" class="btn btn-primary custom-btn unpressed-btn">Chức năng mới</a>
+
+                    <a href="#" class="btn btn-primary custom-btn unpressed-btn">Chức năng mới</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-1 d-flex align-items-center">
+            <div class="vertical-line"></div>
+        </div>
+        <div class="col-lg-8 ">
+            <h3 >
+                <a href="/user/info" class="arrow-button">
+                    <span class="arrow-text"> Trở về</span>
+                </a>
+                Cập nhật thông tin người dùng
+            </h3>
+            <form method="POST" action="/user/info/{{userInfo._id}}?_method=PUT">
+                <div class="form-group">
+                    <label for="name" class="form-label" >Tên</label>
+                    <input type="text" class="form-control" value="{{userInfo.name}}" id="name" name="name" >
+                </div>
+                <div class="form-group">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" class="form-control" value="{{userInfo.username}}" id="username" name="username" >
+                    {{!-- <textarea class="form-control" id="description" name="description">{{adminUpdateDetail.description}}</textarea> --}}
+                </div>
+                <div class="form-group">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" value="{{userInfo.email}}" id="email" name="email" >
+                </div>
+                <div class="form-group">
+                    <label for="password" class="form-label">Mật khẩu</label>
+                    <input type="password" class="form-control" value="{{userInfo.password}}" id="password" name="password" >
+                </div>
+                <div class="form-group">
+                    <label for="image" class="form-label">Ảnh đại diện</label>
+                    <input type="text" class="form-control" value="{{userInfo.image}}" id="image" name="image" >
+                </div>
+                {{!-- <a href="/user/info/{{this._id}}/add" class="edit-button" style="margin-top: 2%;"><span>Thêm thông tin</span></a>
+                <a href="/user/info/{{this._id}}/edit" class="edit-button" style="margin-top: 2%;"><span>Sửa thông tin</span></a> --}}
+                
+                <button type="submit" class="btn btn-primary" style="margin-top: 16px;">Sửa</button>
+            </form>
+        </div>
+    </div>
+</div>

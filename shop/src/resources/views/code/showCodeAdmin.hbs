@@ -1,0 +1,129 @@
+<div class="container">    
+    <nav class="navbar navbar-expand-lg bg-body-tertiary thanh-menu">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <form class="d-flex" role="search" style="margin-right: 10px;">
+                    <input class="form-control me-2 expanded-search-input" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <a class="navbar-brand" href="/home/admin" >HOME</a>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                {{!-- <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/register">Sign up</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/login">Sign in</a>
+                </li> --}}
+                <li class="nav-item">
+                <a class="nav-link" href="/user/addfunds">Nạp tiền</a>
+                </li>
+                <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Dropdown
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                </li>
+                </ul>
+            <ul class="navbar-nav ml-auto ms-auto"> <!-- Thêm class ms-auto -->
+                <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-wallet2" viewBox="0 0 16 16" style="margin-right: 5px;">
+                            <path d="M12.136.326A1.5 1.5 0 0 1 14 1.78V3h.5A1.5 1.5 0 0 1 16 4.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 13.5v-9a1.5 1.5 0 0 1 1.432-1.499zM5.562 3H13V1.78a.5.5 0 0 0-.621-.484zM1.5 4a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5z"/>
+                        </svg>
+                        {{adminInfo.coin}} VNĐ
+                    </a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="https://scontent.fsgn5-2.fna.fbcdn.net/v/t1.6435-1/65920582_702803340190325_4267410399281807360_n.jpg?stp=cp0_dst-jpg_p40x40&_nc_cat=105&ccb=1-7&_nc_sid=2b6aad&_nc_ohc=ZaKS0B17iyAAX-QmJpo&_nc_ht=scontent.fsgn5-2.fna&oh=00_AfA0coSYbQXAjg_VeeAe1AcFWvfXXtnQnuADEhj13PVftw&oe=65EBD240" class="user-avatar">
+                        {{adminInfo.username}}
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/admin">Thông tin tài khoản</a></li>
+                        <li><a class="dropdown-item" href="/me/stored/courses">Khóa học của tôi</a></li>
+                        <li><a class="dropdown-item" href="/me/stored/news">Bài viết của tôi</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="/logout" >Đăng xuất</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<div class="mt-4" >
+    
+        <div class="container">
+            <div class="row" >
+            {{!-- <button>HỌC NGAY</button>
+            <ul>
+                <li>Cấp độ: 
+                    {{course.level}}
+                </li>
+            </ul> --}}
+                <div class="col-lg-4" style="background-color: #efee9b;border-radius: 4%;">
+                    <img src="{{infoCode1.image}}{{infoCode2.image}}{{infoCode3.image}}{{infoCode4.image}}" style="width: 80%; height: 80%;margin-top: 9%;margin-left: 9%;" alt="">
+                </div>
+                <div class="col-lg-1">
+                    <div></div>
+                </div>
+                <div class="col-lg-7" style="background-color: #effcbe; border-radius: 4%;">
+                    {{!-- <h2>{{infocode.image}}aaaa</h2> --}}
+                    {{!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/{{course.videoId}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> --}}
+                    {{!-- <p>{{infocode.image}}</p> --}}
+                    <div class="row" style="margin-left: 10%; ">
+                        <h1 >Huyền thoại nhẫn giả</h1>
+                    </div>
+                    <hr style="margin-left: 10%;" width="50%" align="left" />
+                    <div class="row" style="margin-left: 10%;">
+                        <h4 >GiftCode: {{infoCode1.nameCode}}{{infoCode2.nameCode}}{{infoCode3.nameCode}}{{infoCode4.nameCode}}</h4>
+                    </div>
+                    <hr style="margin-left: 10%;" width="50%" align="left" />
+                    <div class="row" style="margin-left: 10%;">
+                        <h5>Tồn kho: {{infoCode1.quatity}}{{infoCode2.quatity}}{{infoCode3.quatity}}{{infoCode4.quatity}}</h5>
+                    </div>
+                    <div class="row" style="margin-left: 10%;">
+                        <h4>Giá: {{infoCode1.price}}{{infoCode2.price}}{{infoCode3.price}}{{infoCode4.price}} VNĐ</h4>
+                    </div>
+                    <hr style="margin-left: 10%;" width="50%" align="left" />
+                    <div class="row" style="margin-left: 10%;">
+                        <form method="POST" action="/code/admin/{{infoCode1.slug}}{{infoCode2.slug}}{{infoCode3.slug}}{{infoCode4.slug}}/boughtcode">
+                            
+                            <div class="input-number product__quantity">
+                                <h5>Số lượng mua:</h5>
+                                <input id="quatity" type="number" class="input-number__input form-control form-control-lg" min="1" name="quatity" value="1" >
+                                
+                            </div>
+                            <button type="submit" class="btn btn-primary" style="margin-top: 16px;">Mua</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 5%;">
+                <div class="col-lg-12 ">
+                    <h3 style="text-align: center;">Mô tả</h3>
+                    <div class="row">
+                        <div class="col-lg-12" style="background-color: #effcbe; border-radius: 2%;height: 100%;">
+                            <h2>Code: {{profileCode.nameCode}}</h2>
+                            <textarea style="width: 100%; height: 800px;font-size: x-large;" disabled>{{profileCode.detail}}</textarea>
+                            <h2 style="text-align: center;">Ảnh</h2>
+                            <img src="{{profileCode.image}}" style="width: 100%; height: 800px;">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    
+</div>

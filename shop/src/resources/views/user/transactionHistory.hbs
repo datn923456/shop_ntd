@@ -1,0 +1,778 @@
+<nav id="myNavbar">
+    <span id="menu-icon">&#9776;</span>
+    <ul>
+        <li><img src="https://scontent.fsgn5-14.fna.fbcdn.net/v/t39.30808-6/243982552_282193343596263_6043245316263749024_n.png?stp=dst-webp_e15_q70_s3120x1645_tt1_u&efg=eyJ1cmxnZW4iOiJ1cmxnZW5fZnJvbV91cmwifQ&_nc_cid=0&_nc_ad=z-m&_nc_rml=0&_nc_ht=scontent.fsgn5-14.fna&_nc_cat=101&_nc_ohc=t3i148aHmZQAX_eZXs5&ccb=1-7&_nc_sid=efb6e6&oh=00_AfAaH_GUfySbMGwc2d3EuES3ucVW8CUUBa_vKPuwfdvoqg&oe=65E6F1F3" class="logo-shop"></li>
+        <li style="margin-left: 400px;"><a href="/home">TRANG CHỦ</a></li>
+        <li style="margin-left: 100px;"><a href="/user/addfunds">NẠP TIỀN</a></li>
+        <li style="margin-left: 100px;"><a href="#">DỊCH VỤ GAME</a></li>
+        <li style="margin-left: 100px;"><a href="#">NICK GAME</a></li>
+        <li style="margin-left: 100px;"><a href="#">KHÁC</a></li>
+        <li class="user-section" style="margin-left: auto;">
+        <a class="nav-link wallet" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-weight:bold;color: white; background-color: #ed145b; border: 7px solid #ed145b;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-wallet2" viewBox="0 0 16 16" style="margin-right: 5px;">
+                        <path d="M12.136.326A1.5 1.5 0 0 1 14 1.78V3h.5A1.5 1.5 0 0 1 16 4.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 13.5v-9a1.5 1.5 0 0 1 1.432-1.499zM5.562 3H13V1.78a.5.5 0 0 0-.621-.484zM1.5 4a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5z"/>
+                    </svg>
+                {{formatCurrency userInfo.coin}} VNĐ
+                </a>
+            <a class="nav-link dropdown-toggle user" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="{{userInfo.image}}" class="user-avatar">
+                {{userInfo.username}}
+            </a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/infouser">Thông tin tài khoản</a></li>
+                <li><a class="dropdown-item" href="/me/stored/courses">Khóa học của tôi</a></li>
+                <li><a class="dropdown-item" href="/me/stored/news">Bài viết của tôi</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="/logout" >Đăng xuất</a></li>
+            </ul>
+            
+                
+            
+        </li>
+        
+    </ul>
+</nav>
+<div class="container">
+    <div class="row" style="margin-top: 20px;">
+    <div class="col-lg-3">
+        <div class="row">     
+            <div class="col-lg-10">
+                <div style="width: 4px; height: 20px; border-right: 4px solid #19b1ff; display: inline-block;margin-top: 70px;"></div>
+                <h4 style="color: #3f444a; display: inline-block; vertical-align: middle; margin-left: 10px;">MENU TÀI KHOẢN</h4>
+                <ul style="list-style: none; padding: 0;">
+                    <div style="width: 4px; height: 5px; border-right: 4px solid #19b1ff; display: inline-block;margin-top: 30px;"></div>
+                    <li style="margin-bottom: 4px;display: inline-block; vertical-align: middle;margin-top: 1px;">
+                        <a href="/thong-tin-tai-khoan" style="text-decoration: none; color:#3f444a;font-size: 16px;" id="css-info-user">Thông tin tài khoản</a>
+                    </li>
+                    <hr>
+                    <div style="width: 4px; height: 5px; border-right: 4px solid #19b1ff; display: inline-block;"></div>
+                    <li style="margin-bottom: 5px; display: inline-block; vertical-align: middle;">
+                        <a href="/nap-the" style="text-decoration: none; color:#3f444a;font-size: 16px;">Nạp tiền thẻ cào</a>
+                    </li>
+                    <hr>
+                    <div style="width: 4px; height: 5px; border-right: 4px solid #19b1ff; display: inline-block;"></div>
+                    <li style="margin-bottom: 5px;display: inline-block; vertical-align: middle;">
+                        <a href="#" id="naptienatmvi" onclick="changeColor()" style="text-decoration: none; color:#3f444a;font-size: 16px;" data-toggle="modal" data-target="#myModal">Nạp tiền ATM - Ví điện tử</a>
+                    </li>
+                    <hr>
+                    <div style="width: 4px; height: 5px; border-right: 4px solid #19b1ff; display: inline-block; "></div>
+                    <li style="margin-left: 15px;display: inline-block; vertical-align: middle;">
+                        <a href="/Lichsugiaodich" style="text-decoration: none; color:#19b1ff;font-size: 16px; font-weight: bold;">Lịch sử giao dịch</a>
+                    </li>
+                    <hr>
+                </ul>
+                <div style="width: 4px; height: 20px; border-right: 4px solid #19b1ff; display: inline-block;margin-top: 80px;"></div>
+                <h4 style="color: #3f444a; display: inline-block; vertical-align: middle; margin-left: 10px;">MENU GIAO DỊCH</h4>
+                <ul style="list-style: none; padding: 0;">
+                    <div style="width: 4px; height: 5px; border-right: 4px solid #19b1ff; display: inline-block;"></div>
+                    <li style="margin-bottom: 4px;display: inline-block; vertical-align: middle;">
+                        <a href="#" style="text-decoration: none; color:#3f444a;font-size: 16px;">Lịch sử vận may</a>
+                    </li>
+                    <hr>
+                    <div style="width: 4px; height: 5px; border-right: 4px solid #19b1ff; display: inline-block;"></div>
+                    <li style="margin-bottom: 5px; display: inline-block; vertical-align: middle;">
+                        <a href="#" style="text-decoration: none; color:#3f444a;font-size: 16px;">Tài khoản đã mua</a>
+                    </li>
+                    <hr>
+                    <div style="width: 4px; height: 5px; border-right: 4px solid #19b1ff; display: inline-block;"></div>
+                    <li style="margin-bottom: 5px;display: inline-block; vertical-align: middle;">
+                        <a href="/code-order" style="text-decoration: none; color:#3f444a;font-size: 16px;">Code đã mua</a>
+                    </li>
+                    <hr>
+                    <div style="width: 4px; height: 5px; border-right: 4px solid #19b1ff; display: inline-block; "></div>
+                    <li style="margin-left: 15px;display: inline-block; vertical-align: middle;">
+                        <a href="#" style="text-decoration: none; color:#3f444a;font-size: 16px;">Dịch vụ đã thuê</a>
+                    </li>
+                    <hr>
+                </ul>
+                {{!-- <a href="/user/addfunds" class="btn btn-primary custom-btn pressed-btn">Nạp bằng thẻ cào</a> --}}
+                {{!-- <a href="/user/addfunds/bank" class="btn btn-primary custom-btn unpressed-btn">Nạp bằng ngân hàng</a> --}}
+            </div>
+        </div>
+    </div>
+    
+
+  {{!--  --}}
+    <div class="col-lg-9" style="margin-top: 70px;">
+        <h4 style="text-align: center;color: #19b1ff;">LỊCH SỬ GIAO DỊCH</h4>
+        <div style="width: 200px; height: 1px; margin: 20px auto; border-bottom: 4px solid #19b1ff;"></div>
+        
+        
+        <div class="container">
+            <div class="panel-heading clearfix text-center" style="color: #fdfdfd; background: #30b9ff; padding: 10px 15px; font-weight: bold;">
+                <span class="t24 bb" style="">LỊCH SỬ GIAO DỊCH</span>
+            </div>
+            
+            <table class="table mt-4">
+                <thead>
+                    <tr style="font-size: 15px;">
+                        {{!-- <th scope="col" style="text-align: center;">Trạng thái</th> --}}
+                        <th scope="col" style="text-align: center;">Thời gian</th>
+                        {{!-- <th scope="col" style="text-align: center;">Nhà mạng --}}
+                            {{!-- {{{sortable 'nameCode' _sort}}} --}}
+                        {{!-- </th> --}}
+                        <th scope="col" style="text-align: center;">Giao dịch
+                            {{!-- {{{sortable 'code' _sort}}} --}}
+                        </th>
+                        {{!-- <th scope="col" style="text-align: center;">Thực nhận --}}
+                            {{!-- {{{sortable 'code' _sort}}} --}}
+                        {{!-- </th> --}}
+                        {{!-- <th scope="col" style="text-align: center;">Thời gian 
+                            {{{sortable 'createdAt' _sort}}}
+                        </th> --}}
+                        {{!-- <th scope="col" style="text-align: center;">Code</th> --}}
+                        <th scope="col" style="text-align: center;">Số tiền</th>
+                        <th scope="col" style="text-align: center;">Số dư trước khi mua</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{!-- {{#each codeOrder}} --}}
+                    {{#each transactionHistory}}
+
+                    <tr style="font-size: 15px;">
+                        {{!-- <td >
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="courseUserCodeorderIDS[]" value="{{this._id}}" >
+                            </div>
+                        </td> --}}
+                        {{!-- <th scope="row" style="text-align: center;">{{sum @index 1}}</th> --}}
+                        {{!-- <td style="text-align: center;">{{}}</td> --}}
+                        <td style="text-align: center;">{{moment this.HistoryGiaoDichCreatedAt format="DD/MM/YYYY HH:mm"}}</td>
+                        <td style="text-align: center;">{{this.nameGiaoDich}}</td>
+                        <td style="text-align: center;">{{formatCurrency this.value}}</td>
+                        {{!-- <td style="text-align: center;">{{#if this.amount}}{{formatCurrency this.amount}}{{else}}0{{/if}}</td> --}}
+                        <td style="text-align: center;">{{formatCurrency this.coin}}</td>
+                        {{!-- <td style="text-align: center;">{{this.code}}</td> --}}
+                        {{!-- <td>{{this.products.[0].code}}</td> --}}
+                        {{!-- <td style="text-align: center;">
+                            <a href="/user/update/{{this._id}}/edit" class="edit-button"><span>Sửa</span></a>
+                        </td> --}}
+                        
+                    </tr>
+                    {{else}}
+                        <tr>
+                            <td colspan="4" style="text-align: center;">
+                                Không có dữ liệu.
+                            </td>
+                        </tr>
+                    {{/each}}
+                    {{!-- {{/each}} --}}
+                </tbody>
+                </table>
+              <div class="col-md-12" >
+                <div class="pagination-container">
+                    <a id="Previous" onclick="changePage(-1)"><<</a>
+                    <div id="sotrang">
+                        <span></span>
+                    </div>
+                    <a id="next" onclick="changePage(1)">>></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+<div class="container">
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog modal-dialog-centered">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" style="color: #19b1ff;font-weight: 500px;font-size: 18px;">Nạp tiền từ ATM hoặc Ví điện tử</h4>
+        <button type="button" class="close" data-dismiss="modal" style="color: #19b1ff;border: none;">×</button>
+      </div>
+      <div class="modal-body">
+        <a href="#" style="text-decoration: none;">
+          <h4 class="text-center" style="color: #ff1919; font-weight: bold;font-size: 16px;">NẠP TIỀN TỪ ATM - VÍ</h4>
+        </a>
+        <div class="row">
+          <h5>Chọn 1 trong 2 phương thức chuyển dưới đây</h5>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <!-- Thêm data-toggle và data-target để xác định nội dung của tab -->
+            <a data-toggle="tab" href="#ATM" class="btn btn-lg col-xs-6 btn-outline-dark atm rounded-0"  onclick="showTab('ATM')">ATM</a>
+            <a data-toggle="tab" href="#VDT" class="btn btn-lg col-xs-6 btn-outline-dark atm rounded-0" onclick="showTab('VDT')">Ví điện tử</a>
+
+            <div class="tab-content" style="padding-top: 20px;">
+              <div id="ATM" class="tab-pane fade">
+                <!-- Nội dung của tab ATM -->
+                <div class="col-md-12" style="text-align: left;">
+                  <span style="font-weight: bold;color: #3f444a;">Thông tin tài khoản ngân hàng</span>
+                </div>
+                <hr>
+                <div class="col-md-12">
+                  <div class="col-md-1">
+                      <span></span>
+                    </div>
+                  <div class="col-md-7" style="text-align: left;">
+                    <span style="font-weight: bold;color: #3f444a;">Tên tài khoản: MAI VĂN HÀ</span>
+                  </div>
+                  <div class="col-md-4">
+                    <span></span>
+                  </div>
+                  <div class="col-md-1">
+                      <span></span>
+                    </div>
+                </div>
+                <hr>
+                <div class="col-md-12" style="width: 100%;">
+                  <div class="row">
+                    <div class="col-md-1">
+                      <span></span>
+                    </div>
+                    <div class="col-md-10">
+                      <img width="100%" height="100%" src="https://img.vietqr.io/image/VCB-1042950060-print.png?addInfo={{userInfo.username}}&accountName=MAI%20VAN%20HA">
+                    </div>
+                    
+                    <div class="col-md-1">
+                      <span></span>
+                    </div>
+                  </div>
+                  
+                </div>
+                <hr>
+                <!-- Thêm các khối thông tin tài khoản ngân hàng -->
+              </div>
+
+              <div id="VDT" class="tab-pane fade" >
+                <!-- Nội dung của tab Ví điện tử -->
+                <div class="col-md-12" style="text-align: left;">
+                  <span style="font-weight: bold;color: #3f444a;">Thông tin tài khoản ví điện tử</span>
+                </div>
+                <hr>
+                <div class="col-md-12" style="width: 100%;">
+                  <div class="row">
+                    <div class="col-md-1">
+                      <span></span>
+                    </div>
+                    <div class="col-md-5" style="text-align: left; width: 40%;">
+                      <span style="color: #3f444a;">TSR (Thesieure.com):</span>
+                    </div>
+                    <div class="col-md-5" style="text-align: right;width: 40%">
+                      <span style="font-weight: bold;color: #3f444a;">0382998964</span>
+                    </div>
+                    <div class="col-md-1">
+                      <span></span>
+                    </div>
+                  </div>
+                  
+                </div>
+                <hr>
+                <div class="col-md-12" style="width: 100%;">
+                  <div class="row">
+                    <div class="col-md-1">
+                      <span></span>
+                    </div>
+                    <div class="col-md-5" style="text-align: left; width: 40%;">
+                      <span style="color: #3f444a;">Momo (ví Momo):</span>
+                    </div>
+                    <div class="col-md-5" style="text-align: right;width: 40%">
+                      <span style="font-weight: bold;color: #3f444a;">0382998964</span>
+                    </div>
+                    <div class="col-md-1">
+                      <span></span>
+                    </div>
+                  </div>
+                  
+                </div>
+                <hr>
+                <!-- Thêm các khối thông tin ví điện tử -->
+              </div>
+            </div>
+
+            <p style="color: #19b1ff;font-size: 15px;">
+              Nội dung thanh toán: <strong>Nap Tien www.acc957.com</strong> {tên tài khoản hoặc số điện thoại}
+              Chuyển xong liên hệ fanpage : <a style="text-decoration: none;" href="https://www.facebook.com/ytboctiiu957"><strong style="color: #ff0000;">Chăm sóc khách hàng - www.acc957.com</strong></a> hoặc
+              Hotline <strong style="color: #ff0000;">0396498015</strong> để được xử lý.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-warning" data-dismiss="modal" style="font-weight: bold; color: white;min-width:118px;">Đóng</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<script>
+  function showTab(tabId) {
+    // Xóa lớp active cho tất cả các nút
+    $('.btn.atm').removeClass('active');
+
+    // Thêm lớp active cho nút được chọn
+    $('a[data-target="#' + tabId + '"]').addClass('active');
+  }
+
+  
+</script>
+<style>
+  .modal-dialog.modal-dialog-centered {
+  display: flex;
+  align-items: center;
+  min-height: calc(100% - (0.5rem * 2));
+}
+
+.modal-content {
+  text-align: center;
+}
+.btn.atm.active,
+.btn.atm:focus,
+.btn.atm:active,
+.btn.atm:hover {
+  background-color: #5bc0de; /* Màu của nút ATM khi active */
+  color: #fff; /* Màu chữ của nút ATM khi active */
+}
+
+.btn.vdt.active,
+.btn.vdt:focus,
+.btn.vdt:active,
+.btn.vdt:hover {
+  background-color: #5bc0de; /* Màu của nút Ví điện tử khi active */
+  color: #fff; /* Màu chữ của nút Ví điện tử khi active */
+}
+
+
+</style>
+<style>
+    .custom-div {
+      padding: 10px;
+      background-color: #19b1ff;
+      border: 1px solid #d1ef33;
+      margin-bottom: 30px;
+      border-radius: 6px;
+    }
+     #CaptchaAuto::selection {
+        background-color: transparent;
+    }
+
+    .pagination-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+        
+    }
+
+    .pagination-container a {
+        padding: 8px 12px;
+        margin: 0 5px;
+        text-decoration: none;
+        color: #333;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    
+
+    #sotrang {
+        margin: 0 10px;
+        font-size: 16px;
+        font-weight: bold;
+    }
+    #Previous,
+    #next {
+        background-color: #19b1ff;
+        color: #fff; /* Đổi màu chữ sang trắng để đảm bảo đọc được trên nền màu xanh */
+    }
+    
+    #Previous:hover{
+      background-color: #3f51b5;
+    }
+    #next:hover{
+      background-color: #3f51b5;
+    }
+  </style>
+{{!-- <script>
+    // Lấy thẻ select và input
+    var cardValueSelect = document.getElementById('CardValueSelect');
+    var moneyConsumInput = document.getElementById('MoneyConsum');
+    const chietKhauVIETTEL = '{{chietKhauVIETTEL}}'
+    const chietKhauVINAPHONE = '{{chietKhauVINAPHONE}}'
+    const chietKhauMOBIFONE = '{{chietKhauMOBIFONE}}'
+    const chietKhauVNMOBI = '{{chietKhauVNMOBI}}'
+    const chietKhauZING = '{{chietKhauZING}}'
+    const chietKhauGARENA = '{{chietKhauGARENA}}'
+    const chietKhauVCOIN = '{{chietKhauVCOIN}}'
+    const chietKhauGATE = '{{chietKhauGATE}}'
+    
+    //alert(chiet);
+    
+    var selectElement = document.getElementById("CardValueSelect");
+
+    // Gán sự kiện onchange cho select
+    selectElement.addEventListener("change", function() {
+        // Lấy vị trí của option được chọn
+        var selectedIndex = selectElement.selectedIndex;
+
+        // Hiển thị vị trí trong console
+        
+        viTriCanTim = selectedIndex;
+    });
+
+    // Thêm sự kiện change cho select
+    cardValueSelect.addEventListener('change', function() {
+        // Lấy giá trị đã chọn từ select
+        var selectedValue = cardValueSelect.value;
+        
+        //alert(chietKhauThe)
+        switch($("#Network").val()){
+            case 'VIETTEL':{
+                var mangSo = chietKhauVIETTEL.split(",");
+                // Lấy vị trí của số trong mảng
+                chietKhauThe = mangSo[viTriCanTim - 1];
+                var phanTram = selectedValue * chietKhauThe ;
+                var thucNhan = selectedValue - phanTram ;
+
+                // Gán giá trị tính toán vào input
+                moneyConsumInput.value = thucNhan + " VNĐ";
+              break;
+            }
+            case 'VINAPHONE':{
+                var mangSo = chietKhauVINAPHONE.split(",");
+                  // Lấy vị trí của số trong mảng
+                  chietKhauThe = mangSo[viTriCanTim - 1];
+                  var phanTram = selectedValue * chietKhauThe ;
+                  var thucNhan = selectedValue - phanTram ;
+
+                  // Gán giá trị tính toán vào input
+                  moneyConsumInput.value = thucNhan + " VNĐ";
+                break;
+            }
+            case 'MOBIFONE':{
+                var mangSo = chietKhauMOBIFONE.split(",");
+                  // Lấy vị trí của số trong mảng
+                  chietKhauThe = mangSo[viTriCanTim - 1];
+                  var phanTram = selectedValue * chietKhauThe ;
+                  var thucNhan = selectedValue - phanTram ;
+
+                  // Gán giá trị tính toán vào input
+                  moneyConsumInput.value = thucNhan + " VNĐ";
+                break;
+            }
+            case 'VNMOBI':{
+                var mangSo = chietKhauVNMOBI.split(",");
+                  // Lấy vị trí của số trong mảng
+                  chietKhauThe = mangSo[viTriCanTim - 1];
+                  var phanTram = selectedValue * chietKhauThe ;
+                  var thucNhan = selectedValue - phanTram ;
+
+                  // Gán giá trị tính toán vào input
+                  moneyConsumInput.value = thucNhan + " VNĐ";
+                break;
+            }
+            case 'ZING':{
+                var mangSo = chietKhauZING.split(",");
+                  // Lấy vị trí của số trong mảng
+                  chietKhauThe = mangSo[viTriCanTim - 1];
+                  var phanTram = selectedValue * chietKhauThe ;
+                  var thucNhan = selectedValue - phanTram ;
+
+                  // Gán giá trị tính toán vào input
+                  moneyConsumInput.value = thucNhan + " VNĐ";
+                break;
+            }
+            case 'GARENA':{
+                var mangSo = chietKhauGARENA.split(",");
+                  // Lấy vị trí của số trong mảng
+                  chietKhauThe = mangSo[viTriCanTim - 1];
+                  var phanTram = selectedValue * chietKhauThe ;
+                  var thucNhan = selectedValue - phanTram ;
+
+                  // Gán giá trị tính toán vào input
+                  moneyConsumInput.value = thucNhan + " VNĐ";
+                break;
+            }
+            case 'VCOIN':{
+                var mangSo = chietKhauVCOIN.split(",");
+                  // Lấy vị trí của số trong mảng
+                  chietKhauThe = mangSo[viTriCanTim - 1];
+                  var phanTram = selectedValue * chietKhauThe ;
+                  var thucNhan = selectedValue - phanTram ;
+
+                  // Gán giá trị tính toán vào input
+                  moneyConsumInput.value = thucNhan + " VNĐ";
+                break;
+            }
+            case 'GATE':{
+                var mangSo = chietKhauGATE.split(",");
+                  // Lấy vị trí của số trong mảng
+                  chietKhauThe = mangSo[viTriCanTim - 1];
+                  var phanTram = selectedValue * chietKhauThe ;
+                  var thucNhan = selectedValue - phanTram ;
+
+                  // Gán giá trị tính toán vào input
+                  moneyConsumInput.value = thucNhan + " VNĐ";
+                break;
+            }
+
+        }
+        // Thực hiện tính toán (ví dụ: giả sử trừ 20%)
+        var phanTram = selectedValue * chietKhauThe ;
+        var thucNhan = selectedValue - phanTram ;
+
+        // Gán giá trị tính toán vào input
+        moneyConsumInput.value = thucNhan + " VNĐ";
+    });
+
+    function changeColor() {
+        var link = document.getElementById("naptienatmvi");
+        link.style.color = "red";
+    }
+    //
+    document.getElementById('Network').addEventListener('change', function () {
+        // Lấy giá trị được chọn
+        var selectedValue = this.value;
+
+        // Hiển thị giá trị trên console
+        //selectedValue
+        //console.log('Đã chọn:', selectedValue);
+        $("#CardValueSelect").empty();
+
+        switch(selectedValue){
+          case 'VIETTEL':{
+            $("#CardValueSelect").append(`<option>Chọn mệnh giá</option>
+                                      {{#each VIETTEL}}
+                                        <option value="{{this}}">{{this}}</option>
+                                      {{/each}}`)
+            break;
+          }
+          case 'VINAPHONE':{
+            $("#CardValueSelect").append(`<option>Chọn mệnh giá</option>
+                                      {{#each VINAPHONE}}
+                                        <option vaue="{{this}}">{{this}}</option>
+                                      {{/each}}`)
+            break;
+          }
+          case 'MOBIFONE':{
+            $("#CardValueSelect").append(`<option>Chọn mệnh giá</option>
+                                      {{#each MOBIFONE}}
+                                        <option value="{{this}}">{{this}}</option>
+                                      {{/each}}`)
+            break;
+          }
+          case 'VNMOBI':{
+            $("#CardValueSelect").append(`<option>Chọn mệnh giá</option>
+                                      {{#each VNMOBI}}
+                                        <option value="{{this}}">{{this}}</option>
+                                      {{/each}}`)
+            break;
+          }
+          case 'ZING':{
+            $("#CardValueSelect").append(`<option>Chọn mệnh giá</option>
+                                      {{#each ZING}}
+                                        <option value="{{this}}">{{this}}</option>
+                                      {{/each}}`)
+            break;
+          }
+          case 'GARENA':{
+            $("#CardValueSelect").append(`<option>Chọn mệnh giá</option>
+                                      {{#each GARENA}}
+                                        <option value="{{this}}">{{this}}</option>
+                                      {{/each}}`)
+            break;
+          }
+          case 'VCOIN':{
+            $("#CardValueSelect").append(`<option>Chọn mệnh giá</option>
+                                      {{#each VCOIN}}
+                                        <option value="{{this}}">{{this}}</option>
+                                      {{/each}}`)
+            break;
+          }
+          case 'GATE':{
+            $("#CardValueSelect").append(`<option>Chọn mệnh giá</option>
+                                      {{#each GATE}}
+                                        <option value="{{this}}">{{this}}</option>
+                                      {{/each}}`)
+            break;
+          }
+        }
+    });
+</script> --}}
+
+<script>
+  function changeColor() {
+    var link = document.getElementById("naptienatmvi");
+    link.style.color = "red";
+  }
+
+  document.addEventListener("DOMContentLoaded", function() {
+        // Lấy URL hiện tại
+        let currentUrl = window.location.href;
+
+        // Kiểm tra xem URL đã chứa tham số "page" chưa
+        if (currentUrl.indexOf('?page=') === -1) {
+            // Nếu chưa có tham số "page", thêm nó vào URL
+            let newUrl = currentUrl + (currentUrl.indexOf('?') !== -1 ? '&page=1' : '?page=1');
+
+            // Thay đổi URL của trang
+            history.replaceState(null, null, newUrl);
+        }
+    });
+
+    function changePage(change) {
+            // Lấy số trang từ URL
+            const urlParams = new URLSearchParams(window.location.search);
+            let currentPage = parseInt(urlParams.get('page')) || 1;
+
+            // Thay đổi số trang
+            currentPage += change;
+
+            // Đảm bảo số trang không âm
+            currentPage = Math.max(currentPage, 1);
+
+            // Cập nhật URL với số trang mới
+            window.location.href = window.location.pathname + '?page=' + currentPage;
+        }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Lấy số trang từ URL
+        const urlParams = new URLSearchParams(window.location.search);
+        let currentPage = parseInt(urlParams.get('page')) || 1;
+
+        // Tìm đến div#sotrang
+        const sotrangDiv = document.getElementById('sotrang');
+
+        // Tạo một span mới
+        const newSpan = document.createElement('span');
+        newSpan.textContent = currentPage;
+
+        // Xóa tất cả các phần tử con cũ trong div#sotrang
+        while (sotrangDiv.firstChild) {
+            sotrangDiv.removeChild(sotrangDiv.firstChild);
+        }
+
+        // Thêm span mới vào div#sotrang
+        sotrangDiv.appendChild(newSpan);
+    });
+</script>
+
+<script type="text/javascript">
+  fetch('/user/telecom')
+  .then(r=>r.json())
+  .then(telco=>{
+    const networks = Object.keys(telco);
+    const html_network = "<option >Chọn nhà mạng</option>" + networks.map(n=>`<option value="${n}">${n}</option>`).join();
+    Network.innerHTML = html_network;
+
+    Network.onchange = ()=>{
+      const html_menhgia = "<option>Chọn</option>" + telco[Network.value].menhGia?.map(n=>n.toLocaleString('it-IT', {style : 'currency', currency : 'VND'})).map((n,i)=>`<option value="${i}">${n}</option>`).join();
+      CardValueSelect.innerHTML = html_menhgia;
+      CardValueSelect.onchange = ()=>{
+        const index = parseInt(CardValueSelect.value);
+        const thuc_nhan = telco[Network.value].menhGia[index] * (1-telco[Network.value].chietKhau[index]);
+        MoneyConsum.value = thuc_nhan.toLocaleString('it-IT', {style : 'currency', currency : 'VND'});;
+      };
+    }
+    $(document).ready(function () {
+        $('#Donate').on('click', function () {
+            // Lấy giá trị từ các trường input
+            var network = $('#Network').val();
+            var cardValue = $('#CardValueSelect').val();
+            var moneyConsum = $('#MoneyConsum').val();
+            var networkSeri = $('#NetworkSeri').val();
+            var networkCode = $('#NetworkCode').val();
+            var captcha = $('#Captcha').val();
+
+            // Kiểm tra không được bỏ trống
+            if (!network || !cardValue || !networkSeri || !networkCode || !captcha) {
+                Swal.fire({
+                      icon: "warning",
+                      title: "Vui lòng điền đầy đủ thông tin.",
+                      iconColor: '#ff0000',
+                      //text: data.message
+                    });
+                    //captchaImg.src = captchaImg.src;
+                //alert('Vui lòng điền đầy đủ thông tin.');
+                return;
+            }
+
+            // Kiểm tra định dạng serial
+            var serialRegex = /^[0-9]{10,20}$/;
+            if (!serialRegex.test(networkSeri)) {
+                Swal.fire({
+                        icon: "warning",
+                        title: "Định dạng serial không đúng.",
+                        //text: data.message
+                      });
+                //alert('');
+                return;
+            }
+
+            // Kiểm tra định dạng mã thẻ
+            var codeRegex = /^[0-9]{10,20}$/;
+            if (!codeRegex.test(networkCode)) {
+                Swal.fire({
+                          icon: "warning",
+                          title: "Định dạng mã thẻ không đúng.",
+                          //text: data.message
+                        });
+                //alert('Định dạng mã thẻ không đúng.');
+                return;
+            }
+    // kiểm tra tính hợp lệ
+
+    //
+    // Gửi thẻ lên heek thống
+          $.ajax({
+              url: '/user/sendcard',
+              type: 'post',
+              dataType: 'json',
+              contentType: 'application/json',
+              data: JSON.stringify({
+                telco: Network.value,
+                code: NetworkCode.value,
+                serial: NetworkSeri.value,
+                amount: telco[Network.value].menhGia[CardValueSelect.value],
+                captcha: Captcha.value
+              }),
+              success: function (data) {
+                if(data.message == "Vui lòng không spam"){
+                  Swal.fire({
+                    icon: "error",
+                    title: data.message,
+                    //text: data.message
+                  });
+                  captchaImg.src = captchaImg.src; // reset captcha
+                }else if(data.message == "CAPTCHA KHôNG đúng"){
+                  Swal.fire({
+                    icon: "error",
+                    title: data.message,
+                    //text: data.message
+                  });
+                  captchaImg.src = captchaImg.src; // reset captcha
+                }else{
+                  Swal.fire({
+                          title: "Thẻ gửi thành công đang chờ xử lý.",
+                          icon: "success",
+                          timer: 2000,
+                          showConfirmButton: false,
+                          timerProgressBar: true,
+                          didOpen: () => {
+                            Swal.showLoading();
+                          },
+                          willClose: () => {
+                            //clearInterval(timerInterval);
+                            //console.log("hi")
+                              window.location.href = "/user/addfunds";
+                          }
+                        }).then((result) => {
+                          // Mã xử lý khi alert đóng
+                          console.log("Alert closed");
+                        });
+                  
+                }
+                
+              }
+            });
+            });
+    
+    });
+  })
+</script>

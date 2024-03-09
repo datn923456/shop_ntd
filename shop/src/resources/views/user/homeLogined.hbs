@@ -1,0 +1,372 @@
+<nav id="myNavbar">
+    <span id="menu-icon">&#9776;</span>
+    <ul>
+        <li><img src="https://scontent.fsgn5-14.fna.fbcdn.net/v/t39.30808-6/243982552_282193343596263_6043245316263749024_n.png?stp=dst-webp_e15_q70_s3120x1645_tt1_u&efg=eyJ1cmxnZW4iOiJ1cmxnZW5fZnJvbV91cmwifQ&_nc_cid=0&_nc_ad=z-m&_nc_rml=0&_nc_ht=scontent.fsgn5-14.fna&_nc_cat=101&_nc_ohc=t3i148aHmZQAX_eZXs5&ccb=1-7&_nc_sid=efb6e6&oh=00_AfAaH_GUfySbMGwc2d3EuES3ucVW8CUUBa_vKPuwfdvoqg&oe=65E6F1F3" class="logo-shop"></li>
+        <li style="margin-left: 400px;"><a href="/home">TRANG CHỦ</a></li>
+        <li style="margin-left: 100px;"><a href="/user/addfunds">NẠP TIỀN</a></li>
+        <li style="margin-left: 100px;"><a href="#">DỊCH VỤ GAME</a></li>
+        <li style="margin-left: 100px;"><a href="#">NICK GAME</a></li>
+        <li style="margin-left: 100px;"><a href="#">KHÁC</a></li>
+        <li class="user-section" style="margin-left: auto;">
+        <a class="nav-link wallet" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-weight:bold;color: white; background-color: #ed145b; border: 7px solid #ed145b;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-wallet2" viewBox="0 0 16 16" style="margin-right: 5px;">
+                        <path d="M12.136.326A1.5 1.5 0 0 1 14 1.78V3h.5A1.5 1.5 0 0 1 16 4.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 13.5v-9a1.5 1.5 0 0 1 1.432-1.499zM5.562 3H13V1.78a.5.5 0 0 0-.621-.484zM1.5 4a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5z"/>
+                    </svg>
+                {{formatCurrency users.coin}} VNĐ
+                </a>
+            <a class="nav-link dropdown-toggle user" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="{{users.image}}" class="user-avatar">
+                {{users.username}}
+            </a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/infouser">Thông tin tài khoản</a></li>
+                <li><a class="dropdown-item" href="/me/stored/courses">Khóa học của tôi</a></li>
+                <li><a class="dropdown-item" href="/me/stored/news">Bài viết của tôi</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="/logout" >Đăng xuất</a></li>
+            </ul>
+            
+                
+            
+        </li>
+        
+    </ul>
+</nav>
+    
+<div class="container mt-5" >
+    <div class="row" style="margin-top: 150px;">
+        <div class="col-lg-12">
+            <h2 style="text-align: center;font-weight:bold;font-size: 30px;color: #505050;">CODE SỰ KIỆN WEB</h2>
+            <div style="width: 100px; height: 1px; margin: 20px auto; border-bottom: 4px solid #e90606;"></div>
+        </div>
+    </div>
+    <div class="row" >
+        <div class="col-sm-12" >
+            <div class="mt-4">
+                <div class="row" >
+                    {{!-- code 1--}}
+                    <div class="col-sm-6 col-lg-2">
+                        <div class="card card-course-item" >
+                            <a href="/code/user/{{codeNameNumber1.slug}}/show" style="text-align: center; text-decoration: none; color: black;">
+                                    <h7 class="card-title" >
+                                        Giftcode
+                                    </h7>
+                                </a><a href="/code/user/{{codeNameNumber1.slug}}/show" style="text-align: center; text-decoration: none; color: black;">
+                                    <h7 class="card-title" >
+                                        {{codeNameNumber1.nameCode}}
+                                    </h7>
+                                </a>
+                            <a href="/code/user/{{codeNameNumber1.slug}}/show">
+                                <img class="card-img-top" src="{{codeNameNumber1.image}}" alt="{{codeNameNumber1.nameCode}}" >
+                            </a>
+                            <div class="card-body">
+                                <a href="/code/user/{{codeNameNumber1.slug}}/show" style="text-align: center; text-decoration: none; color: black;">
+                                    <h7 class="card-title1">
+                                        Số lượng: {{codeCount1}}<br>
+                                        Đã bán: {{codeCountBought1}}
+                                    </h7>
+                                </a>
+                                
+                                <p class="card-text">
+                                    
+                                </p>
+                                <a href="/code/user/{{codeNameNumber1.slug}}/show" class="btn custom-button"><div id="button-card">{{codeNameNumber1.price}} VNĐ</div></a>
+                            </div>
+                        </div>
+                    </div>
+                    {{!-- code 2 --}}
+                    <div class="col-sm-6 col-lg-2">
+                        <div class="card card-course-item">
+                            <a href="/code/user/{{codeNameNumber2.slug}}/show" style="text-align: center; text-decoration: none; color: black;">
+                                    <h7 class="card-title">
+                                        Giftcode
+                                    </h7>
+                                </a>
+                                <a href="/code/user/{{codeNameNumber2.slug}}/show" style="text-align: center; text-decoration: none; color: black;">
+                                    <h7 class="card-title">
+                                        {{codeNameNumber2.nameCode}}
+                                    </h7>
+                                </a>
+                            <a href="/code/user/{{codeNameNumber2.slug}}/show">
+                                <img class="card-img-top" src="{{codeNameNumber2.image}}" alt="{{codeNameNumber2.nameCode}}" >
+                            </a>
+                            <div class="card-body">
+                                <a href="/code/user/{{codeNameNumber2.slug}}/show" style="text-align: center; text-decoration: none; color: black;">
+                                    <h7 class="card-title2">
+                                        Số lượng: {{codeCount2}}<br>
+                                        Đã bán: {{codeCountBought2}}
+                                    </h7>
+                                </a>
+                                
+                                <p class="card-text">
+                                    
+                                </p>
+                                <a href="/code/user/{{codeNameNumber2.slug}}/show" class="btn custom-button"><div id="button-card">{{codeNameNumber2.price}} VNĐ</div></a>
+                            </div>
+                        </div>
+                    </div>
+                    {{!-- code 3 --}}
+                    <div class="col-sm-6 col-lg-2">
+                        <div class="card card-course-item">
+                            <a href="/code/user/{{codeNameNumber3.slug}}/show" style="text-align: center; text-decoration: none; color: black;">
+                                    <h7 class="card-title">
+                                        Giftcode
+                                    </h7>
+                                </a>
+                                <a href="/code/user/{{codeNameNumber3.slug}}/show" style="text-align: center; text-decoration: none; color: black;">
+                                    <h7 class="card-title">
+                                        {{codeNameNumber3.nameCode}}
+                                    </h7>
+                                </a>
+                            <a href="/code/user/{{codeNameNumber3.slug}}/show">
+                                <img class="card-img-top" src="{{codeNameNumber3.image}}" alt="{{codeNameNumber3.nameCode}}" >
+                            </a>
+                            <div class="card-body">
+                                <a href="/code/user/{{codeNameNumber3.slug}}/show" style="text-align: center; text-decoration: none; color: black;">
+                                    <h7 class="card-title3">
+                                        Số lượng: {{codeCount3}}<br>
+                                        Đã bán: {{codeCountBought3}}
+                                    </h7>
+                                </a>
+                                
+                                <p class="card-text">
+                                    
+                                </p>
+                                <a href="/code/user/{{codeNameNumber3.slug}}/show" class="btn custom-button"><div id="button-card">{{codeNameNumber3.price}} VNĐ</div></a>
+                            </div>
+                        </div>
+                    </div>
+                    {{!-- code 4 --}}
+                    <div class="col-sm-6 col-lg-2">
+                        <div class="card card-course-item">
+                            <a href="/code/user/{{codeNameNumber4.slug}}/show" style="text-align: center; text-decoration: none; color: black;">
+                                    <h7 class="card-title">
+                                        Giftcode
+                                    </h7>
+                                </a>
+                                <a href="/code/user/{{codeNameNumber4.slug}}/show" style="text-align: center; text-decoration: none; color: black;">
+                                    <h7 class="card-title">
+                                        {{codeNameNumber4.nameCode}}
+                                    </h7>
+                                </a>
+                            <a href="/code/user/{{codeNameNumber4.slug}}/show">
+                                <img class="card-img-top" src="{{codeNameNumber4.image}}" alt="{{codeNameNumber4.nameCode}}" >
+                            </a>
+                            <div class="card-body">
+                                <a href="/code/user/{{codeNameNumber4.slug}}/show" style="text-align: center; text-decoration: none; color: black;">
+                                    <h7 class="card-title4">
+                                        Số lượng: {{codeCount4}}<br>
+                                        Đã bán: {{codeCountBought4}}
+                                    </h7>
+                                </a>
+                                
+                                <p class="card-text">
+                                    
+                                </p>
+                                <a href="/code/user/{{codeNameNumber4.slug}}/show" class="btn custom-button"><div id="button-card">{{codeNameNumber4.price}} VNĐ</div></a>
+                            </div>
+                        </div>
+                    </div>
+                    {{!-- Combo code --}}
+                    <div class="col-sm-6 col-lg-2">
+                        <div class="card card-course-item-combo">
+                            <a href="/code/combo/user/{{codeNameNumber5.slug}}/show" style="text-align: center; text-decoration: none; color: black;">
+                                    <h7 class="card-title">
+                                        Giftcode
+                                    </h7>
+                                </a>
+                                <a href="/code/combo/user/{{codeNameNumber5.slug}}/show" style="text-align: center; text-decoration: none; color: black;">
+                                    <h7 class="card-title">
+                                        {{codeNameNumber5.nameCombo}}
+                                    </h7>
+                                </a>
+                            <a href="/code/combo/user/{{codeNameNumber5.slug}}/show">
+                                {{!-- <img class="card-img-top" src="{{codeNameNumber4.image}}" alt="{{codeNameNumber4.nameCode}}" > --}}
+                                <div class="image-frame">
+                                    <div class="grid-item"><img src="{{codeNameNumber1.image}}" alt="Image 1"></div>
+                                    <div class="grid-item"><img src="{{codeNameNumber2.image}}" alt="Image 2"></div>
+                                    <div class="grid-item"><img src="{{codeNameNumber3.image}}" alt="Image 3"></div>
+                                    <div class="grid-item"><img src="{{codeNameNumber4.image}}" alt="Image 4"></div>
+                                </div>
+                            </a>
+                            <div class="card-body">
+                                <a href="/code/combo/user/{{codeNameNumber5.slug}}/show" style="text-align: center; text-decoration: none; color: black;">
+                                    <h7 class="card-title">
+                                        Số lượng: {{codeCount5}}<br>
+                                        Đã bán: {{comboCountBought}}
+                                    </h7>
+                                </a>
+                                
+                                <p class="card-text">
+                                    
+                                </p>
+                                <a href="/code/combo/user/{{codeNameNumber5.slug}}/show" class="btn custom-button"><div id="button-card">{{codeNameNumber5.price}} VNĐ</div></a>
+                            </div>
+                        </div>
+                    </div>
+                    {{!-- abc --}}
+                    {{#each courses}}
+                    <div class="col-sm-6 col-lg-4">
+                        <div class="card card-course-item">
+                            <a href="/courses/user/{{this._id}}/show">
+                                <img class="card-img-top" src="{{this.image}}" alt="{{this.name}}">
+                            </a>
+                            <div class="card-body">
+                                <a href="/courses/{{this.slug}}">
+                                    <h5 class="card-title">
+                                        {{this.name}}
+                                    </h5>
+                                </a>
+                                
+                                <p class="card-text">
+                                    {{this.description}}
+                                </p>
+                                <a href="#" class="btn btn-primary">Xem</a>
+                            </div>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+            
+            {{!-- <h2>10 vật liệu cứng nhất hành tinh</h2>
+            <div class="fakeimg">Ảnh</div>
+            <p>Nội dung</p>
+            <p>Nhờ công nghệ tiên tiến, các nhà khoa học đã cho ra đời những "siêu vật liệu" nhân tạo có độ cứng vượt trội hơn nhiều kim cương. Dưới đây là 10 siêu vật liệu cứng nhất trên thế giới hiện nay, theo thứ tự tăng dần.</p>
+
+            <h2 class="mt-5">Cận cảnh cú đớp mồm nhanh nhất thế giới động vật, 1/6000 giây</h2>
+            <h5>2/9/2020</h5>
+            <div class="fakeimg">Ảnh</div>
+            <p>Some text..</p>
+            <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+            <div class="mt-4"> --}}
+                {{!-- <div class="row">
+                    
+                </div> --}}
+            </div>
+        </div>
+        
+    </div>
+    <div class="row" style="margin-top: 150px;">
+        <div class="col-lg-12">
+            <h2 style="text-align: center;font-weight:bold;font-size: 30px;color: #505050;">DỊCH VỤ GAME</h2>
+            <div style="width: 100px; height: 1px; margin: 20px auto; border-bottom: 4px solid #0090ff;"></div>
+        </div>
+        
+    </div>
+    <div class="container">
+    <div class="row">
+            <div class="col-lg-4 col-md-6 col-sm-12 p-3 mt-4" id="theDichVu">
+                <div class="card">
+                    <a href="/home/accreroll-htng" title="">
+                        <img style="background-color: #e90606; height: 210px;" src="https://huyenthoainhangia.vn/build/assets/frontend/views/events/ngayphunu/assets/images/header/icon.8763409d.png" alt="HỒI SINH NGỌC RỒNG" class="card-img-top">
+                    </a>
+                    <div class="card-body" style="text-align: center;">
+                        <h5 class="card-title"><a href="/home/accreroll-htng" id="tenTheDichVu" style="text-decoration: none;" title="">ACC REROLL HUYỀN THOẠI NHẪN GIẢ</a></h5>
+                        <div class="card-text">
+                            <p>Số tài khoản: 0</p>
+                            <p>Đã bán: 0</p>
+                        </div>
+                        <div class="text-center">
+                            <a href="/home/accreroll-htng" class="btn custom-button"><div id="button-card">Xem thêm</div></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12 p-3 mt-4" id="theDichVu">
+                <div class="card">
+                    <a href="#" title="">
+                        <img src="https://hoanghamobile.com/tin-tuc/wp-content/webp-express/webp-images/uploads/2023/07/Lich-su-dau.jpg.webp" alt="HỒI SINH NGỌC RỒNG" class="card-img-top">
+                    </a>
+                    <div class="card-body" style="text-align: center;">
+                        <h5 class="card-title"><a href="#" id="tenTheDichVu" style="text-decoration: none;" title="">ĐẶT TRƯỚC SỔ LIÊN QUÂN GIÁ RẺ</a></h5>
+                        <div class="card-text">
+                            <p>Số lượng: 0</p>
+                            <p>Đã bán: 0</p>
+                        </div>
+                        <div class="text-center">
+                            <a href="#" class="btn custom-button"><div id="button-card">Coming soon</div></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{!-- <div class="col-lg-4 col-md-6 col-sm-12 p-3 mt-4">
+                <div class="card">
+                    <a href="/Home/BuyNick/354e12d5-bc61-41f6-bb06-827681b732ab" title="">
+                        <img src="https://img.acc957.com//20240215164859nickhsnr.jpg" alt="HỒI SINH NGỌC RỒNG" class="card-img-top">
+                    </a>
+                    <div class="card-body" style="text-align: center;">
+                        <h5 class="card-title"><a href="/Home/BuyNickS/354e12d5-bc61-41f6-bb06-827681b732ab" title="">NICK HỒI SINH NGỌC RỒNG</a></h5>
+                        <div class="card-text">
+                            <p>Số tài khoản: 190</p>
+                            <p>Đã bán: 205</p>
+                        </div>
+                        <div class="text-center">
+                            <a href="/Home/BuyNickS/354e12d5-bc61-41f6-bb06-827681b732ab" class="btn btn-primary" title="">XEM THÊM</a>
+                        </div>
+                    </div>
+                </div>
+            </div> --}}
+            {{!-- <div class="col-lg-4 col-md-6 col-sm-12 p-3 mt-4">
+                <div class="card">
+                    <a href="/Home/BuyNick/354e12d5-bc61-41f6-bb06-827681b732ab" title="">
+                        <img src="https://img.acc957.com//20240215164859nickhsnr.jpg" alt="HỒI SINH NGỌC RỒNG" class="card-img-top">
+                    </a>
+                    <div class="card-body" style="text-align: center;">
+                        <h5 class="card-title"><a href="/Home/BuyNickS/354e12d5-bc61-41f6-bb06-827681b732ab" title="">NICK HỒI SINH NGỌC RỒNG</a></h5>
+                        <div class="card-text" >
+                            <p >Số tài khoản: 190</p>
+                            <p>Đã bán: 205</p>
+                        </div>
+                        <div class="text-center">
+                            <a href="/Home/BuyNickS/354e12d5-bc61-41f6-bb06-827681b732ab" class="btn btn-primary" title="">XEM THÊM</a>
+                        </div>
+                    </div>
+                </div>
+            </div> --}}
+        </div>
+    </div>
+</div>
+{{!-- <h2>Số người dùng đang online: onlineUsersCoun</h2> --}}
+
+    <!-- Script để kết nối với socket.io-server -->
+<script>
+        var socket = io("http://localhost:3000");
+
+        //socket.on("socketId", (socketId) => {
+                // Lưu socket.id vào cookie
+        //    document.cookie = `socketId=${socketId}; path=/`;
+        //});
+        const token = '{{token2}}';
+
+        socket.emit('authenticate', token);
+
+        socket.on("Server-send-data", function(data){
+            $("#noidung").append(data + ", ")
+        })
+        
+        $(document).ready(function(){
+            $("#mrA").click(function(){
+                socket.emit("Client-send-data","HELLO");
+            });
+        });
+
+
+        $(document).ready(function() {
+            var navbar = $("#myNavbar");
+            var sticky = navbar.offset().top;
+
+            $(window).scroll(function() {
+                if (window.pageYOffset >= sticky) {
+                    navbar.addClass("fixed-top");
+                } else {
+                    navbar.removeClass("fixed-top");
+                }
+            });
+        });
+
+        document.getElementById('menu-icon').addEventListener('click', function () {
+        var navUl = document.querySelector('nav ul');
+        navUl.style.display = navUl.style.display === 'flex' ? 'none' : 'flex';
+        });
+</script>
