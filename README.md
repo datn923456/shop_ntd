@@ -14,7 +14,8 @@
 
 ## 🚨 Mô Tả <a name="mô-tả"></a>
 
-Website bán giftcode và tài khoản game. Có các chức năng về mua bán như các website bán tài khoản game khác trên thị trường, có trang quản trị dành cho admin.
+- Website bán giftcode và tài khoản game. Có các chức năng về mua bán như các website bán tài khoản game khác trên thị trường, có trang quản trị dành cho admin.
+- Website được tạo bởi Html, Css, Javascript, Expressjs, Nodejs, Handlebars, MongoDB, 
 
 ## 🔋 Tính Năng <a name="tính-năng"></a>
 
