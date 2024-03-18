@@ -56,7 +56,7 @@
 
 - Chạy dự án bằng câu lệnh: npm start.
 - Chạy scss bằng câu lệnh: npm run watch.
-  - Tạo một mongoDB gắn vào trước khi sử dụng nhé.
+- Tạo một mongoDB gắn vào trước khi sử dụng nhé.
 
 ## Đóng Góp <a name="đóng-góp"></a>
 
