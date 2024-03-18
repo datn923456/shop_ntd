@@ -50,6 +50,7 @@
 ## ⚙️ Hướng Dẫn Cài Đặt <a name="hướng-dẫn-cài-đặt"></a>
 
 - Download file code của tôi về và mở bằng VScode.
+- Mở terminal lên và gõ: npm i (để kéo file node_modules về). 
 
 ## Cách Sử Dụng <a name="cách-sử-dụng"></a>
 
