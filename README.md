@@ -12,11 +12,11 @@
 5. [Đóng Góp](#đóng-góp)
 6. [Tác Giả](#tác-giả)
 
-## Mô Tả <a name="mô-tả"></a>
+## 🚨 Mô Tả <a name="mô-tả"></a>
 
 Website bán giftcode và tài khoản game. Có các chức năng về mua bán như các website bán tài khoản game khác trên thị trường, có trang quản trị dành cho admin.
 
-## Tính Năng <a name="tính-năng"></a>
+## 🔋 Tính Năng <a name="tính-năng"></a>
 
 - Tính năng 1: Mua giftcode:
   + Nhấp vào chỗ mua giftcode ở trang chủ của web bạn sẽ được đưa đến giao diện để mua.
@@ -46,7 +46,7 @@ Website bán giftcode và tài khoản game. Có các chức năng về mua bán
   + Chức năng quản lý doanh thu của shop:
     ![image](https://github.com/datn923456/shop_ntd/assets/90316013/a7f6b09d-44e6-45de-b79d-0e77254b8b27)
 
-## Hướng Dẫn Cài Đặt <a name="hướng-dẫn-cài-đặt"></a>
+## ⚙️ Hướng Dẫn Cài Đặt <a name="hướng-dẫn-cài-đặt"></a>
 
 - Download file code của tôi về và mở bằng VScode.
 
