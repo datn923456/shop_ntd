@@ -1,0 +1,480 @@
+<nav id="myNavbar">
+    <span id="menu-icon">&#9776;</span>
+    <ul>
+        <li><img src="https://scontent.fsgn5-13.fna.fbcdn.net/v/t39.30808-1/243982552_282193343596263_6043245316263749024_n.png?stp=cp0_dst-png_p40x40&_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_ohc=xVPdq3F2SjoAX-AQ8kX&_nc_ht=scontent.fsgn5-13.fna&oh=00_AfBK7_KtajbD7LwJxPPhke-J04xNmNL09-p4x4wetNhgfw&oe=65FD3935" class="logo-shop"></li>
+        <li style="margin-left: 400px;"><a href="/home">TRANG CHỦ</a></li>
+        <li style="margin-left: 100px;"><a href="/user/addfunds">NẠP TIỀN</a></li>
+        <li style="margin-left: 100px;"><a href="/dich-vu">DỊCH VỤ GAME</a></li>
+        <li style="margin-left: 100px;"><a href="#">NICK GAME</a></li>
+        <li style="margin-left: 100px;"><a href="#">KHÁC</a></li>
+        <li class="user-section" style="margin-left: auto;">
+        <a class="nav-link wallet" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-weight:bold;color: white; background-color: #ed145b; border: 7px solid #ed145b;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-wallet2" viewBox="0 0 16 16" style="margin-right: 5px;">
+                        <path d="M12.136.326A1.5 1.5 0 0 1 14 1.78V3h.5A1.5 1.5 0 0 1 16 4.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 13.5v-9a1.5 1.5 0 0 1 1.432-1.499zM5.562 3H13V1.78a.5.5 0 0 0-.621-.484zM1.5 4a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5z"/>
+                    </svg>
+                {{formatCurrency userInfo.coin}} VNĐ
+                </a>
+            <a class="nav-link dropdown-toggle user" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="{{userInfo.image}}" class="user-avatar">
+                {{userInfo.username}}
+            </a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/infouser">Thông tin tài khoản</a></li>
+                <li><a class="dropdown-item" href="/me/stored/courses">Khóa học của tôi</a></li>
+                <li><a class="dropdown-item" href="/me/stored/news">Bài viết của tôi</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="/logout" >Đăng xuất</a></li>
+            </ul>
+            
+                
+            
+        </li>
+        
+    </ul>
+</nav>
+<div class="container">
+    <div class="row" style="margin-top: 20px;">
+    
+    <div class="col-lg-12" style="margin-top: 70px;">
+        <h4 style="text-align: center;color: #e7505a; font-weight: bold;">HUYỀN THOẠI NHẪN GIẢ</h4>
+        <div style="width: 200px; height: 1px; margin: 20px auto; border-bottom: 4px solid #19b1ff;"></div>
+        
+            {{!-- <div class="row">
+                <div class="header-ball">
+                    <div class="row">
+                        <div class="col-md-12 header-title-buy" style="background: #bbe7fe;">
+                            <div class="content_post">
+                                <p><strong><span style="font-size:18px"><span style="color:#c0392b">ACC REROLL HUYỀN THOẠI NHẪN GIẢ:</span><br>
+                                    <span style="color:#e74c3c">+ ACC REROLL 800 cuộn đặc biệt 5,000 VNĐ<br>
+                                    + ACC REROLL 1600 cuộn đặc biệt 10,000 VNĐ</span></span></strong></p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> --}}
+        <div class="container" >
+    <div class="row" >
+        <div class="col-sm-12 text-center" style=" margin-bottom: 50px;margin-top: 40px;">
+                <h3 style="font-weight:bold;"><span>THÔNG TIN TÀI KHOẢN</span></h3>
+                <span style="color: #5c6873;">Để Xem thêm chi tiết về tài khoản vui lòng kéo xuống bên dưới.</span>
+            </div>
+            {{!-- <div class="col-lg-3 col-md-6 col-sm-12 p-3 mt-4" id="theDichVu">
+                <div class="card">
+                    <a href="/home/accreroll-htng/{{accReRollHTNG._id}}" title="">
+                        <img style="background-color: #e90606; height: 150px;" src="https://huyenthoainhangia.vn/build/assets/frontend/views/events/ngayphunu/assets/images/header/icon.8763409d.png" alt="ACC REROLL HTNG" class="card-img-top">
+                    </a>
+                    <div class="card-body" >
+                        <h5 class="card-title" style="text-align: center;"><a href="/home/accreroll-htng/{{accReRollHTNG._id}}" id="tenTheDichVu" style="text-decoration: none;text-transform: uppercase;" title="">ACC REROLL {{accReRollHTNG.nameHTNG}}</a></h5>
+                        <div class="card-text" style="font-size: 14px;">
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <p>Thông tin: <span style="font-weight: bold;">{{accReRollHTNG.infoHTNG}}</span></p>
+                                </div>
+                                <div class="col-md-5">
+                                    <p>Đăng ký: <span style="font-weight: bold;">{{accReRollHTNG.register}}</span></p>
+                                </div>
+                                
+                            </div>
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <p >Tài khoản: <span style="font-weight: bold;">{{accReRollHTNG.account}}</span> </p>
+                                </div>
+                                <div class="col-md-5">
+                                    <p>Máy chủ: <span style="font-weight: bold;">{{accReRollHTNG.server}}</span></p>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="text-center">
+                            <a href="/home/accreroll-htng/{{accReRollHTNG._id}}" class="btn custom-button"><div id="button-card">{{formatCurrency accReRollHTNG.priceHTNG}} VNĐ</div></a>
+                        </div>
+                    </div>
+                </div>
+            </div> --}}
+            
+            {{!-- <div class="col-lg-4 col-md-6 col-sm-12 p-3 mt-4">
+                <div class="card">
+                    <a href="/Home/BuyNick/354e12d5-bc61-41f6-bb06-827681b732ab" title="">
+                        <img src="https://img.acc957.com//20240215164859nickhsnr.jpg" alt="HỒI SINH NGỌC RỒNG" class="card-img-top">
+                    </a>
+                    <div class="card-body" style="text-align: center;">
+                        <h5 class="card-title"><a href="/Home/BuyNickS/354e12d5-bc61-41f6-bb06-827681b732ab" title="">NICK HỒI SINH NGỌC RỒNG</a></h5>
+                        <div class="card-text">
+                            <p>Số tài khoản: 190</p>
+                            <p>Đã bán: 205</p>
+                        </div>
+                        <div class="text-center">
+                            <a href="/Home/BuyNickS/354e12d5-bc61-41f6-bb06-827681b732ab" class="btn btn-primary" title="">XEM THÊM</a>
+                        </div>
+                    </div>
+                </div>
+            </div> --}}
+            {{!-- <div class="col-lg-4 col-md-6 col-sm-12 p-3 mt-4">
+                <div class="card">
+                    <a href="/Home/BuyNick/354e12d5-bc61-41f6-bb06-827681b732ab" title="">
+                        <img src="https://img.acc957.com//20240215164859nickhsnr.jpg" alt="HỒI SINH NGỌC RỒNG" class="card-img-top">
+                    </a>
+                    <div class="card-body" style="text-align: center;">
+                        <h5 class="card-title"><a href="/Home/BuyNickS/354e12d5-bc61-41f6-bb06-827681b732ab" title="">NICK HỒI SINH NGỌC RỒNG</a></h5>
+                        <div class="card-text" >
+                            <p >Số tài khoản: 190</p>
+                            <p>Đã bán: 205</p>
+                        </div>
+                        <div class="text-center">
+                            <a href="/Home/BuyNickS/354e12d5-bc61-41f6-bb06-827681b732ab" class="btn btn-primary" title="">XEM THÊM</a>
+                        </div>
+                    </div>
+                </div>
+            </div> --}}
+            
+        </div>
+        <div class="row" style="margin-left:-10px;margin-right: -10px;">
+                        <div class="col-md-8" style="position: relative;min-height: 1px;padding-left:15px;padding-right:15px;float: left;">
+                            <div class="form-group row" style="margin-left:-10px;margin-right:-10px;margin-bottom:15px">
+                                <spam class="col-xs-6 control-label s-product-nameprice" style="font-size:24px;font-weight:600;color: #16a163;padding-top:5px;width: 50%;position: relative;min-height: 1px;padding-left:15px;padding-right:15px;float: left;text-align:right;">ATM/ VÍ:</spam>
+                                <spam class="col-xs-6 control-label s-product-price" style="font-size:24px;font-weight:600;color: #e7505a;padding-top:5px;width: 50%;position: relative;min-height: 1px;padding-left:15px;padding-right:15px;float: left;">{{formatCurrency accReRollHTNG.priceHTNG}} VNĐ</spam>
+                            </div>
+                            <div class="form-group row" style="margin-left:-10px;margin-right:-10px;margin-bottom:15px">
+                                <spam class="col-xs-6 control-label s-product-nameprice" style="font-size:24px;font-weight:600;color: #16a163;padding-top:5px;width: 50%;position: relative;min-height: 1px;padding-left:15px;padding-right:15px;float: left;text-align:right;">TIỀN CARD:</spam>
+                                <spam class="col-xs-6 control-label s-product-price" style="font-size:24px;font-weight:600;color: #e7505a;padding-top:5px;width: 50%;position: relative;min-height: 1px;padding-left:15px;padding-right:15px;float: left;">{{formatCurrency accReRollHTNG.priceHTNG}} VNĐ</spam>
+                            </div>
+                        </div>
+                        <div class="col-md-4" style="">
+                                <div class="form-group row">
+                                            <div class="col-xs-6 ar">
+                                                <a id="btnMuaReroll" class="btn btn-info btn-block btn2" style="border-color:#4eabe6;color: #ffffff;margin-top:5px;border-radius:4px;width: 45%;">MUA NGAY</a>
+                                                <a href="/nap-the" class="btn btn-success btn-block btn2-napthe" style="border:2px solid #4CAF50;color: #ffffff;margin-top:5px;border-radius:4px;margin-left: 20px;width: 45%;">NẠP TIỀN</a>
+                                            </div>
+                                            
+                                </div>
+                        </div>
+
+                    </div>
+                    <div class="c-product-meta">
+                        <div class="c-content-divider" style="height:2px;background:#3f444a;margin:20px 0;position:relative;display:block">
+                            <i class="icon-dot" style="padding:0;width:14px;height:14px;top:-6px;background:#3f444a;border-radius:14px; color:#3f444a; left:48%; display:inline-block; position:absolute; text-align:center; font-size:18px; vertical-align:middle;font-style:italic;"></i>
+                        </div>
+                        <div class="row">
+                                        <div class="col-xs-2 col-sm-3 col-xs-6 c-product-variant">
+                                            <p class="c-product-meta-label c-product-margin-1 c-font-uppercase c-font-bold">MÁY CHỦ: <span class="c-font-red" style="text-transform: uppercase;">{{accReRollHTNG.server}}</span></p>
+                                        </div>
+                                        <div class="col-xs-2 col-sm-3 col-xs-6 c-product-variant">
+                                            <p class="c-product-meta-label c-product-margin-1 c-font-uppercase c-font-bold">THÔNG TIN: <span class="c-font-red" style="text-transform: uppercase;">{{accReRollHTNG.infoHTNG}}</span></p>
+                                        </div>
+                                        <div class="col-xs-2 col-sm-3 col-xs-6 c-product-variant">
+                                            <p class="c-product-meta-label c-product-margin-1 c-font-uppercase c-font-bold">ĐĂNG KÝ: <span class="c-font-red" style="text-transform: uppercase;">{{accReRollHTNG.register}}</span></p>
+                                        </div>
+                                        <div class="col-xs-2 col-sm-3 col-xs-6 c-product-variant">
+                                            <p class="c-product-meta-label c-product-margin-1 c-font-uppercase c-font-bold">TÀI KHOẢN: <span class="c-font-red" style="text-transform: uppercase;">{{accReRollHTNG.account}}</span></p>
+                                        </div>
+                                        <div class="col-xs-2 col-sm-3 col-xs-6 c-product-variant">
+                                            <p class="c-product-meta-label c-product-margin-1 c-font-uppercase c-font-bold">LOẠI ACC: <span class="c-font-red" style="text-transform: uppercase;">{{accReRollHTNG.nameHTNG}}</span></p>
+                                        </div>
+                            <div class="col-sm-12 col-xs-12 c-product-variant">
+                                <p class="c-product-meta-label c-product-margin-1 c-font-uppercase c-font-bold">GIÁ: <span class="c-font-red">{{formatCurrency accReRollHTNG.priceHTNG}} VNĐ</span></p>
+                            </div>
+                        </div>
+
+                        <div class="c-content-divider" style="height:2px;background:#3f444a;margin:20px 0;position:relative;display:block">
+                            <i class="icon-dot" style="padding:0;width:14px;height:14px;top:-6px;background:#3f444a;border-radius:14px; color:#3f444a; left:48%; display:inline-block; position:absolute; text-align:center; font-size:18px; vertical-align:middle;font-style:italic;"></i>
+                        </div>
+                    </div>
+                    <div class="container m-t-20 content_post">
+                    <div class="col-sm-12 text-center" style=" margin-bottom: 50px;">
+                        <h2 style="font-family:Arial, Helvetica, sans-serif; font-size:20px;"><span>Hình ảnh chi tiết của tài khoản </span><span style="color:#e7505a;">Huyền Thoại Nhẫn Giả - Reroll</span></h2>
+                    </div>
+                        <p style="text-align: center;">
+                            <img src="https://img.acc957.com//202402162121274 110.jpg" class="zoom" style="display: block; margin: auto;max-width:100%;width:100% !important;height:auto !important;">
+                        </p>
+                </div>
+    </div>
+</div>
+    </div>
+
+</div>
+</div>
+<style>
+    .table-container {
+      display: flex;
+      justify-content: space-between; /* Cả hai bên cố định và căn giữa */
+      width: 80%;
+      overflow: hidden; /* Ngăn chặn nội dung tràn ra ngoài */
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      border: none;
+      padding: 8px;
+      text-align: left;
+    }
+
+    
+  </style>
+  <div class="container">
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog modal-dialog-centered">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" style="color: #19b1ff;font-weight: 500px;font-size: 18px;">Nạp tiền từ ATM hoặc Ví điện tử</h4>
+        <button type="button" class="close" data-dismiss="modal" style="color: #19b1ff;border: none;">×</button>
+      </div>
+      <div class="modal-body">
+        <a href="#" style="text-decoration: none;">
+          <h4 class="text-center" style="color: #ff1919; font-weight: bold;font-size: 16px;">NẠP TIỀN TỪ ATM - VÍ</h4>
+        </a>
+        <div class="row">
+          <h5>Chọn 1 trong 2 phương thức chuyển dưới đây</h5>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <!-- Thêm data-toggle và data-target để xác định nội dung của tab -->
+            <a data-toggle="tab" href="#ATM" class="btn btn-lg col-xs-6 btn-outline-dark atm rounded-0"  onclick="showTab('ATM')">ATM</a>
+            <a data-toggle="tab" href="#VDT" class="btn btn-lg col-xs-6 btn-outline-dark atm rounded-0" onclick="showTab('VDT')">Ví điện tử</a>
+
+            <div class="tab-content" style="padding-top: 20px;">
+              <div id="ATM" class="tab-pane fade">
+                <!-- Nội dung của tab ATM -->
+                <div class="col-md-12" style="text-align: left;">
+                  <span style="font-weight: bold;color: #3f444a;">Thông tin tài khoản ngân hàng</span>
+                </div>
+                <hr>
+                <div class="col-md-12">
+                  <div class="col-md-1">
+                      <span></span>
+                    </div>
+                  <div class="col-md-7" style="text-align: left;">
+                    <span style="font-weight: bold;color: #3f444a;">Tên tài khoản: MAI VĂN HÀ</span>
+                  </div>
+                  <div class="col-md-4">
+                    <span></span>
+                  </div>
+                  <div class="col-md-1">
+                      <span></span>
+                    </div>
+                </div>
+                <hr>
+                <div class="col-md-12" style="width: 100%;">
+                  <div class="row">
+                    <div class="col-md-1">
+                      <span></span>
+                    </div>
+                    <div class="col-md-10">
+                      <img width="100%" height="100%" src="https://img.vietqr.io/image/VCB-1042950060-print.png?addInfo={{userInfo.username}}&accountName=MAI%20VAN%20HA">
+                    </div>
+                    <div class="col-md-1">
+                      <span></span>
+                    </div>
+                  </div>
+                  
+                </div>
+                <hr>
+                <!-- Thêm các khối thông tin tài khoản ngân hàng -->
+              </div>
+
+              <div id="VDT" class="tab-pane fade">
+                <!-- Nội dung của tab Ví điện tử -->
+                <div class="col-md-12" style="text-align: left;">
+                  <span style="font-weight: bold;color: #3f444a;">Thông tin tài khoản ví điện tử</span>
+                </div>
+                <hr>
+                <div class="col-md-12" style="width: 100%;">
+                  <div class="row">
+                    <div class="col-md-1">
+                      <span></span>
+                    </div>
+                    <div class="col-md-5" style="text-align: left; width: 40%;">
+                      <span style="color: #3f444a;">TSR (Thesieure.com):</span>
+                    </div>
+                    <div class="col-md-5" style="text-align: right;width: 40%">
+                      <span style="font-weight: bold;color: #3f444a;">0382998964</span>
+                    </div>
+                    <div class="col-md-1">
+                      <span></span>
+                    </div>
+                  </div>
+                  
+                </div>
+                <hr>
+                <div class="col-md-12" style="width: 100%;">
+                  <div class="row">
+                    <div class="col-md-1">
+                      <span></span>
+                    </div>
+                    <div class="col-md-5" style="text-align: left; width: 40%;">
+                      <span style="color: #3f444a;">Momo (ví Momo):</span>
+                    </div>
+                    <div class="col-md-5" style="text-align: right;width: 40%">
+                      <span style="font-weight: bold;color: #3f444a;">0382998964</span>
+                    </div>
+                    <div class="col-md-1">
+                      <span></span>
+                    </div>
+                  </div>
+                  
+                </div>
+                <hr>
+                <!-- Thêm các khối thông tin ví điện tử -->
+              </div>
+            </div>
+
+            <p style="color: #19b1ff;font-size: 15px;">
+              Nội dung thanh toán: <strong>Nap Tien www.acc957.com</strong> {tên tài khoản hoặc số điện thoại}
+              Chuyển xong liên hệ fanpage : <a style="text-decoration: none;" href="https://www.facebook.com/ytboctiiu957"><strong style="color: #ff0000;">Chăm sóc khách hàng - www.acc957.com</strong></a> hoặc
+              Hotline <strong style="color: #ff0000;">0396498015</strong> để được xử lý.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-warning" data-dismiss="modal" style="font-weight: bold; color: white;min-width:118px;">Đóng</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<script>
+    function showTab(tabId) {
+      // Xóa lớp active cho tất cả các nút
+      $('.btn.atm').removeClass('active');
+
+      // Thêm lớp active cho nút được chọn
+      $('a[data-target="#' + tabId + '"]').addClass('active');
+    }
+
+    function changeColor() {
+      var link = document.getElementById("naptienatmvi");
+      link.style.color = "red";
+    }
+
+    const id_acc = '{{accReRollHTNG._id}}'
+    //Mua acc reroll
+    $('#btnMuaReroll').on('click', function () {
+        Swal.fire({
+        title: 'Bạn có muốn mua sản phẩm này không?',
+        text: "Bấm đồng ý để mua",
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes',
+        cancelButtonText: 'No'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Xử lý khi người dùng chọn "Yes"
+              $.ajax({
+              url: `/home/accreroll-htng/${id_acc}/buy`, // Đổi thành địa chỉ endpoint xử lý đăng nhập trên máy chủ của bạn
+              method: "POST",
+              data: {
+              },
+              success: function(response) {
+                  // Xử lý kết quả từ máy chủ
+                  if (response.message == 'Số dư không đủ') {
+                      //let timerInterval;
+                      Swal.fire({
+                        title: response.message,
+                        //text: "Bấm để chuyển sang trang login",
+                        icon: "error",
+                      });
+                      // Thực hiện chuyển hướng hoặc các hành động khác sau khi đăng nhập thành công
+                  } 
+                  else{
+                    Swal.fire({
+                          title: response.message,
+                          text: "Bấm để chuyển sang trang lấy acc",
+                          icon: "success",
+                      }).then((result) => {
+                          if (result.isConfirmed) {
+                              window.location.href = "/acc-order?page=1";
+                          }
+                      });
+                  }
+              },
+              error: function() {
+                  alert("Đã xảy ra lỗi khi thực hiện đăng nhập.");
+              }
+          });
+            // Thực hiện hành động xóa ở đây
+        } else {
+            // Xử lý khi người dùng chọn "No"
+            Swal.fire(
+                'Đã hủy',
+                'Bạn đã hủy thanh toán',
+                'error'
+            );
+        }
+    });
+        
+    });
+</script>
+<style>
+  .modal-dialog.modal-dialog-centered {
+  display: flex;
+  align-items: center;
+  min-height: calc(100% - (0.5rem * 2));
+}
+
+.modal-content {
+  text-align: center;
+}
+.btn.atm.active,
+.btn.atm:focus,
+.btn.atm:active,
+.btn.atm:hover {
+  background-color: #5bc0de; /* Màu của nút ATM khi active */
+  color: #fff; /* Màu chữ của nút ATM khi active */
+}
+
+.btn.vdt.active,
+.btn.vdt:focus,
+.btn.vdt:active,
+.btn.vdt:hover {
+  background-color: #5bc0de; /* Màu của nút Ví điện tử khi active */
+  color: #fff; /* Màu chữ của nút Ví điện tử khi active */
+}
+</style>
+{{!-- <div class="row">
+    <div class="col-lg-3">
+
+    </div>
+<div class="col-lg-6">
+    <h1 style="text-align: center;">NẠP QUA NGÂN HÀNG</h1>
+    <form method="POST" action="/logined" onsubmit="/login(event)" style="background-color: #d2dc86; border-radius: 2%;">
+                <label for="username" class="form-label" style="margin-left: 5px;">Loại thẻ</label>
+                <select name="card" id="card" style="margin-top: 10px;margin-left: 5px;">
+                    <option value="viettel">viettel</option>
+                    <option value="mobiphone">mobiphone</option>
+                    <option value="vina">vina</option>
+                    <option value="vietnammobi">vietnammobi</option>
+                </select>
+                <div class="form-group">
+                    <label for="mathe" class="form-label" style="margin-left: 5px;">Mã thẻ:</label>
+                    <input type="text" class="form-control" id="mathe" name="mathe" placeholder="Mã">
+                </div>
+                <div class="form-group">
+                    <label for="seri" class="form-label" style="margin-left: 5px;">Seri:</label>
+                    <input type="text" class="form-control" id="seri" name="seri" placeholder="Seri">
+                </div>
+                <label for="username" class="form-label" style="margin-left: 5px;">Mệnh giá</label>
+                <select name="gia" id="gia" style="margin-top: 10px;margin-left: 5px;">
+                    <option value="10k">10.000đ</option>
+                    <option value="20k">20.000đ</option>
+                    <option value="50k">50.000đ</option>
+                    <option value="100k">100.000đ</option>
+                    <option value="200k">200.000đ</option>
+                    <option value="500k">500.000đ</option>
+                </select>
+                <button type="submit" class="btn btn-primary d-block mx-auto" style="margin-top: 16px;" >Nạp thẻ</button>
+            </form>
+</div>
+<div class="col-lg-3">
+
+</div>
+</div>hi --}}

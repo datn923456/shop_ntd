@@ -1,10 +1,10 @@
 <nav id="myNavbar">
     <span id="menu-icon">&#9776;</span>
     <ul>
-        <li><img src="https://scontent.fsgn5-14.fna.fbcdn.net/v/t39.30808-6/243982552_282193343596263_6043245316263749024_n.png?stp=dst-webp_e15_q70_s3120x1645_tt1_u&efg=eyJ1cmxnZW4iOiJ1cmxnZW5fZnJvbV91cmwifQ&_nc_cid=0&_nc_ad=z-m&_nc_rml=0&_nc_ht=scontent.fsgn5-14.fna&_nc_cat=101&_nc_ohc=t3i148aHmZQAX_eZXs5&ccb=1-7&_nc_sid=efb6e6&oh=00_AfAaH_GUfySbMGwc2d3EuES3ucVW8CUUBa_vKPuwfdvoqg&oe=65E6F1F3" class="logo-shop"></li>
+        <li><img src="https://scontent.fsgn5-13.fna.fbcdn.net/v/t39.30808-1/243982552_282193343596263_6043245316263749024_n.png?stp=cp0_dst-png_p40x40&_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_ohc=xVPdq3F2SjoAX-AQ8kX&_nc_ht=scontent.fsgn5-13.fna&oh=00_AfBK7_KtajbD7LwJxPPhke-J04xNmNL09-p4x4wetNhgfw&oe=65FD3935" class="logo-shop"></li>
         <li style="margin-left: 400px;"><a href="/home">TRANG CHỦ</a></li>
         <li style="margin-left: 100px;"><a href="/user/addfunds">NẠP TIỀN</a></li>
-        <li style="margin-left: 100px;"><a href="#">DỊCH VỤ GAME</a></li>
+        <li style="margin-left: 100px;"><a href="/dich-vu">DỊCH VỤ GAME</a></li>
         <li style="margin-left: 100px;"><a href="#">NICK GAME</a></li>
         <li style="margin-left: 100px;"><a href="#">KHÁC</a></li>
         <li class="user-section" style="margin-left: auto;">
@@ -19,15 +19,10 @@
                 {{userInfo.username}}
             </a>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="/infouser">Thông tin tài khoản</a></li>
-                <li><a class="dropdown-item" href="/me/stored/courses">Khóa học của tôi</a></li>
-                <li><a class="dropdown-item" href="/me/stored/news">Bài viết của tôi</a></li>
-                <li><hr class="dropdown-divider"></li>
+                
+                {{!-- <li><hr class="dropdown-divider"></li> --}}
                 <li><a class="dropdown-item" href="/logout" >Đăng xuất</a></li>
             </ul>
-            
-                
-            
         </li>
         
     </ul>
@@ -42,22 +37,22 @@
                 <ul style="list-style: none; padding: 0;">
                     <div style="width: 4px; height: 5px; border-right: 4px solid #19b1ff; display: inline-block;margin-top: 30px;"></div>
                     <li style="margin-bottom: 4px;display: inline-block; vertical-align: middle;margin-top: 1px;">
-                        <a href="/thong-tin-tai-khoan" style="text-decoration: none; color:#3f444a;font-size: 16px;" id="css-info-user">Thông tin tài khoản</a>
+                        <a href="/thong-tin-tai-khoan" class="menu-link" style="text-decoration: none; color:#3f444a;font-size: 16px;" id="css-info-user">Thông tin tài khoản</a>
                     </li>
                     <hr>
                     <div style="width: 4px; height: 5px; border-right: 4px solid #19b1ff; display: inline-block;"></div>
                     <li style="margin-bottom: 5px; display: inline-block; vertical-align: middle;">
-                        <a href="/nap-the" style="text-decoration: none; color:#19b1ff;font-size: 16px; font-weight: bold;">Nạp tiền thẻ cào</a>
+                        <a href="/nap-the" class="menu-link" style="text-decoration: none; color:#19b1ff;font-size: 16px; font-weight: bold;">Nạp tiền thẻ cào</a>
                     </li>
                     <hr>
                     <div style="width: 4px; height: 5px; border-right: 4px solid #19b1ff; display: inline-block;"></div>
                     <li style="margin-bottom: 5px;display: inline-block; vertical-align: middle;">
-                        <a href="#" id="naptienatmvi" onclick="changeColor()" style="text-decoration: none; color:#3f444a;font-size: 16px;" data-toggle="modal" data-target="#myModal">Nạp tiền ATM - Ví điện tử</a>
+                        <a href="#" class="menu-link" id="naptienatmvi" onclick="changeColor()" style="text-decoration: none; color:#3f444a;font-size: 16px;" data-toggle="modal" data-target="#myModal">Nạp tiền ATM - Ví điện tử</a>
                     </li>
                     <hr>
                     <div style="width: 4px; height: 5px; border-right: 4px solid #19b1ff; display: inline-block; "></div>
                     <li style="margin-left: 15px;display: inline-block; vertical-align: middle;">
-                        <a href="/Lichsugiaodich" style="text-decoration: none; color:#3f444a;font-size: 16px;">Lịch sử giao dịch</a>
+                        <a href="/Lichsugiaodich" class="menu-link" style="text-decoration: none; color:#3f444a;font-size: 16px;">Lịch sử giao dịch</a>
                     </li>
                     <hr>
                 </ul>
@@ -66,22 +61,22 @@
                 <ul style="list-style: none; padding: 0;">
                     <div style="width: 4px; height: 5px; border-right: 4px solid #19b1ff; display: inline-block;"></div>
                     <li style="margin-bottom: 4px;display: inline-block; vertical-align: middle;">
-                        <a href="#" style="text-decoration: none; color:#3f444a;font-size: 16px;">Lịch sử vận may</a>
+                        <a href="#" class="menu-link" style="text-decoration: none; color:#3f444a;font-size: 16px;">Lịch sử vận may</a>
                     </li>
                     <hr>
                     <div style="width: 4px; height: 5px; border-right: 4px solid #19b1ff; display: inline-block;"></div>
                     <li style="margin-bottom: 5px; display: inline-block; vertical-align: middle;">
-                        <a href="#" style="text-decoration: none; color:#3f444a;font-size: 16px;">Tài khoản đã mua</a>
+                        <a href="/acc-order" class="menu-link" style="text-decoration: none; color:#3f444a;font-size: 16px;">Tài khoản đã mua</a>
                     </li>
                     <hr>
                     <div style="width: 4px; height: 5px; border-right: 4px solid #19b1ff; display: inline-block;"></div>
                     <li style="margin-bottom: 5px;display: inline-block; vertical-align: middle;">
-                        <a href="/code-order" style="text-decoration: none; color:#3f444a;font-size: 16px;">Code đã mua</a>
+                        <a href="/code-order" class="menu-link" style="text-decoration: none; color:#3f444a;font-size: 16px;">Code đã mua</a>
                     </li>
                     <hr>
                     <div style="width: 4px; height: 5px; border-right: 4px solid #19b1ff; display: inline-block; "></div>
                     <li style="margin-left: 15px;display: inline-block; vertical-align: middle;">
-                        <a href="#" style="text-decoration: none; color:#3f444a;font-size: 16px;">Dịch vụ đã thuê</a>
+                        <a href="#" class="menu-link" style="text-decoration: none; color:#3f444a;font-size: 16px;">Dịch vụ đã thuê</a>
                     </li>
                     <hr>
                 </ul>
@@ -185,7 +180,7 @@
             <div class="panel-heading clearfix text-center" style="color: #fdfdfd; background: #30b9ff; padding: 10px 15px; font-weight: bold;">
                 <span class="t24 bb" style="">LỊCH SỬ NẠP THẺ</span>
             </div>
-            
+            <div class="table-wrapper">
             <table class="table mt-4">
                 <thead>
                     <tr style="font-size: 13px;">
@@ -269,6 +264,7 @@
                     {{!-- {{/each}} --}}
                 </tbody>
                 </table>
+                </div>
               <div class="col-md-12" >
                 <div class="pagination-container">
                     <a id="Previous" onclick="changePage(-1)"><<</a>
@@ -449,6 +445,9 @@
 
 </style>
 <style>
+  .table-wrapper {
+        overflow-x: auto;
+    }
     .custom-div {
       padding: 10px;
       background-color: #19b1ff;
@@ -498,6 +497,10 @@
     #next:hover{
       background-color: #3f51b5;
     }
+
+    .menu-link:hover {
+    color: #19b1ff !important; /* Màu khi hover */
+}
   </style>
 {{!-- <script>
     // Lấy thẻ select và input
@@ -772,7 +775,7 @@
     Network.innerHTML = html_network;
 
     Network.onchange = ()=>{
-      const html_menhgia = "<option>Chọn</option>" + telco[Network.value].menhGia?.map(n=>n.toLocaleString('it-IT', {style : 'currency', currency : 'VND'})).map((n,i)=>`<option value="${i}">${n}</option>`).join();
+      const html_menhgia = "<option>Chọn mệnh giá</option>" + telco[Network.value].menhGia?.map(n=>n.toLocaleString('it-IT', {style : 'currency', currency : 'VND'})).map((n,i)=>`<option value="${i}">${n}</option>`).join();
       CardValueSelect.innerHTML = html_menhgia;
       CardValueSelect.onchange = ()=>{
         const index = parseInt(CardValueSelect.value);

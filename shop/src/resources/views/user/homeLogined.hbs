@@ -1,10 +1,10 @@
 <nav id="myNavbar">
     <span id="menu-icon">&#9776;</span>
     <ul>
-        <li><img src="https://scontent.fsgn5-14.fna.fbcdn.net/v/t39.30808-6/243982552_282193343596263_6043245316263749024_n.png?stp=dst-webp_e15_q70_s3120x1645_tt1_u&efg=eyJ1cmxnZW4iOiJ1cmxnZW5fZnJvbV91cmwifQ&_nc_cid=0&_nc_ad=z-m&_nc_rml=0&_nc_ht=scontent.fsgn5-14.fna&_nc_cat=101&_nc_ohc=t3i148aHmZQAX_eZXs5&ccb=1-7&_nc_sid=efb6e6&oh=00_AfAaH_GUfySbMGwc2d3EuES3ucVW8CUUBa_vKPuwfdvoqg&oe=65E6F1F3" class="logo-shop"></li>
+        <li><img src="https://scontent.fsgn5-13.fna.fbcdn.net/v/t39.30808-1/243982552_282193343596263_6043245316263749024_n.png?stp=cp0_dst-png_p40x40&_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_ohc=xVPdq3F2SjoAX-AQ8kX&_nc_ht=scontent.fsgn5-13.fna&oh=00_AfBK7_KtajbD7LwJxPPhke-J04xNmNL09-p4x4wetNhgfw&oe=65FD3935" class="logo-shop"></li>
         <li style="margin-left: 400px;"><a href="/home">TRANG CHỦ</a></li>
         <li style="margin-left: 100px;"><a href="/user/addfunds">NẠP TIỀN</a></li>
-        <li style="margin-left: 100px;"><a href="#">DỊCH VỤ GAME</a></li>
+        <li style="margin-left: 100px;"><a href="/dich-vu">DỊCH VỤ GAME</a></li>
         <li style="margin-left: 100px;"><a href="#">NICK GAME</a></li>
         <li style="margin-left: 100px;"><a href="#">KHÁC</a></li>
         <li class="user-section" style="margin-left: auto;">
@@ -19,10 +19,7 @@
                 {{users.username}}
             </a>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="/infouser">Thông tin tài khoản</a></li>
-                <li><a class="dropdown-item" href="/me/stored/courses">Khóa học của tôi</a></li>
-                <li><a class="dropdown-item" href="/me/stored/news">Bài viết của tôi</a></li>
-                <li><hr class="dropdown-divider"></li>
+                {{!-- <li><hr class="dropdown-divider"></li> --}}
                 <li><a class="dropdown-item" href="/logout" >Đăng xuất</a></li>
             </ul>
             
@@ -70,7 +67,7 @@
                                 <p class="card-text">
                                     
                                 </p>
-                                <a href="/code/user/{{codeNameNumber1.slug}}/show" class="btn custom-button"><div id="button-card">{{codeNameNumber1.price}} VNĐ</div></a>
+                                <a href="/code/user/{{codeNameNumber1.slug}}/show" class="btn custom-button"><div id="button-card">{{formatCurrency codeNameNumber1.price}} VNĐ</div></a>
                             </div>
                         </div>
                     </div>
@@ -101,7 +98,7 @@
                                 <p class="card-text">
                                     
                                 </p>
-                                <a href="/code/user/{{codeNameNumber2.slug}}/show" class="btn custom-button"><div id="button-card">{{codeNameNumber2.price}} VNĐ</div></a>
+                                <a href="/code/user/{{codeNameNumber2.slug}}/show" class="btn custom-button"><div id="button-card">{{formatCurrency codeNameNumber2.price}} VNĐ</div></a>
                             </div>
                         </div>
                     </div>
@@ -132,7 +129,7 @@
                                 <p class="card-text">
                                     
                                 </p>
-                                <a href="/code/user/{{codeNameNumber3.slug}}/show" class="btn custom-button"><div id="button-card">{{codeNameNumber3.price}} VNĐ</div></a>
+                                <a href="/code/user/{{codeNameNumber3.slug}}/show" class="btn custom-button"><div id="button-card">{{formatCurrency codeNameNumber3.price}} VNĐ</div></a>
                             </div>
                         </div>
                     </div>
@@ -163,7 +160,7 @@
                                 <p class="card-text">
                                     
                                 </p>
-                                <a href="/code/user/{{codeNameNumber4.slug}}/show" class="btn custom-button"><div id="button-card">{{codeNameNumber4.price}} VNĐ</div></a>
+                                <a href="/code/user/{{codeNameNumber4.slug}}/show" class="btn custom-button"><div id="button-card">{{formatCurrency codeNameNumber4.price}} VNĐ</div></a>
                             </div>
                         </div>
                     </div>
@@ -200,7 +197,7 @@
                                 <p class="card-text">
                                     
                                 </p>
-                                <a href="/code/combo/user/{{codeNameNumber5.slug}}/show" class="btn custom-button"><div id="button-card">{{codeNameNumber5.price}} VNĐ</div></a>
+                                <a href="/code/combo/user/{{codeNameNumber5.slug}}/show" class="btn custom-button"><div id="button-card">{{formatCurrency codeNameNumber5.price}} VNĐ</div></a>
                             </div>
                         </div>
                     </div>
@@ -264,8 +261,8 @@
                     <div class="card-body" style="text-align: center;">
                         <h5 class="card-title"><a href="/home/accreroll-htng" id="tenTheDichVu" style="text-decoration: none;" title="">ACC REROLL HUYỀN THOẠI NHẪN GIẢ</a></h5>
                         <div class="card-text">
-                            <p>Số tài khoản: 0</p>
-                            <p>Đã bán: 0</p>
+                            <p>Số tài khoản: {{accCount}}</p>
+                            <p>Đã bán: {{accCountDeleted}}</p>
                         </div>
                         <div class="text-center">
                             <a href="/home/accreroll-htng" class="btn custom-button"><div id="button-card">Xem thêm</div></a>

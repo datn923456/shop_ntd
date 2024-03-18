@@ -7,6 +7,7 @@ const Code1 = require('../models/Code1');
 const Code2 = require('../models/Code2');
 const Code3 = require('../models/Code3');
 const Code4 = require('../models/Code4');
+const AccReRollHTNG = require('../models/accReRollHTNG');
 
 class SiteController {
     //[GET] /
@@ -152,23 +153,31 @@ class SiteController {
                                                                                                                                                                             .then(codeCountBought3 => {
                                                                                                                                                                                 Code4.countDocumentsWithDeleted({deleted: true})
                                                                                                                                                                                     .then(codeCountBought4 => {
-                                                                                                                                                                                        console.log(codeCountBought1)
-                                                                                                                                                                                        res.render('user/homeLogined', {
-                                                                                                                                                                                            users: mongooseToObject(users),
-                                                                                                                                                                                            courses: mutipleMongooseToObject(courses),
-                                                                                                                                                                                            codeNumber1: mutipleMongooseToObject(codeNumber1),
-                                                                                                                                                                                            codeNameNumber1: mongooseToObject(codeNameNumber1),
-                                                                                                                                                                                            codeNameNumber2: mongooseToObject(codeNameNumber2),
-                                                                                                                                                                                            codeNameNumber3: mongooseToObject(codeNameNumber3),
-                                                                                                                                                                                            codeNameNumber4: mongooseToObject(codeNameNumber4),
-                                                                                                                                                                                            codeNameNumber5: mongooseToObject(codeNameNumber5),
-                                                                                                                                                                                            codeNumber2: mutipleMongooseToObject(codeNumber2),
-                                                                                                                                                                                            codeNumber3: mutipleMongooseToObject(codeNumber3),
-                                                                                                                                                                                            codeNumber4: mutipleMongooseToObject(codeNumber4),
-                                                                                                                                                                                            codeCount1,codeCount2,codeCount3,codeCount4,codeCount5,
-                                                                                                                                                                                            token2,codeCountBought1,codeCountBought2,codeCountBought3,codeCountBought4,
-                                                                                                                                                                                            comboCountBought,
-                                                                                                                                                                                        });
+                                                                                                                                                                                        AccReRollHTNG.countDocuments({})
+                                                                                                                                                                                            .then(accCount =>{
+                                                                                                                                                                                                AccReRollHTNG.countDocumentsWithDeleted({deleted: true})
+                                                                                                                                                                                                    .then(accCountDeleted =>{
+                                                                                                                                                                                                        console.log(codeCountBought1)
+                                                                                                                                                                                                        res.render('user/homeLogined', {
+                                                                                                                                                                                                            users: mongooseToObject(users),
+                                                                                                                                                                                                            courses: mutipleMongooseToObject(courses),
+                                                                                                                                                                                                            codeNumber1: mutipleMongooseToObject(codeNumber1),
+                                                                                                                                                                                                            codeNameNumber1: mongooseToObject(codeNameNumber1),
+                                                                                                                                                                                                            codeNameNumber2: mongooseToObject(codeNameNumber2),
+                                                                                                                                                                                                            codeNameNumber3: mongooseToObject(codeNameNumber3),
+                                                                                                                                                                                                            codeNameNumber4: mongooseToObject(codeNameNumber4),
+                                                                                                                                                                                                            codeNameNumber5: mongooseToObject(codeNameNumber5),
+                                                                                                                                                                                                            codeNumber2: mutipleMongooseToObject(codeNumber2),
+                                                                                                                                                                                                            codeNumber3: mutipleMongooseToObject(codeNumber3),
+                                                                                                                                                                                                            codeNumber4: mutipleMongooseToObject(codeNumber4),
+                                                                                                                                                                                                            codeCount1,codeCount2,codeCount3,codeCount4,codeCount5,
+                                                                                                                                                                                                            token2,codeCountBought1,codeCountBought2,codeCountBought3,codeCountBought4,
+                                                                                                                                                                                                            comboCountBought,accCount,accCountDeleted,
+                                                                                                                                                                                                        });
+                                                                                                                                                                                                    })
+                                                                                                                                                                                                    .catch(next);
+                                                                                                                                                                                            })
+                                                                                                                                                                                            .catch(next);
                                                                                                                                                                                     })
                                                                                                                                                                                     .catch(next);
                                                                                                                                                                             })
@@ -355,7 +364,41 @@ class SiteController {
         // res.render('game/loTo', {token3})
     }
 
-    
+    //[GET] /dich-vu
+    showDichVu(req,res,next){
+        var token = req.cookies.token;
+        var token2 = res.locals.token;
+        if (token) { // Kiểm tra xem có token không
+            try {
+                var decodeToken = jwt.verify(token, 'mk');
+                User.findOne({ _id: decodeToken._id })
+                    .then(users => {
+                        AccReRollHTNG.countDocuments({})
+                            .then(accCount =>{
+                                AccReRollHTNG.countDocumentsWithDeleted({deleted: true})
+                                    .then(accCountDeleted =>{
+                                        //console.log(codeCountBought1)
+                                        res.render('user/homeDichVu', {
+                                            users: mongooseToObject(users),
+                                            accCount,accCountDeleted,
+                                        });
+                                    })
+                                    .catch(next);
+                            })
+                            .catch(next);
+                    })
+                    .catch(next);
+            } catch (err) {
+                console.log(err)
+                // Xử lý lỗi khi giải mã token không thành công
+                //res.redirect('/login'); // Hoặc thực hiện hành động phù hợp với trường hợp này
+            }
+        } else {
+            // Xử lý trường hợp không có token
+            console.log(err)
+            //res.redirect('/login'); // Hoặc thực hiện hành động phù hợp với trường hợp này
+        }
+    }
 }
 
 module.exports = new SiteController;

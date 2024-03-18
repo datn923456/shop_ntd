@@ -13,12 +13,15 @@ const moment = require('moment');
 const PAGE_SIZE = 4 //số phần tử xuất hiện trong trang
 const PAGE_SIZE_HISTORY = 5
 const PAGE_SIZE_HISTORY_TRANSACTION = 10
-const PAGE_SIZE_REROLL_HTNG = 20
+const PAGE_SIZE_REROLL_HTNG = 10
+const PAGE_SIZE_ACCREROLL_ORDER = 5
 // import gachthe
 const { TELCO, COMMAND, chargingws } = require('../../gach_the/gach_the');
 const historyNapThe = require('../models/historyNapThe');
 const historyGiaoDich = require('../models/historyGiaoDich');
 const accReRollHTNG = require('../models/accReRollHTNG');
+const accRerollOrder = require('../models/AccRerollOrder');
+const doanhThu = require('../models/doanhThu');
 
 class UserController {
     // //[GET] /news
@@ -849,8 +852,13 @@ class UserController {
 
     //[GET] /home/accreroll-htng
     accReRollHTNG(req,res,next){
+        var reroll = req.query.reroll;
+        var server = req.query.server;
         var page = req.query.page;
         var token = req.cookies.token;
+        
+        //console.log(reroll)
+        //console.log(server)
         if (!token) {
             return res.redirect('/login');
         }
@@ -864,13 +872,101 @@ class UserController {
             var decodeToken = jwt.verify(token, 'mk');
             User.findOne({ _id: decodeToken._id })
                 .then(userInfo => {
-                    accReRollHTNG.find({})
-                        .skip(soLuongBoQua)
-                        .limit(PAGE_SIZE_REROLL_HTNG)
+                    if(server !== undefined){
+                        //console.log("hi-------------")
+                        if(reroll === "800c"){
+                            accReRollHTNG.find({nameHTNG: "800 cuộn", server: server})
+                            .skip(soLuongBoQua)
+                            .limit(PAGE_SIZE_REROLL_HTNG)
+                            .then(accReRollHTNG => {
+                                return res.render('accreroll/accReRollHTNG', {
+                                    userInfo: mongooseToObject(userInfo), 
+                                    accReRollHTNG: mutipleMongooseToObject(accReRollHTNG),
+                                });  
+                            })
+                            .catch(next);
+                        }else if(reroll === "1600c"){
+                            accReRollHTNG.find({nameHTNG: "1600 cuộn", server: server})
+                            .skip(soLuongBoQua)
+                            .limit(PAGE_SIZE_REROLL_HTNG)
+                            .then(accReRollHTNG => {
+                                return res.render('accreroll/accReRollHTNG', {
+                                    userInfo: mongooseToObject(userInfo), 
+                                    accReRollHTNG: mutipleMongooseToObject(accReRollHTNG),
+                                });  
+                            })
+                            .catch(next);
+                        }else{
+                            accReRollHTNG.find({server: server})
+                            .skip(soLuongBoQua)
+                            .limit(PAGE_SIZE_REROLL_HTNG)
+                            .then(accReRollHTNG => {
+                                return res.render('accreroll/accReRollHTNG', {
+                                    userInfo: mongooseToObject(userInfo), 
+                                    accReRollHTNG: mutipleMongooseToObject(accReRollHTNG),
+                                });  
+                            })
+                            .catch(next);
+                        }
+                    }else if(reroll !== undefined){
+                        if(reroll == "800c"){
+                            accReRollHTNG.find({nameHTNG: "800 cuộn"})
+                            .skip(soLuongBoQua)
+                            .limit(PAGE_SIZE_REROLL_HTNG)
+                            .then(accReRollHTNG => {
+                                return res.render('accreroll/accReRollHTNG', {
+                                    userInfo: mongooseToObject(userInfo), 
+                                    accReRollHTNG: mutipleMongooseToObject(accReRollHTNG),
+                                });  
+                            })
+                            .catch(next);
+                        }else if(reroll == "1600c"){
+                            accReRollHTNG.find({nameHTNG: "1600 cuộn"})
+                            .skip(soLuongBoQua)
+                            .limit(PAGE_SIZE_REROLL_HTNG)
+                            .then(accReRollHTNG => {
+                                return res.render('accreroll/accReRollHTNG', {
+                                    userInfo: mongooseToObject(userInfo), 
+                                    accReRollHTNG: mutipleMongooseToObject(accReRollHTNG),
+                                });  
+                            })
+                            .catch(next);
+                        }
+                    }else if(reroll === undefined && server === undefined){
+                        accReRollHTNG.find({})
+                            .skip(soLuongBoQua)
+                            .limit(PAGE_SIZE_REROLL_HTNG)
+                            .then(accReRollHTNG => {
+                                return res.render('accreroll/accReRollHTNG', {
+                                    userInfo: mongooseToObject(userInfo), 
+                                    accReRollHTNG: mutipleMongooseToObject(accReRollHTNG),
+                                });  
+                            })
+                            .catch(next);
+                    }
+                })
+                .catch(next);
+        } catch (err) {
+            res.redirect('/login');
+        }
+    }
+
+    //[GET] /home/accreroll-htng/:id
+    infoAccReRollHTNG(req,res,next){
+        var token = req.cookies.token;
+        if (!token) {
+            return res.redirect('/login');
+        }
+        
+        try {
+            var decodeToken = jwt.verify(token, 'mk');
+            User.findOne({ _id: decodeToken._id })
+                .then(userInfo => {
+                    accReRollHTNG.findOne({_id: req.params.id})
                         .then(accReRollHTNG => {
-                            res.render('user/accReRollHTNG', {
+                            res.render('accreroll/infoAccReRollHTNG', {
                                 userInfo: mongooseToObject(userInfo), 
-                                accReRollHTNG: mutipleMongooseToObject(accReRollHTNG),
+                                accReRollHTNG: mongooseToObject(accReRollHTNG),
                             });  
                         })
                         .catch(next);  
@@ -880,6 +976,152 @@ class UserController {
             res.redirect('/login');
         }
     }
+
+    //[POST] /home/accreroll-htng/:id/buy
+    buyAccHTNG(req,res,next){
+        //const soluong = req.body.quatity;
+        const id_acc = req.params.id;
+        //const io = req.app.locals.io;
+        
+        console.log(id_acc)
+        var token = req.cookies.token;
+        if (token) { // Kiểm tra xem có token không
+            try {
+                // for(let i=1; i <= soluong ;i++){
+                var decodeToken = jwt.verify(token, 'mk');
+                User.findOne({ _id: decodeToken._id })
+                    .then(userInfo => {
+                        accReRollHTNG.findOne({_id: id_acc})
+                            .then(accReRoll => {
+                                if (userInfo.coin < accReRoll.priceHTNG) {
+                                    //hasError = true;
+                                    return res.json({message: "Số dư không đủ"})
+                                    //return res.redirect('/user/nomoney');
+                                }else {
+                                    //console("-------------------")
+                                    return accReRollHTNG.findOne({_id: id_acc})
+                                        .then(info => {
+                                            //console.log(' id code là: ' + productId)
+                                            const orderItem = {
+                                                //productId: productId,
+                                                userId: decodeToken._id,
+                                                typeAcc: "reroll",
+                                                nameAcc: info.nameHTNG,
+                                                username: info.username,
+                                                password: info.password,
+                                                priceAcc: info.priceHTNG,
+                                                infoAcc: info.infoHTNG,
+                                                registerAcc: info.register,
+                                                accountAcc: info.account,
+                                                serverAcc: info.server,
+                                            };
+                                            //console.log(orderItem)
+                                            return accRerollOrder.insertMany(orderItem)
+                                            .then(savedOrder => {
+                                                return User.findOneAndUpdate(
+                                                    { _id: decodeToken._id },
+                                                    { $inc: { coin: -accReRoll.priceHTNG } },
+                                                    { new: true }
+                                                )
+                                                .then(updatedUser => {
+                                                    return accReRollHTNG.findOneAndUpdate(
+                                                        { _id: id_acc },
+                                                        { $set: { deleted: true } }
+                                                    )
+                                                    .then(() => {
+                                                        
+                                                        const tienMoiLanMua = updatedUser.coin + accReRoll.priceHTNG;
+                                                        
+                                                        const lichSuGiaoDich = new historyGiaoDich({nameGiaoDich: "Mua Acc Reroll " + accReRoll.nameHTNG, userId: decodeToken._id, username: userInfo.username, value: accReRoll.priceHTNG, coin:tienMoiLanMua});
+                                                        lichSuGiaoDich.save()
+                                                        .then(() =>{
+                                                            const doanhThuBan = new doanhThu({nameGiaoDich: "Mua acc reroll",userId: decodeToken._id,username: userInfo.username, quantity: 1, price: accReRoll.priceHTNG, type:"Bán hàng",product:"acc reroll " + accReRoll.nameHTNG});
+                                                            doanhThuBan.save()
+                                                            .then(() =>{
+                                                                //console.log('Thông tin người dùng sau khi mua hàng là: ');
+                                                                return res.json({message: "Mua thành công"})
+                                                            }).catch(next);
+                                                        }).catch(next);
+                                                        //io.emit("Client-send-data","HELLO");
+                                                    })
+                                                    .catch(next);
+                                                })
+                                                .catch(next);
+                                            })
+                                            .catch(next);
+                                        })
+                                        .catch(next);
+                            
+                                }  
+                            })
+                            .catch(next);
+                    })    
+                    .catch(next)
+            } catch (err) {
+                res.redirect('/login');
+            }
+        } else {
+            res.redirect('/login');
+        }
+    }
+
+    //[GET] /acc-order?page=
+    showAccOrder(req,res,next){
+        var page = req.query.page;
+        var token = req.cookies.token;
+        if (!token) {
+            return res.redirect('/login');
+        }
+        
+        try {
+            page = parseInt(page);
+            if(page <1){
+                page = 1
+            }
+            var soLuongBoQua = (page - 1) * PAGE_SIZE_ACCREROLL_ORDER;
+            var decodeToken = jwt.verify(token, 'mk');
+            User.findOne({ _id: decodeToken._id })
+                .then(userInfo => {
+                    accRerollOrder.find({userId: userInfo._id})
+                        .sort({ myCreatedAt: -1 })
+                        .skip(soLuongBoQua)
+                        .limit(PAGE_SIZE_ACCREROLL_ORDER)
+                        .then(accOrder => {
+                            //codeOrder.sort((a, b) => new Date(b.myCreatedAt) - new Date(a.myCreatedAt));
+                            User.countDocumentsWithDeleted({ deleted: true })
+                                    .then(deletedCountUser => {
+                                        let codeQuery = CodeOrder.find({ create: req.params.create });
+    
+                                        if (req.query.hasOwnProperty('_sort')) {
+                                            codeQuery = codeQuery.sort({
+                                                [req.query.column]: req.query.type
+                                            });
+                                        }
+    
+                                        Promise.all([codeQuery, deletedCountUser])
+                                            .then(([adminUpdate, deletedCountUser]) => {
+                                                res.render('user/accRerollOrder', {
+                                                    userInfo: mongooseToObject(userInfo),
+                                                    // course: mongooseToObject(course),
+                                                    accOrder:mutipleMongooseToObject(accOrder),
+                                                    deletedCountUser,
+                                                    adminUpdate: mutipleMongooseToObject(adminUpdate),
+                                                });
+                                            })
+                                            .catch(next);
+                                    })
+                                    .catch(next);
+                        })
+                        .catch(next);
+                })
+                .catch(next);
+            
+        } catch (err) {
+            res.redirect('/login');
+        }
+    }
+
+    
 }
 
 module.exports = new UserController;

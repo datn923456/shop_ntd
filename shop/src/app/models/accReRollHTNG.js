@@ -7,6 +7,8 @@ const moment = require('moment');
 const accReRollHTNGchema = new Schema({
     imageHTNG:{type: String},
     nameHTNG:{type: String},
+    username:{type:String},
+    password:{type:String},
     priceHTNG: { type: Number },
     infoHTNG:{type: String},
     register: { type: String },

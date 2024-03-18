@@ -92,12 +92,15 @@ router.post('/gach_the_callback', gach_the_callback);
 router.get('/user/nomoney',checkLogin,UserBuild.noMoneyUser);
 router.get('/Lichsugiaodich',checkLogin,UserBuild.Lichsugiaodich);
 router.get('/home/accreroll-htng',checkLogin,UserBuild.accReRollHTNG);
+router.get('/home/accreroll-htng/:id',checkLogin,UserBuild.infoAccReRollHTNG);
+router.post('/home/accreroll-htng/:id/buy',UserBuild.buyAccHTNG)
+
 router.get('/user/addfunds',checkLogin,UserBuild.addFundsUser);
 //router.get('/user/addfunds/bank',checkLogin,UserBuild.addFundsUserBank);
 
 // router.patch('/nap-tien/:id/nap-tien-card',checkLogin, UserBuild.addFundsUserBank);
-// là sao , ẩn rồi mà
 
+router.get('/acc-order',checkLogin,UserBuild.showAccOrder)
 router.get('/thong-tin-tai-khoan',checkLogin,UserBuild.showThongTinTaiKhoan)
 router.get('/nap-the',checkLogin,UserBuild.addFundsUser)
 router.get('/code-order',checkLogin,UserBuild.showCodeOrder)

@@ -8,6 +8,10 @@ const Code1 = require('../models/Code1');
 const Code2 = require('../models/Code2');
 const Code3 = require('../models/Code3');
 const Code4 = require('../models/Code4');
+const accReRollHTNG = require('../models/accReRollHTNG');
+const doanhThu = require('../models/doanhThu');
+const PAGE_SIZE_DOANH_THU = 5;
+
 
 class AdminManagerController {
     //[GET] /news/:slug
@@ -788,9 +792,528 @@ class AdminManagerController {
 
     //[GET] /admin/add-reroll-htng
     showAddReRollHTNG(req,res,next){
-        res.render('admin/addAccReRollHTNG')
+        var token = req.cookies.token;
+        if (token) { // Kiểm tra xem có token không
+            try {
+                var decodeToken = jwt.verify(token, 'mk');
+                User.findOne({ _id: decodeToken._id })
+                    .then(adminInfo => {
+                        Course.countDocumentsWithDeleted({ deleted: true })
+                            .then(deletedCount => {
+                                User.countDocumentsWithDeleted({ deleted: true })
+                                .then(deletedCountUser => {
+                                    res.render('admin/addAccReRollHTNG', {
+                                        adminInfo: mongooseToObject(adminInfo),
+                                        deletedCount,deletedCountUser,
+                                    });
+                                })
+                                .catch(next);
+                            })
+                            .catch(next);
+                    })
+                    .catch(next);
+            } catch (err) {
+                //console.log(err)
+                // Xử lý lỗi khi giải mã token không thành công
+                res.redirect('/login'); // Hoặc thực hiện hành động phù hợp với trường hợp này
+            }
+        } else {
+            // Xử lý trường hợp không có token
+            //console.log(err)
+            res.redirect('/login'); // Hoặc thực hiện hành động phù hợp với trường hợp này
+        }
+        
     }
 
+    //[POST] /admin/add-accreroll
+    showAddACCReRollHTNG(req,res,next){
+        const server = req.body.selectedServer;
+        const taikhoan = req.body.taikhoan.split('\r\n');
+        const password = req.body.password.split('\r\n');;
+        const info = req.body.selectedInfo;
+        const register = req.body.selectedRegister;
+        const account = req.body.selectedAccount;
+        const price = req.body.selectedPrice;
+        const selectedNameHTNG = req.body.selectedNameHTNG;
+        const image = req.body.image;
+
+        const newArray = [];
+        for(let i=0; i<taikhoan.length; i++){
+            newArray.push({
+                username: taikhoan[i],
+                password: password[i],
+            });
+        }
+
+        const newArrayWithAdditionalProps = newArray.map((item, index) => {
+            return {
+                ...item,
+                server: server,
+                infoHTNG: info,
+                register: register,
+                account: account,
+                priceHTNG: price,
+                nameHTNG: selectedNameHTNG,
+                imageHTNG: image,
+            };
+        });
+
+        //console.log(newArrayWithAdditionalProps);
+        const saveData = () => {
+            // Lưu từng đối tượng trong mảng newArray vào cơ sở dữ liệu
+            Promise.all(newArrayWithAdditionalProps.map((item) => {
+                const newItem = new accReRollHTNG(item); // Tạo một đối tượng mới của model của bạn
+                return newItem.save(); // Lưu đối tượng vào cơ sở dữ liệu và trả về một promise
+            }))
+            .then(() => {
+                // Nếu mọi thứ diễn ra thành công, thực hiện chuyển hướng đến '/admin/combocode'
+                res.redirect('/admin/add-reroll-htng');
+            })
+            .catch((error) => {
+                // Nếu có lỗi xảy ra trong quá trình lưu dữ liệu, thực hiện chuyển hướng đến '/admin/code'
+                res.redirect('/admin/add-reroll-htng');
+            });
+        };
+        
+        saveData();
+    }
+
+    //[GET] /admin/doanhthu
+    showDoanhThu(req,res,next){
+        var page = req.query.page;
+        const dateFormat = req.query.dateFormat;
+        const chosenDate = req.query.chosenDate;
+        console.log(dateFormat)
+        console.log(chosenDate)
+        function formatDate(date, endOfDay = false) {
+            if (endOfDay) {
+                date.setHours(23);
+                date.setMinutes(59);
+            } else {
+                date.setHours(0);
+                date.setMinutes(0);
+            }
+        
+            var dd = String(date.getDate()).padStart(2, '0');
+            var mm = String(date.getMonth() + 1).padStart(2, '0');
+            var yyyy = date.getFullYear();
+            var hh = String(date.getHours()).padStart(2, '0');
+            var min = String(date.getMinutes()).padStart(2, '0');
+        
+            return `${dd}/${mm}/${yyyy} ${hh}:${min}`;
+        }
+        
+        var token = req.cookies.token;
+        if (!token) {
+            return res.redirect('/login');
+        }
+        
+        try {
+            var decodeToken = jwt.verify(token, 'mk');
+            User.findOne({ _id: decodeToken._id })
+                .then(adminInfo => {
+                    if(dateFormat === undefined){
+                        page = parseInt(page);
+                        if(page <1){
+                            page = 1
+                        }
+                        var soLuongBoQua = (page - 1) * PAGE_SIZE_DOANH_THU;
+                        var endDate = new Date();
+                        var startDate = new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate());
+                        var formattedStartDate = formatDate(startDate);
+                        var formattedEndDate = formatDate(endDate, true);
+                        doanhThu.find({doanhThuCreatedAt: {$gte: startDate,$lte: endDate }})
+                            .sort({ doanhThuCreatedAt: -1 })
+                            .skip(soLuongBoQua)
+                            .limit(PAGE_SIZE_DOANH_THU)
+                            .then(doanhThuNgay =>{
+                                doanhThu.aggregate([
+                                    {
+                                      $match: {
+                                        doanhThuCreatedAt: {
+                                          $gte: startDate,
+                                          $lte: endDate
+                                        }
+                                      }
+                                    },
+                                    {
+                                      $group: {
+                                        _id: null,
+                                        totalPrice: { $sum: '$price' }
+                                      }
+                                    }
+                                  ]).then(result => {
+                                    const totalPrice = result.length > 0 ? result[0].totalPrice : 0;
+                                    doanhThu.countDocuments({doanhThuCreatedAt: {$gte: startDate,$lte: endDate }})
+                                        .then(soLuongGiaoDich=>{
+                                            Course.countDocumentsWithDeleted({ deleted: true })
+                                                .then(deletedCount => {
+                                                    User.countDocumentsWithDeleted({ deleted: true })
+                                                        .then(deletedCountUser => {
+                                                            res.render('admin/doanhThu', {
+                                                                adminInfo: mongooseToObject(adminInfo),
+                                                                deletedCount,deletedCountUser,
+                                                                doanhThuNgay: mutipleMongooseToObject(doanhThuNgay),
+                                                                startDate: formattedStartDate,
+                                                                endDate: formattedEndDate,
+                                                                totalPrice: totalPrice,
+                                                                soLuongGiaoDich:soLuongGiaoDich,
+                                                            });
+                                                        })
+                                                        .catch(next);
+                                                })
+                                                .catch(next);
+                                        })
+                                        .catch(next)
+                                  })
+                                  .catch(next); 
+                            })
+                            .catch(next) 
+                    }else if(dateFormat == "today"){
+                        page = parseInt(page);
+                        if(page <1){
+                            page = 1
+                        }
+                        var soLuongBoQua = (page - 1) * PAGE_SIZE_DOANH_THU;
+                        var endDate = new Date();
+                        var startDate = new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate());
+                        var formattedStartDate = formatDate(startDate);
+                        var formattedEndDate = formatDate(endDate, true);
+                        doanhThu.find({doanhThuCreatedAt: {$gte: startDate,$lte: endDate }})
+                            .sort({ doanhThuCreatedAt: -1 })
+                            .skip(soLuongBoQua)
+                            .limit(PAGE_SIZE_DOANH_THU)
+                            .then(doanhThuNgay =>{
+                                doanhThu.aggregate([
+                                    {
+                                      $match: {
+                                        doanhThuCreatedAt: {
+                                          $gte: startDate,
+                                          $lte: endDate
+                                        }
+                                      }
+                                    },
+                                    {
+                                      $group: {
+                                        _id: null,
+                                        totalPrice: { $sum: '$price' }
+                                      }
+                                    }
+                                  ]).then(result => {
+                                    const totalPrice = result.length > 0 ? result[0].totalPrice : 0;
+                                    doanhThu.countDocuments({doanhThuCreatedAt: {$gte: startDate,$lte: endDate }})
+                                        .then(soLuongGiaoDich=>{
+                                            Course.countDocumentsWithDeleted({ deleted: true })
+                                                .then(deletedCount => {
+                                                    User.countDocumentsWithDeleted({ deleted: true })
+                                                        .then(deletedCountUser => {
+                                                            res.render('admin/doanhThu', {
+                                                                adminInfo: mongooseToObject(adminInfo),
+                                                                deletedCount,deletedCountUser,
+                                                                doanhThuNgay: mutipleMongooseToObject(doanhThuNgay),
+                                                                startDate: formattedStartDate,
+                                                                endDate: formattedEndDate,
+                                                                totalPrice: totalPrice,
+                                                                soLuongGiaoDich:soLuongGiaoDich,
+                                                            });
+                                                        })
+                                                        .catch(next);
+                                                })
+                                                .catch(next);
+                                        }).catch(next)
+                                  }).catch(next); 
+                            })
+                            .catch(next)
+                    }else if(dateFormat == "yesterday"){
+                        page = parseInt(page);
+                        if(page <1){
+                            page = 1
+                        }
+                        var soLuongBoQua = (page - 1) * PAGE_SIZE_DOANH_THU;
+                        var endDate = new Date();
+                        endDate.setDate(endDate.getDate() - 1); // Lấy ngày hôm qua
+                        endDate.setHours(23, 59, 59, 999);
+                        var startDate = new Date();
+                        startDate.setDate(startDate.getDate() - 1);
+                        var formattedStartDate = formatDate(startDate);
+                        var formattedEndDate = formatDate(endDate, true);
+                        doanhThu.find({doanhThuCreatedAt: {$gte: startDate,$lte: endDate }})
+                            .sort({ doanhThuCreatedAt: -1 })
+                            .skip(soLuongBoQua)
+                            .limit(PAGE_SIZE_DOANH_THU)
+                            .then(doanhThuNgay =>{
+                                doanhThu.aggregate([
+                                    {
+                                      $match: {
+                                        doanhThuCreatedAt: {
+                                          $gte: startDate,
+                                          $lte: endDate
+                                        }
+                                      }
+                                    },
+                                    {
+                                      $group: {
+                                        _id: null,
+                                        totalPrice: { $sum: '$price' }
+                                      }
+                                    }
+                                  ]).then(result => {
+                                    const totalPrice = result.length > 0 ? result[0].totalPrice : 0;
+                                    doanhThu.countDocuments({doanhThuCreatedAt: {$gte: startDate,$lte: endDate }})
+                                        .then(soLuongGiaoDich=>{
+                                            Course.countDocumentsWithDeleted({ deleted: true })
+                                                .then(deletedCount => {
+                                                    User.countDocumentsWithDeleted({ deleted: true })
+                                                        .then(deletedCountUser => {
+                                                            res.render('admin/doanhThu', {
+                                                                adminInfo: mongooseToObject(adminInfo),
+                                                                deletedCount,deletedCountUser,
+                                                                doanhThuNgay: mutipleMongooseToObject(doanhThuNgay),
+                                                                startDate: formattedStartDate,
+                                                                endDate: formattedEndDate,
+                                                                totalPrice: totalPrice,
+                                                                soLuongGiaoDich:soLuongGiaoDich,
+                                                            });
+                                                        })
+                                                        .catch(next);
+                                                })
+                                                .catch(next);
+                                        }).catch(next)
+                                  }).catch(next); 
+                            })
+                            .catch(next)
+                    }else if(dateFormat == "7daysold"){
+                        page = parseInt(page);
+                        if(page <1){
+                            page = 1
+                        }
+                        var soLuongBoQua = (page - 1) * PAGE_SIZE_DOANH_THU;
+                        var endDate = new Date();
+                        var startDate = new Date();
+                        startDate.setDate(startDate.getDate() - 7);
+                        var formattedStartDate = formatDate(startDate);
+                        var formattedEndDate = formatDate(endDate, true);
+                        doanhThu.find({doanhThuCreatedAt: {$gte: startDate,$lte: endDate }})
+                            .sort({ doanhThuCreatedAt: -1 })
+                            .skip(soLuongBoQua)
+                            .limit(PAGE_SIZE_DOANH_THU)
+                            .then(doanhThuNgay =>{
+                                doanhThu.aggregate([
+                                    {
+                                      $match: {
+                                        doanhThuCreatedAt: {
+                                          $gte: startDate,
+                                          $lte: endDate
+                                        }
+                                      }
+                                    },
+                                    {
+                                      $group: {
+                                        _id: null,
+                                        totalPrice: { $sum: '$price' }
+                                      }
+                                    }
+                                  ]).then(result => {
+                                    const totalPrice = result.length > 0 ? result[0].totalPrice : 0;
+                                    doanhThu.countDocuments({doanhThuCreatedAt: {$gte: startDate,$lte: endDate }})
+                                        .then(soLuongGiaoDich=>{
+                                            Course.countDocumentsWithDeleted({ deleted: true })
+                                                .then(deletedCount => {
+                                                    User.countDocumentsWithDeleted({ deleted: true })
+                                                        .then(deletedCountUser => {
+                                                            res.render('admin/doanhThu', {
+                                                                adminInfo: mongooseToObject(adminInfo),
+                                                                deletedCount,deletedCountUser,
+                                                                doanhThuNgay: mutipleMongooseToObject(doanhThuNgay),
+                                                                startDate: formattedStartDate,
+                                                                endDate: formattedEndDate,
+                                                                totalPrice: totalPrice,
+                                                                soLuongGiaoDich:soLuongGiaoDich,
+                                                            });
+                                                        })
+                                                        .catch(next);
+                                                })
+                                                .catch(next);
+                                        }).catch(next)
+                                  }).catch(next); 
+                            })
+                            .catch(next)
+                    }else if(dateFormat == "30daysold"){
+                        page = parseInt(page);
+                        if(page <1){
+                            page = 1
+                        }
+                        var soLuongBoQua = (page - 1) * PAGE_SIZE_DOANH_THU;
+                        var endDate = new Date();
+                        var startDate = new Date();
+                        startDate.setDate(startDate.getDate() - 30);
+                        var formattedStartDate = formatDate(startDate);
+                        var formattedEndDate = formatDate(endDate, true);
+                        doanhThu.find({doanhThuCreatedAt: {$gte: startDate,$lte: endDate }})
+                            .sort({ doanhThuCreatedAt: -1 })
+                            .skip(soLuongBoQua)
+                            .limit(PAGE_SIZE_DOANH_THU)
+                            .then(doanhThuNgay =>{
+                                doanhThu.aggregate([
+                                    {
+                                      $match: {
+                                        doanhThuCreatedAt: {
+                                          $gte: startDate,
+                                          $lte: endDate
+                                        }
+                                      }
+                                    },
+                                    {
+                                      $group: {
+                                        _id: null,
+                                        totalPrice: { $sum: '$price' }
+                                      }
+                                    }
+                                  ]).then(result => {
+                                    const totalPrice = result.length > 0 ? result[0].totalPrice : 0;
+                                    doanhThu.countDocuments({doanhThuCreatedAt: {$gte: startDate,$lte: endDate }})
+                                        .then(soLuongGiaoDich=>{
+                                            Course.countDocumentsWithDeleted({ deleted: true })
+                                                .then(deletedCount => {
+                                                    User.countDocumentsWithDeleted({ deleted: true })
+                                                        .then(deletedCountUser => {
+                                                            res.render('admin/doanhThu', {
+                                                                adminInfo: mongooseToObject(adminInfo),
+                                                                deletedCount,deletedCountUser,
+                                                                doanhThuNgay: mutipleMongooseToObject(doanhThuNgay),
+                                                                startDate: formattedStartDate,
+                                                                endDate: formattedEndDate,
+                                                                totalPrice: totalPrice,
+                                                                soLuongGiaoDich:soLuongGiaoDich,
+                                                            });
+                                                        })
+                                                        .catch(next);
+                                                })
+                                                .catch(next);
+                                        }).catch(next)
+                                  }).catch(next); 
+                            })
+                            .catch(next)
+                    }else if(dateFormat == "month"){
+                        page = parseInt(page);
+                        if(page <1){
+                            page = 1
+                        }
+                        var soLuongBoQua = (page - 1) * PAGE_SIZE_DOANH_THU;
+                        var currentDate = new Date();
+                        var startDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+                        var endDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
+                        var formattedStartDate = formatDate(startDate);
+                        var formattedEndDate = formatDate(endDate, true);
+                        doanhThu.find({doanhThuCreatedAt: {$gte: startDate,$lte: endDate }})
+                            .sort({ doanhThuCreatedAt: -1 })
+                            .skip(soLuongBoQua)
+                            .limit(PAGE_SIZE_DOANH_THU)
+                            .then(doanhThuNgay =>{
+                                doanhThu.aggregate([
+                                    {
+                                      $match: {
+                                        doanhThuCreatedAt: {
+                                          $gte: startDate,
+                                          $lte: endDate
+                                        }
+                                      }
+                                    },
+                                    {
+                                      $group: {
+                                        _id: null,
+                                        totalPrice: { $sum: '$price' }
+                                      }
+                                    }
+                                  ]).then(result => {
+                                    const totalPrice = result.length > 0 ? result[0].totalPrice : 0;
+                                    doanhThu.countDocuments({doanhThuCreatedAt: {$gte: startDate,$lte: endDate }})
+                                        .then(soLuongGiaoDich=>{
+                                            Course.countDocumentsWithDeleted({ deleted: true })
+                                                .then(deletedCount => {
+                                                    User.countDocumentsWithDeleted({ deleted: true })
+                                                        .then(deletedCountUser => {
+                                                            res.render('admin/doanhThu', {
+                                                                adminInfo: mongooseToObject(adminInfo),
+                                                                deletedCount,deletedCountUser,
+                                                                doanhThuNgay: mutipleMongooseToObject(doanhThuNgay),
+                                                                startDate: formattedStartDate,
+                                                                endDate: formattedEndDate,
+                                                                totalPrice: totalPrice,
+                                                                soLuongGiaoDich:soLuongGiaoDich,
+                                                            });
+                                                        })
+                                                        .catch(next);
+                                                })
+                                                .catch(next);
+                                        }).catch(next)
+                                  }).catch(next); 
+                            })
+                            .catch(next)
+                    }else if(dateFormat == "lastmonth"){
+                        page = parseInt(page);
+                        if(page <1){
+                            page = 1
+                        }
+                        var soLuongBoQua = (page - 1) * PAGE_SIZE_DOANH_THU;
+                        var currentDate = new Date();
+                        var startDate = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1);
+                        var endDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), 0);
+                        var formattedStartDate = formatDate(startDate);
+                        var formattedEndDate = formatDate(endDate, true);
+                        doanhThu.find({doanhThuCreatedAt: {$gte: startDate,$lte: endDate }})
+                            .sort({ doanhThuCreatedAt: -1 })
+                            .skip(soLuongBoQua)
+                            .limit(PAGE_SIZE_DOANH_THU)
+                            .then(doanhThuNgay =>{
+                                doanhThu.aggregate([
+                                    {
+                                      $match: {
+                                        doanhThuCreatedAt: {
+                                          $gte: startDate,
+                                          $lte: endDate
+                                        }
+                                      }
+                                    },
+                                    {
+                                      $group: {
+                                        _id: null,
+                                        totalPrice: { $sum: '$price' }
+                                      }
+                                    }
+                                  ]).then(result => {
+                                    const totalPrice = result.length > 0 ? result[0].totalPrice : 0;
+                                    doanhThu.countDocuments({doanhThuCreatedAt: {$gte: startDate,$lte: endDate }})
+                                        .then(soLuongGiaoDich=>{
+                                            Course.countDocumentsWithDeleted({ deleted: true })
+                                                .then(deletedCount => {
+                                                    User.countDocumentsWithDeleted({ deleted: true })
+                                                        .then(deletedCountUser => {
+                                                            res.render('admin/doanhThu', {
+                                                                adminInfo: mongooseToObject(adminInfo),
+                                                                deletedCount,deletedCountUser,
+                                                                doanhThuNgay: mutipleMongooseToObject(doanhThuNgay),
+                                                                startDate: formattedStartDate,
+                                                                endDate: formattedEndDate,
+                                                                totalPrice: totalPrice,
+                                                                soLuongGiaoDich:soLuongGiaoDich,
+                                                            });
+                                                        })
+                                                        .catch(next);
+                                                })
+                                                .catch(next);
+                                        }).catch(next)
+                                  }).catch(next); 
+                            })
+                            .catch(next)
+                    }
+                })
+                .catch(next);
+        } catch (err) {
+            res.redirect('/login');
+        }
+    }
+    
 }
 
 module.exports = new AdminManagerController;

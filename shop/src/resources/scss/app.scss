@@ -4,6 +4,7 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 // .card-course-item{
 //     margin-top: 16px;
 //     background-color: #f5fd0e9a;
@@ -516,4 +517,89 @@ li:last-child {
 
 #theDichVu .card:hover #tenTheDichVu:hover {
   color: #f7b03c; /* Màu mới khi hover */
+}
+
+//nút của info-reroll
+.btn2 {
+  background: #4eabe6;
+}
+
+.btn2-napthe{
+  background: #4CAF50;
+}
+
+.btn2:hover {
+  background-color: #2196e0;
+  border-color: #2196e0;
+  color: #ffffff;
+}
+
+/* CSS cho nút NẠP THẺ */
+.btn2-napthe:hover {
+  background-color: #449d48 !important;
+  border-color: #449d48 !important;
+  color: #ffffff;
+}
+
+//thẻ thông tin của info-reroll
+.c-product-meta {
+  font-family: 'Arial', sans-serif;
+}
+
+/* Thiết lập padding và margin cho c-content-divider */
+.c-content-divider {
+  margin: 20px 0;
+  text-align: center;
+}
+
+/* Icon cho c-content-divider */
+.icon-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background-color: #333; /* Màu của icon */
+  border-radius: 50%; /* Để tạo hình tròn */
+  margin: 0 5px; /* Khoảng cách giữa các icon */
+}
+
+/* Thiết lập kiểu chữ và màu cho c-product-meta-label */
+.c-product-meta-label {
+  font-size: 18px;
+  color: #333; /* Màu chữ */
+}
+
+/* Màu đỏ cho c-font-red */
+.c-font-red {
+  color: #e74c3c; /* Màu đỏ */
+}
+
+/* Tùy chỉnh c-product-variant */
+.c-product-variant {
+  margin-bottom: 10px; /* Khoảng cách giữa các cột */
+}
+
+/* Tạo cạnh viền cho c-product-variant */
+.c-product-variant p {
+  border-bottom: 1px solid #ddd; /* Tạo viền dưới cho mỗi hàng */
+  padding-bottom: 5px; /* Khoảng cách giữa văn bản và viền dưới */
+}
+
+/* Tăng cường độ đậm và khoảng cách cho các phần đặc biệt */
+.c-font-bold {
+  font-weight: bold;
+}
+
+.c-product-margin-1 {
+  margin: 5px 0;
+}
+
+/* Tùy chỉnh nổi bật */
+.c-product-variant:last-child p {
+  border-bottom: none; /* Loại bỏ viền dưới cho hàng cuối cùng */
+}
+
+/* Độ rộng cố định cho c-product-meta */
+.c-product-meta {
+  max-width: 100%; /* Điều chỉnh độ rộng tối đa */
+  margin: 0 auto; /* Canh giữa nội dung */
 }

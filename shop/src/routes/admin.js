@@ -82,6 +82,11 @@ router.patch('/trashcanuser/:id/restore', adminManagerController.showTrashCanUse
 router.delete('/trashcanuser/:id/delete', adminManagerController.showTrashCanUserDeleted);
 
 router.get('/add-reroll-htng',adminManagerController.showAddReRollHTNG);
+router.post('/add-accreroll',adminManagerController.showAddACCReRollHTNG);
+
+router.get('/doanhthu',adminManagerController.showDoanhThu)
+
+
 router.post('/trashcan/form-actions',adminManagerController.showAdminTrashCanFormAction);
 router.get('/update/:id/edit', adminManagerController.showDetailUpdate);
 router.put('/update/:id', adminManagerController.showDetailUpdateEdited);

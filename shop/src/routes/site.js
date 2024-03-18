@@ -152,7 +152,7 @@ router.get('/home/game',checkLogin,siteController.gameLoTo)
 router.get('/home/admin',checkLogin,checkAdmin,siteController.indexHomeAdmin)
 router.get('/home',checkLogin,siteController.indexHome)
 router.get('/',checkLogin2,checkAdmin2,siteController.index)
-
+router.get('/dich-vu',checkLogin,siteController.showDichVu)
 
 
 

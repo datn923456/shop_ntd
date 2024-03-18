@@ -10,6 +10,8 @@ const Code3 = require('../models/Code3');
 const Code4 = require('../models/Code4');
 const CodeOrder = require('../models/CodeOrder');
 const HistoryGiaoDich = require('../models/historyGiaoDich');
+const doanhThu = require('../models/doanhThu');
+
 //const { io } = require('../../index')
 //const CodeOrderCombo = require('../models/CodeOrderCombo');
 
@@ -757,6 +759,8 @@ class CodeController {
                                                                                                                 Code4.countDocuments({})
                                                                                                                     .then(tonKho4 =>{
                                                                                                                         if(codeInfoList2.length > 0){// code2 =====
+                                                                                                                            var quantity2 = 0;
+                                                                                                                            var gia2 = 0;
                                                                                                                             const tongGia2 = soluong * codeInfo2.price;
                                                                                                                             const randomIds2 = getRandomIds2(codeInfoList2, soluong);
                                                                                                                             function getRandomIds2(codeInfoList2, quatity) {
@@ -769,6 +773,7 @@ class CodeController {
                                                                                                                                     }
                                                                                                                                 
                                                                                                                                     while (randomIds2.length < quatity) {
+                                                                                                                                        
                                                                                                                                         const randomIndex = Math.floor(Math.random() * totalProducts);
                                                                                                                                         const randomProduct = codeInfoList2[randomIndex];
                                                                                                                                         if (!randomIds2.includes(randomProduct._id)) {
@@ -778,7 +783,7 @@ class CodeController {
                                                                                                                                 
                                                                                                                                     return randomIds2;
                                                                                                                                 }
-                                                                                                                                if(soluong > tonKho1){
+                                                                                                                                if(soluong > tonKho2){
                                                                                                                                     //hasError = true;
                                                                                                                                     return res.json({message: "Số lượng tồn kho không đủ"})
                                                                                                                                 }else{
@@ -824,8 +829,7 @@ class CodeController {
                                                                                                                                                                                 const lichSuGiaoDich = new HistoryGiaoDich({nameGiaoDich: "Mua code " + codeInfo2.nameCode,userId: decodeToken._id,username: adminInfo.username,value: codeInfo2.price, coin:tienMoiLanMua});
                                                                                                                                                                                 lichSuGiaoDich.save()
                                                                                                                                                                                 .then(() =>{
-                                                                                                                                                                                    console.log('Thông tin người dùng sau khi mua hàng là: ', updatedUser);
-                                                                                                                                                                                    return res.json({message: "Mua thành công"})
+                                                                                                                                                                                    
                                                                                                                                                                                 }).catch(next);
                                                                                                                                                                             })
                                                                                                                                                                             .catch(next);
@@ -843,15 +847,28 @@ class CodeController {
                                                                                                                                             })
                                                                                                                                             .map(promise => promise.catch(() => null));// Bỏ qua Promise bị reject để tiếp tục xử lý
                                                                                                                                     
-                                                                                                                                    Promise.all(promises2)
-                                                                                                                                        .then(() => {
-                                                                                                                                            console.log('Các ID đã được cập nhật thành công.');
-                                                                                                                                            //res.redirect('/home');
+                                                                                                                                    Promise.all(promises2.map(promise => promise.then(() => {
+                                                                                                                                        // Cập nhật quantity và gia ở đây
+                                                                                                                                        quantity2 += 1;
+                                                                                                                                        gia2 += codeInfo2.price;
+                                                                                                                                    })))
+                                                                                                                                    .then(() => {
+                                                                                                                                            const doanhThuBan = new doanhThu({nameGiaoDich: "Mua Code",userId: decodeToken._id,username: adminInfo.username, quantity: quantity2, price: gia2, type:"Bán hàng",product:"Code " + codeInfo2.nameCode});
+                                                                                                                                            doanhThuBan.save()
+                                                                                                                                            .then(() =>{
+                                                                                                                                                //console.log('Thông tin người dùng sau khi mua hàng là: ');
+                                                                                                                                                return res.json({message: "Mua thành công"})
+                                                                                                                                            }).catch(next);
+                                                                                                                                            // res.status(200).json({ message: 'ok' });
+                                                                                                                                            //res.redirect('/home?message=OK');
+                                                                                                                                            
                                                                                                                                         })
-                                                                                                                                        .catch(next);  }  
+                                                                                                                                        .catch(next);}   
                                                                                                                             
                                                                                                                         }
                                                                                                                         else if(codeInfoList1.length > 0){// code1==========
+                                                                                                                            var quantity1 = 0;
+                                                                                                                            var gia1 = 0;
                                                                                                                             const tongGia1 = soluong * codeInfo1.price;
                                                                                                                             const randomIds1 = getRandomIds1(codeInfoList1, soluong);
                                                                                                                             function getRandomIds1(codeInfoList1, quatity) {
@@ -864,6 +881,7 @@ class CodeController {
                                                                                                                                     }
                                                                                                                                 
                                                                                                                                     while (randomIds1.length < quatity) {
+                                                                                                                                        
                                                                                                                                         const randomIndex = Math.floor(Math.random() * totalProducts);
                                                                                                                                         const randomProduct = codeInfoList1[randomIndex];
                                                                                                                                         if (!randomIds1.includes(randomProduct._id)) {
@@ -919,8 +937,7 @@ class CodeController {
                                                                                                                                                                             const lichSuGiaoDich = new HistoryGiaoDich({nameGiaoDich: "Mua code " + codeInfo1.nameCode,userId: decodeToken._id,username: adminInfo.username,value: codeInfo1.price, coin:tienMoiLanMua});
                                                                                                                                                                             lichSuGiaoDich.save()
                                                                                                                                                                             .then(() =>{
-                                                                                                                                                                                console.log('Thông tin người dùng sau khi mua hàng là: ', updatedUser);
-                                                                                                                                                                                return res.json({message: "Mua thành công"})
+                                                                                                                                                                                
                                                                                                                                                                             }).catch(next);
                                                                                                                                                                         })
                                                                                                                                                                         .catch(next);
@@ -937,14 +954,26 @@ class CodeController {
                                                                                                                                             .catch(next);
                                                                                                                                         })
                                                                                                                                         .map(promise => promise.catch(() => null));
-                                                                                                                                    Promise.all(promises1)
-                                                                                                                                        .then(() => {
-                                                                                                                                            console.log('Các ID đã được cập nhật thành công.');
+                                                                                                                                    Promise.all(promises1.map(promise => promise.then(() => {
+                                                                                                                                        // Cập nhật quantity và gia ở đây
+                                                                                                                                        quantity1 += 1;
+                                                                                                                                        gia1 += codeInfo1.price;
+                                                                                                                                    })))
+                                                                                                                                    .then(() => {
+                                                                                                                                            const doanhThuBan = new doanhThu({nameGiaoDich: "Mua Code",userId: decodeToken._id,username: adminInfo.username, quantity: quantity1, price: gia1, type:"Bán hàng",product:"Code " + codeInfo1.nameCode});
+                                                                                                                                            doanhThuBan.save()
+                                                                                                                                            .then(() =>{
+                                                                                                                                                //console.log('Thông tin người dùng sau khi mua hàng là: ');
+                                                                                                                                                return res.json({message: "Mua thành công"})
+                                                                                                                                            }).catch(next);
+                                                                                                                                            // res.status(200).json({ message: 'ok' });
+                                                                                                                                            //res.redirect('/home?message=OK');
                                                                                                                                             
-                                                                                                                                            //res.redirect('/home');
                                                                                                                                         })
-                                                                                                                                        .catch(next);  }  
+                                                                                                                                        .catch(next);} 
                                                                                                                         }else if(codeInfoList3.length > 0){ //code3========
+                                                                                                                            var quantity3 =0;
+                                                                                                                            var gia3 =0;
                                                                                                                             const tongGia3 = soluong * codeInfo3.price;
                                                                                                                             const randomIds3 = getRandomIds3(codeInfoList3, soluong);
                                                                                                                             function getRandomIds3(codeInfoList3, quatity) {
@@ -957,6 +986,7 @@ class CodeController {
                                                                                                                                     }
                                                                                                                                 
                                                                                                                                     while (randomIds3.length < quatity) {
+                                                                                                                                        
                                                                                                                                         const randomIndex = Math.floor(Math.random() * totalProducts);
                                                                                                                                         const randomProduct = codeInfoList3[randomIndex];
                                                                                                                                         if (!randomIds3.includes(randomProduct._id)) {
@@ -1012,8 +1042,7 @@ class CodeController {
                                                                                                                                                                             const lichSuGiaoDich = new HistoryGiaoDich({nameGiaoDich: "Mua code " + codeInfo3.nameCode,userId: decodeToken._id,username: adminInfo.username,value: codeInfo3.price, coin:tienMoiLanMua});
                                                                                                                                                                             lichSuGiaoDich.save()
                                                                                                                                                                             .then(() =>{
-                                                                                                                                                                                console.log('Thông tin người dùng sau khi mua hàng là: ', updatedUser);
-                                                                                                                                                                                return res.json({message: "Mua thành công"})
+                                                                                                                                                                                
                                                                                                                                                                             }).catch(next);
                                                                                                                                                                         })
                                                                                                                                                                         .catch(next);
@@ -1030,13 +1059,26 @@ class CodeController {
                                                                                                                                             .catch(next);
                                                                                                                                         })
                                                                                                                                         .map(promise => promise.catch(() => null));
-                                                                                                                                    Promise.all(promises3)
-                                                                                                                                        .then(() => {
-                                                                                                                                            console.log('Các ID đã được cập nhật thành công.');
-                                                                                                                                            //res.redirect('/home');
+                                                                                                                                    Promise.all(promises3.map(promise => promise.then(() => {
+                                                                                                                                        // Cập nhật quantity và gia ở đây
+                                                                                                                                        quantity3 += 1;
+                                                                                                                                        gia3 += codeInfo3.price;
+                                                                                                                                    })))
+                                                                                                                                    .then(() => {
+                                                                                                                                            const doanhThuBan = new doanhThu({nameGiaoDich: "Mua Code",userId: decodeToken._id,username: adminInfo.username, quantity: quantity3, price: gia3, type:"Bán hàng",product:"Code " + codeInfo3.nameCode});
+                                                                                                                                            doanhThuBan.save()
+                                                                                                                                            .then(() =>{
+                                                                                                                                                //console.log('Thông tin người dùng sau khi mua hàng là: ');
+                                                                                                                                                return res.json({message: "Mua thành công"})
+                                                                                                                                            }).catch(next);
+                                                                                                                                            // res.status(200).json({ message: 'ok' });
+                                                                                                                                            //res.redirect('/home?message=OK');
+                                                                                                                                            
                                                                                                                                         })
-                                                                                                                                        .catch(next);  }
+                                                                                                                                        .catch(next);} 
                                                                                                                         }else if(codeInfoList4.length > 0){ //code4 ==============
+                                                                                                                            var quantity4 = 0;
+                                                                                                                            var gia4 = 0;
                                                                                                                             const tongGia4 = soluong * codeInfo4.price;
                                                                                                                             const randomIds4 = getRandomIds4(codeInfoList4, soluong);
                                                                                                                             function getRandomIds4(codeInfoList4, quatity) {
@@ -1105,8 +1147,7 @@ class CodeController {
                                                                                                                                                                             const lichSuGiaoDich = new HistoryGiaoDich({nameGiaoDich: "Mua code " + codeInfo4.nameCode,userId: decodeToken._id,username: adminInfo.username,value: codeInfo4.price, coin:tienMoiLanMua});
                                                                                                                                                                             lichSuGiaoDich.save()
                                                                                                                                                                             .then(() =>{
-                                                                                                                                                                                console.log('Thông tin người dùng sau khi mua hàng là: ', updatedUser);
-                                                                                                                                                                                return res.json({message: "Mua thành công"})
+                                                                                                                                                                                
                                                                                                                                                                             }).catch(next);
                                                                                                                                                                         })
                                                                                                                                                                         .catch(next);
@@ -1123,12 +1164,23 @@ class CodeController {
                                                                                                                                             .catch(next);
                                                                                                                                         })
                                                                                                                                         .map(promise => promise.catch(() => null));
-                                                                                                                                    Promise.all(promises4)
-                                                                                                                                        .then(() => {
-                                                                                                                                            console.log('Các ID đã được cập nhật thành công.');
-                                                                                                                                            //res.redirect('/home');
+                                                                                                                                    Promise.all(promises4.map(promise => promise.then(() => {
+                                                                                                                                        // Cập nhật quantity và gia ở đây
+                                                                                                                                        quantity4 += 1;
+                                                                                                                                        gia4 += codeInfo4.price;
+                                                                                                                                    })))
+                                                                                                                                    .then(() => {
+                                                                                                                                            const doanhThuBan = new doanhThu({nameGiaoDich: "Mua Code",userId: decodeToken._id,username: adminInfo.username, quantity: quantity4, price: gia4, type:"Bán hàng",product:"Code " + codeInfo4.nameCode});
+                                                                                                                                            doanhThuBan.save()
+                                                                                                                                            .then(() =>{
+                                                                                                                                                //console.log('Thông tin người dùng sau khi mua hàng là: ');
+                                                                                                                                                return res.json({message: "Mua thành công"})
+                                                                                                                                            }).catch(next);
+                                                                                                                                            // res.status(200).json({ message: 'ok' });
+                                                                                                                                            //res.redirect('/home?message=OK');
+                                                                                                                                            
                                                                                                                                         })
-                                                                                                                                        .catch(next);  }
+                                                                                                                                        .catch(next);} 
                                                                                                                         }
 
                                                                                                                 })
@@ -1186,7 +1238,8 @@ class CodeController {
                                     .then(comboCodeInfo => {
                                         ComboCode.countDocuments({})
                                             .then(tonKho =>{
-                                                
+                                                var quantity = 0;
+                                                var gia = 0;
                                                 const tongGia = soluong * comboCodeInfo.price;
                                                 const randomIds = getRandomIds(comboCodeInfoList, soluong);
                                                 function getRandomIds(comboCodeInfoList, quatity) {
@@ -1266,8 +1319,11 @@ class CodeController {
                                                                                         const lichSuGiaoDich = new HistoryGiaoDich({nameGiaoDich: "Mua Combo Code",userId: decodeToken._id,username: adminInfo.username,value: comboCodeInfo.price, coin:tienMoiLanMua});
                                                                                         lichSuGiaoDich.save()
                                                                                         .then(() =>{
-                                                                                            console.log('Thông tin người dùng sau khi mua hàng là: ', updatedUser);
-                                                                                            return res.json({message: "Mua thành công"})
+                                                                                            // console.log('Thông tin người dùng sau khi mua hàng là: ', updatedUser);
+                                                                                            // return res.json({message: "Mua thành công"})
+                                                                                            //const doanhThuMoiLanMua = updatedUser.coin + comboCodeInfo.price;
+                                                                                            
+                                                                                            
                                                                                         }).catch(next);
                                                                                         //io.emit("Client-send-data","HELLO");
                                                                                     })
@@ -1285,9 +1341,18 @@ class CodeController {
                                                         .catch(next);
                                                     })
                                                     .map(promise => promise.catch(() => null));
-                                                Promise.all(promises)
-                                                    .then(() => {
-                                                        console.log('Các ID đã được cập nhật thành công.');
+                                                Promise.all(promises.map(promise => promise.then(() => {
+                                                    // Cập nhật quantity và gia ở đây
+                                                    quantity += 1;
+                                                    gia += comboCodeInfo.price;
+                                                })))
+                                                .then(() => {
+                                                        const doanhThuBan = new doanhThu({nameGiaoDich: "Mua Combo Code",userId: decodeToken._id,username: adminInfo.username, quantity: quantity, price: gia, type:"Bán hàng",product:"Combo Code"});
+                                                        doanhThuBan.save()
+                                                        .then(() =>{
+                                                            //console.log('Thông tin người dùng sau khi mua hàng là: ');
+                                                            return res.json({message: "Mua thành công"})
+                                                        }).catch(next);
                                                         // res.status(200).json({ message: 'ok' });
                                                         //res.redirect('/home?message=OK');
                                                         
