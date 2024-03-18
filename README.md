@@ -1,4 +1,4 @@
-# Tên Dự Án
+# Shop Game
 
 ![image](https://github.com/datn923456/shop_ntd/assets/90316013/1a133a34-84b2-43a0-abc3-23e8077313e7)
 
